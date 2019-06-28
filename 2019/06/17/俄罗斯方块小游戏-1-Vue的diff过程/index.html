@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="补充概念参考链接-浏览器的工作原理：新式网络浏览器幕后揭秘 Dom树解析器的输出“解析树”是由 DOM 元素和属性节点构成的树结构。DOM 是文档对象模型 (Document Object Model) 的缩写。它是 HTML 文档的对象表示，同时也是外部内容（例如 JavaScript）与 HTML 元素之间的接口。解析树的根节点是“Document”对象  比如这样的HTML，Dom和标记是一">
+<meta name="keywords" content="Vue, 俄罗斯方块小游戏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="俄罗斯方块小游戏(1): Vue的diff过程">
+<meta property="og:url" content="http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="补充概念参考链接-浏览器的工作原理：新式网络浏览器幕后揭秘 Dom树解析器的输出“解析树”是由 DOM 元素和属性节点构成的树结构。DOM 是文档对象模型 (Document Object Model) 的缩写。它是 HTML 文档的对象表示，同时也是外部内容（例如 JavaScript）与 HTML 元素之间的接口。解析树的根节点是“Document”对象  比如这样的HTML，Dom和标记是一">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/5/5a/DOM-model.svg">
+<meta property="og:image" content="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/image015.png">
+<meta property="og:image" content="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png">
+<meta property="og:image" content="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/image008.jpg">
+<meta property="og:image" content="http://yoursite.com/img/201806170/1.png">
+<meta property="og:image" content="https://i.loli.net/2017/08/27/59a23cfca50f3.png">
+<meta property="og:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3465143140,4129223592&fm=15&gp=0.jpg">
+<meta property="og:image" content="https://i.loli.net/2017/08/28/59a4015bb2765.png">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/1/2/160b70ecf5967f0a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://i.loli.net/2017/08/28/59a40c12c1655.png">
+<meta property="og:image" content="https://i.loli.net/2017/08/29/59a4c70685d12.png">
+<meta property="og:image" content="https://github.com/tuzilingdang/img-temp/blob/master/vnode.png">
+<meta property="og:image" content="https://i.loli.net/2017/08/29/59a4d7552d299.png">
+<meta property="og:image" content="https://i.loli.net/2017/08/29/59a4de0fa4dba.png">
+<meta property="og:image" content="https://i.loli.net/2017/08/29/59a509f0d1788.png">
+<meta property="og:image" content="https://i.loli.net/2017/08/29/59a4f389b98cb.png">
+<meta property="og:updated_time" content="2019-06-27T06:49:15.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="俄罗斯方块小游戏(1): Vue的diff过程">
+<meta name="twitter:description" content="补充概念参考链接-浏览器的工作原理：新式网络浏览器幕后揭秘 Dom树解析器的输出“解析树”是由 DOM 元素和属性节点构成的树结构。DOM 是文档对象模型 (Document Object Model) 的缩写。它是 HTML 文档的对象表示，同时也是外部内容（例如 JavaScript）与 HTML 元素之间的接口。解析树的根节点是“Document”对象  比如这样的HTML，Dom和标记是一">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/5/5a/DOM-model.svg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>俄罗斯方块小游戏(1): Vue的diff过程</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/23/618会场开发总结/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/01/18/javascript高级技巧-函数防抖与函数节流/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&text=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&is_video=false&description=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=俄罗斯方块小游戏(1): Vue的diff过程&body=Check out this article: http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&name=俄罗斯方块小游戏(1): Vue的diff过程&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#补充概念"><span class="toc-number">1.</span> <span class="toc-text">补充概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dom树"><span class="toc-number">1.1.</span> <span class="toc-text">Dom树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#呈现引擎的工作流程"><span class="toc-number">1.2.</span> <span class="toc-text">呈现引擎的工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#webkit主流程："><span class="toc-number">1.2.0.1.</span> <span class="toc-text">webkit主流程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Mozilla-的-Gecko主流程："><span class="toc-number">1.2.0.2.</span> <span class="toc-text">Mozilla 的 Gecko主流程：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue基本原理"><span class="toc-number">2.</span> <span class="toc-text">Vue基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue内部流程"><span class="toc-number">2.1.</span> <span class="toc-text">Vue内部流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-js异步更新及nextTick"><span class="toc-number">2.2.</span> <span class="toc-text">Vue.js异步更新及nextTick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VNode结点"><span class="toc-number">2.3.</span> <span class="toc-text">VNode结点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue的Diff算法"><span class="toc-number">3.</span> <span class="toc-text">Vue的Diff算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新老节点的比较"><span class="toc-number">3.1.</span> <span class="toc-text">1. 新老节点的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#patch比较过程"><span class="toc-number">3.1.1.</span> <span class="toc-text">patch比较过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相同节点-–-sameVNode"><span class="toc-number">3.1.2.</span> <span class="toc-text">相同节点 – sameVNode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-相同节点进行-patchVNode比较"><span class="toc-number">3.2.</span> <span class="toc-text">2. 相同节点进行 patchVNode比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Diff的核心内容-——-updateChildren"><span class="toc-number">3.3.</span> <span class="toc-text">3. Diff的核心内容 —— updateChildren</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#循环"><span class="toc-number">3.3.1.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#循环结束"><span class="toc-number">3.3.2.</span> <span class="toc-text">循环结束</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小游戏的性能问题"><span class="toc-number">4.</span> <span class="toc-text">小游戏的性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#结论"><span class="toc-number">4.1.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        俄罗斯方块小游戏(1): Vue的diff过程
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-06-17T03:54:14.000Z" itemprop="datePublished">2019-06-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-俄罗斯方块小游戏/">Vue, 俄罗斯方块小游戏</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="补充概念"><a href="#补充概念" class="headerlink" title="补充概念"></a>补充概念</h2><p><a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/#DOM" target="_blank" rel="noopener">参考链接-浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
+<h3 id="Dom树"><a href="#Dom树" class="headerlink" title="Dom树"></a>Dom树</h3><p>解析器的输出“解析树”是由 DOM 元素和属性节点构成的树结构。DOM 是文档对象模型 (Document Object Model) 的缩写。它是 HTML 文档的对象表示，同时也是外部内容（例如 JavaScript）与 HTML 元素之间的接口。<br>解析树的根节点是“Document”对象</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/DOM-model.svg" alt="DOM-tree"></p>
+<p>比如这样的HTML，Dom和标记是一一对应的关系：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      Hello World</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span> <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"example.png"</span>/&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>它的Dom树如下：</p>
+<p><img src="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/image015.png" alt="DOM-tree"></p>
+<h3 id="呈现引擎的工作流程"><a href="#呈现引擎的工作流程" class="headerlink" title="呈现引擎的工作流程"></a>呈现引擎的工作流程</h3><h5 id="webkit主流程："><a href="#webkit主流程：" class="headerlink" title="webkit主流程："></a>webkit主流程：</h5><p><img src="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png" alt="Webkit主流程"></p>
+<h5 id="Mozilla-的-Gecko主流程："><a href="#Mozilla-的-Gecko主流程：" class="headerlink" title="Mozilla 的 Gecko主流程："></a>Mozilla 的 Gecko主流程：</h5><p><img src="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/image008.jpg" alt="Mozilla 的 Gecko主流程"></p>
+<h2 id="Vue基本原理"><a href="#Vue基本原理" class="headerlink" title="Vue基本原理"></a>Vue基本原理</h2><h3 id="Vue内部流程"><a href="#Vue内部流程" class="headerlink" title="Vue内部流程"></a>Vue内部流程</h3><!--![Vue内部流程](https://segmentfault.com/img/bV51sZ?w=1752&h=1216)-->
+<p><img src="../../../../img/201806170/1.png" alt="Vue内部流程"></p>
+<h3 id="Vue-js异步更新及nextTick"><a href="#Vue-js异步更新及nextTick" class="headerlink" title="Vue.js异步更新及nextTick"></a>Vue.js异步更新及nextTick</h3><p><a href="https://blog.csdn.net/sinat_17775997/article/details/82183435" target="_blank" rel="noopener">https://blog.csdn.net/sinat_17775997/article/details/82183435</a></p>
+<p><a href="https://github.com/tuzilingdang/learnVue/blob/master/docs/Vue.js%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0DOM%E7%AD%96%E7%95%A5%E5%8F%8AnextTick.MarkDown" target="_blank" rel="noopener">https://github.com/tuzilingdang/learnVue/blob/master/docs/Vue.js%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0DOM%E7%AD%96%E7%95%A5%E5%8F%8AnextTick.MarkDown</a></p>
+<h3 id="VNode结点"><a href="#VNode结点" class="headerlink" title="VNode结点"></a>VNode结点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">VNode</span> </span>&#123;</span><br><span class="line">  tag: string | <span class="keyword">void</span>;</span><br><span class="line">  data: VNodeData | <span class="keyword">void</span>;</span><br><span class="line">  children: ?<span class="built_in">Array</span>&lt;VNode&gt;;</span><br><span class="line">  text: string | <span class="keyword">void</span>;</span><br><span class="line">  elm: Node | <span class="keyword">void</span>;</span><br><span class="line">  ns: string | <span class="keyword">void</span>;</span><br><span class="line">  context: Component | <span class="keyword">void</span>; <span class="comment">// rendered in this component's scope</span></span><br><span class="line">  functionalContext: Component | <span class="keyword">void</span>; <span class="comment">// only for functional component root nodes</span></span><br><span class="line">  key: string | number | <span class="keyword">void</span>;</span><br><span class="line">  componentOptions: VNodeComponentOptions | <span class="keyword">void</span>;</span><br><span class="line">  componentInstance: Component | <span class="keyword">void</span>; <span class="comment">// component instance</span></span><br><span class="line">  parent: VNode | <span class="keyword">void</span>; <span class="comment">// component placeholder node</span></span><br><span class="line">  raw: boolean; <span class="comment">// contains raw HTML? (server only)</span></span><br><span class="line">  isStatic: boolean; <span class="comment">// hoisted static node</span></span><br><span class="line">  isRootInsert: boolean; <span class="comment">// necessary for enter transition check</span></span><br><span class="line">  isComment: boolean; <span class="comment">// empty comment placeholder?</span></span><br><span class="line">  isCloned: boolean; <span class="comment">// is a cloned node?</span></span><br><span class="line">  isOnce: boolean; <span class="comment">// is a v-once node?</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span> (</span><br><span class="line">    tag?: string,</span><br><span class="line">    data?: VNodeData,</span><br><span class="line">    children?: ?Array&lt;VNode&gt;,</span><br><span class="line">    text?: string,</span><br><span class="line">    elm?: Node,</span><br><span class="line">    context?: Component,</span><br><span class="line">    componentOptions?: VNodeComponentOptions</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="comment">/*当前节点的标签名*/</span></span><br><span class="line">    <span class="keyword">this</span>.tag = tag</span><br><span class="line">    <span class="comment">/*当前节点对应的对象，包含了具体的一些数据信息，是一个VNodeData类型，可以参考VNodeData类型中的数据信息*/</span></span><br><span class="line">    <span class="keyword">this</span>.data = data</span><br><span class="line">    <span class="comment">/*当前节点的子节点，是一个数组*/</span></span><br><span class="line">    <span class="keyword">this</span>.children = children</span><br><span class="line">    <span class="comment">/*当前节点的文本*/</span></span><br><span class="line">    <span class="keyword">this</span>.text = text</span><br><span class="line">    <span class="comment">/*当前虚拟节点对应的真实dom节点*/</span></span><br><span class="line">    <span class="keyword">this</span>.elm = elm</span><br><span class="line">    <span class="comment">/*当前节点的名字空间*/</span></span><br><span class="line">    <span class="keyword">this</span>.ns = <span class="literal">undefined</span></span><br><span class="line">    <span class="comment">/*编译作用域*/</span></span><br><span class="line">    <span class="keyword">this</span>.context = context</span><br><span class="line">    <span class="comment">/*函数化组件作用域*/</span></span><br><span class="line">    <span class="keyword">this</span>.functionalContext = <span class="literal">undefined</span></span><br><span class="line">    <span class="comment">/*节点的key属性，被当作节点的标志，用以优化*/</span></span><br><span class="line">    <span class="keyword">this</span>.key = data &amp;&amp; data.key</span><br><span class="line">    <span class="comment">/*组件的option选项*/</span></span><br><span class="line">    <span class="keyword">this</span>.componentOptions = componentOptions</span><br><span class="line">    <span class="comment">/*当前节点对应的组件的实例*/</span></span><br><span class="line">    <span class="keyword">this</span>.componentInstance = <span class="literal">undefined</span></span><br><span class="line">    <span class="comment">/*当前节点的父节点*/</span></span><br><span class="line">    <span class="keyword">this</span>.parent = <span class="literal">undefined</span></span><br><span class="line">    <span class="comment">/*简而言之就是是否为原生HTML或只是普通文本，innerHTML的时候为true，textContent的时候为false*/</span></span><br><span class="line">    <span class="keyword">this</span>.raw = <span class="literal">false</span></span><br><span class="line">    <span class="comment">/*静态节点标志*/</span></span><br><span class="line">    <span class="keyword">this</span>.isStatic = <span class="literal">false</span></span><br><span class="line">    <span class="comment">/*是否作为根节点插入*/</span></span><br><span class="line">    <span class="keyword">this</span>.isRootInsert = <span class="literal">true</span></span><br><span class="line">    <span class="comment">/*是否为注释节点*/</span></span><br><span class="line">    <span class="keyword">this</span>.isComment = <span class="literal">false</span></span><br><span class="line">    <span class="comment">/*是否为克隆节点*/</span></span><br><span class="line">    <span class="keyword">this</span>.isCloned = <span class="literal">false</span></span><br><span class="line">    <span class="comment">/*是否有v-once指令*/</span></span><br><span class="line">    <span class="keyword">this</span>.isOnce = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// DEPRECATED: alias for componentInstance for backwards compat.</span></span><br><span class="line">  <span class="comment">/* istanbul ignore next */</span></span><br><span class="line">  <span class="keyword">get</span> child (): Component | void &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.componentInstance</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>简单的Vnode树</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">tag</span>: <span class="string">'div'</span></span><br><span class="line">    data: &#123;</span><br><span class="line">        class: <span class="string">'test'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attribute">tag</span>: <span class="string">'span'</span>,</span><br><span class="line">            data: &#123;</span><br><span class="line">                class: <span class="string">'demo'</span></span><br><span class="line">            &#125;</span><br><span class="line">            text: 'hello,VNode'</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>对应的HTML</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span>hello,VNode<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Vue的Diff算法"><a href="#Vue的Diff算法" class="headerlink" title="Vue的Diff算法"></a>Vue的Diff算法</h2><h3 id="1-新老节点的比较"><a href="#1-新老节点的比较" class="headerlink" title="1. 新老节点的比较"></a>1. 新老节点的比较</h3><h4 id="patch比较过程"><a href="#patch比较过程" class="headerlink" title="patch比较过程"></a>patch比较过程</h4><p><img src="https://i.loli.net/2017/08/27/59a23cfca50f3.png" alt="MacDown logo"></p>
+<p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3465143140,4129223592&fm=15&gp=0.jpg" alt="MacDown logo"></p>
+<h4 id="相同节点-–-sameVNode"><a href="#相同节点-–-sameVNode" class="headerlink" title="相同节点 – sameVNode"></a>相同节点 – sameVNode</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  判断两个VNode节点是否是同一个节点，需要满足以下条件</span></span><br><span class="line"><span class="comment">  key相同</span></span><br><span class="line"><span class="comment">  tag（当前节点的标签名）相同</span></span><br><span class="line"><span class="comment">  isComment（是否为注释节点）相同</span></span><br><span class="line"><span class="comment">  是否data（当前节点对应的对象，包含了具体的一些数据信息，是一个VNodeData类型，可以参考VNodeData类型中的数据信息）都有定义</span></span><br><span class="line"><span class="comment">  当标签是&lt;input&gt;的时候，type必须相同</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sameVnode</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    a.key === b.key &amp;&amp;</span><br><span class="line">    a.tag === b.tag &amp;&amp;</span><br><span class="line">    a.isComment === b.isComment &amp;&amp;</span><br><span class="line">    isDef(a.data) === isDef(b.data) &amp;&amp;</span><br><span class="line">    sameInputType(a, b)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-相同节点进行-patchVNode比较"><a href="#2-相同节点进行-patchVNode比较" class="headerlink" title="2. 相同节点进行 patchVNode比较"></a>2. 相同节点进行 patchVNode比较</h3><ul>
+<li><p>如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），并且新的VNode是clone或者是标记了once（标记v-once属性，只渲染一次），那么只需要替换elm以及componentInstance即可。</p>
+</li>
+<li><p>新老节点均有children子节点，则对子节点进行diff操作，调用updateChildren，这个updateChildren也是diff的核心。</p>
+</li>
+<li><p>如果老节点没有子节点而新节点存在子节点，先清空老节点DOM的文本内容，然后为当前DOM节点加入子节点。</p>
+</li>
+<li><p>当新节点没有子节点而老节点有子节点的时候，则移除该DOM节点的所有子节点。</p>
+</li>
+<li><p>当新老节点都无子节点的时候，只是文本的替换。</p>
+</li>
+</ul>
+<h3 id="3-Diff的核心内容-——-updateChildren"><a href="#3-Diff的核心内容-——-updateChildren" class="headerlink" title="3. Diff的核心内容 —— updateChildren"></a>3. Diff的核心内容 —— updateChildren</h3><h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p>(1) 四个指针向内靠拢， 两两比对共4次</p>
+<p><img src="https://i.loli.net/2017/08/28/59a4015bb2765.png" alt="MacDown logo"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/1/2/160b70ecf5967f0a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="MacDown logo"></p>
+<ul>
+<li>第1种比对</li>
+</ul>
+<p><img src="https://i.loli.net/2017/08/28/59a40c12c1655.png" alt="MacDown logo"></p>
+<ul>
+<li>第2种比对</li>
+</ul>
+<p><img src="https://i.loli.net/2017/08/29/59a4c70685d12.png" alt="MacDown logo"></p>
+<ul>
+<li>第3种比对</li>
+</ul>
+<p><img src="https://github.com/tuzilingdang/img-temp/blob/master/vnode.png" alt="MacDown logo"></p>
+<ul>
+<li>第4种比对</li>
+</ul>
+<ul>
+<li><p>(2) 以上4中比较不满足</p>
+</li>
+</ul>
+<p>通过createKeyToOldIdx会得到一个oldKeyToIdx，里面存放了一个key为旧的VNode，value为对应index序列的哈希表。从这个哈希表中可以找到是否有与newStartVnode一致key旧的VNode节点，如果同时满足sameVnode，patchVnode的同时会将这个真实DOM（elmToMove）移动到oldStartVnode对应的真实DOM的前面</p>
+<p><img src="https://i.loli.net/2017/08/29/59a4d7552d299.png" alt="MacDown logo"></p>
+<p> newStartVnode在旧的VNode节点找不到一致的key，或者是即便key相同却不是sameVnode，这个时候会调用createElm创建一个新的DOM节点</p>
+<p><img src="https://i.loli.net/2017/08/29/59a4de0fa4dba.png" alt="MacDown logo"></p>
+<h4 id="循环结束"><a href="#循环结束" class="headerlink" title="循环结束"></a>循环结束</h4><p><img src="https://i.loli.net/2017/08/29/59a509f0d1788.png" alt="MacDown logo"></p>
+<p><img src="https://i.loli.net/2017/08/29/59a4f389b98cb.png" alt="MacDown logo"></p>
+<h2 id="小游戏的性能问题"><a href="#小游戏的性能问题" class="headerlink" title="小游戏的性能问题"></a>小游戏的性能问题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">left(matrix) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.pos.y - <span class="number">1</span> &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="keyword">this</span>.pos.x; i &lt; <span class="keyword">this</span>.pos.x  + <span class="keyword">this</span>.shape.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix[i][<span class="keyword">this</span>.pos.y - <span class="number">1</span>] == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.pos.y--;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.shape.length; i++) &#123;</span><br><span class="line">        matrix[<span class="keyword">this</span>.pos.x + i] &amp;&amp; matrix[<span class="keyword">this</span>.pos.x + i].splice(<span class="keyword">this</span>.pos.y + <span class="keyword">this</span>.shape[<span class="number">0</span>].length, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.shape.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.shape[i].length; j++) &#123;</span><br><span class="line">            matrix[<span class="keyword">this</span>.pos.x + i] &amp;&amp; matrix[<span class="keyword">this</span>.pos.x + i].splice(<span class="keyword">this</span>.pos.y + j, <span class="number">1</span>, <span class="keyword">this</span>.shape[i][j])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">down(matrix, accRowsList, clearRows) &#123;</span><br><span class="line">    <span class="keyword">const</span> shapeHeight = <span class="keyword">this</span>.shape.length</span><br><span class="line">    <span class="keyword">const</span> shapeWidth = <span class="keyword">this</span>.shape[<span class="number">0</span>].length</span><br><span class="line">    <span class="keyword">const</span> shape = <span class="keyword">this</span>.shape</span><br><span class="line">    <span class="keyword">const</span> posY = <span class="keyword">this</span>.pos.y</span><br><span class="line">    <span class="keyword">const</span> matLength = matrix[<span class="number">0</span>].length</span><br><span class="line">    <span class="keyword">let</span> shapeAcc = []</span><br><span class="line">    <span class="keyword">let</span> crashType = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; shapeWidth; j++) &#123;</span><br><span class="line">        <span class="keyword">const</span> attatchBottom = (<span class="keyword">this</span>.pos.x + <span class="keyword">this</span>.shape.length) &gt;= matrix.length</span><br><span class="line">        <span class="keyword">const</span> blockCrash = matrix[<span class="keyword">this</span>.pos.x + <span class="keyword">this</span>.shape.length] &amp;&amp; matrix[<span class="keyword">this</span>.pos.x + <span class="keyword">this</span>.shape.length][<span class="keyword">this</span>.pos.y + j] &amp;&amp; <span class="keyword">this</span>.shape[shapeHeight - <span class="number">1</span>][j]</span><br><span class="line">        <span class="keyword">if</span> (attatchBottom || blockCrash) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; shapeHeight; i++) &#123;</span><br><span class="line">                <span class="comment">// 检测是否行满</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.pos.x + i &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">                    <span class="keyword">let</span> checkLine = matrix[<span class="keyword">this</span>.pos.x + i] &amp;&amp; matrix[<span class="keyword">this</span>.pos.x + i].filter(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">                        <span class="keyword">return</span> value == <span class="number">1</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                    <span class="keyword">if</span> (checkLine.length == matLength) clearRows.push(<span class="keyword">this</span>.pos.x + i)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            crashType = blockCrash ? <span class="string">'blockCrash'</span> : <span class="string">'attatchBottom'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (crashType) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; shapeWidth; j++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; shapeHeight; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!shapeAcc[j] &amp;&amp; shape[i][j]) shapeAcc[j] = shapeHeight - i</span><br><span class="line">            &#125;</span><br><span class="line">            accRowsList[posY + j] = crashType == <span class="string">'blockCrash'</span> ? matrix.length - <span class="keyword">this</span>.pos.x - shapeHeight + shapeAcc[j] : accRowsList[posY + j] + shapeAcc[j]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.pos.x++;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.pos.x - <span class="number">1</span> &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.shape[<span class="number">0</span>].length; i++)</span><br><span class="line">            matrix[<span class="keyword">this</span>.pos.x - <span class="number">1</span>].splice(<span class="keyword">this</span>.pos.y + i, <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.shape.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.shape[i].length; j++) &#123;</span><br><span class="line">            <span class="keyword">const</span> newVal = i == <span class="keyword">this</span>.shape.length - <span class="number">1</span> ? <span class="keyword">this</span>.shape[i][j] || matrix[<span class="keyword">this</span>.pos.x + i][<span class="keyword">this</span>.pos.y + j] : <span class="keyword">this</span>.shape[i][j]</span><br><span class="line">            matrix[<span class="keyword">this</span>.pos.x + i] &amp;&amp; matrix[<span class="keyword">this</span>.pos.x + i].splice(<span class="keyword">this</span>.pos.y + j, <span class="number">1</span>, newVal)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"screen-grid-area"</span> <span class="attr">:class</span>=<span class="string">"!isGameOn ? 'hidden': ''"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"square"</span>  <span class="attr">:class</span>=<span class="string">"!gameOver &amp;&amp; matrix[parseInt((n-1)/columnNum)][(n-1)%columnNum ] ? 'black':''"</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">v-for</span>=<span class="string">"n in columnNum*rowNum"</span> <span class="attr">:id</span>=<span class="string">"`$&#123;parseInt((n-1)/columnNum)&#125;-$&#123;(n-1)%columnNum &#125;`"</span> <span class="attr">v-bind:key</span>=<span class="string">"n"</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"square-inner"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>每次掉落都会触发一次diff， 每秒 diff 的最大复杂度  O（12 * 22 ）， 一个周期 22 * O（12 * 22 ）</p>
+<p>合理划分组件后：  一个周期触发一次diff  O（12 * 22 ）</p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#补充概念"><span class="toc-number">1.</span> <span class="toc-text">补充概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dom树"><span class="toc-number">1.1.</span> <span class="toc-text">Dom树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#呈现引擎的工作流程"><span class="toc-number">1.2.</span> <span class="toc-text">呈现引擎的工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#webkit主流程："><span class="toc-number">1.2.0.1.</span> <span class="toc-text">webkit主流程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Mozilla-的-Gecko主流程："><span class="toc-number">1.2.0.2.</span> <span class="toc-text">Mozilla 的 Gecko主流程：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue基本原理"><span class="toc-number">2.</span> <span class="toc-text">Vue基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue内部流程"><span class="toc-number">2.1.</span> <span class="toc-text">Vue内部流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-js异步更新及nextTick"><span class="toc-number">2.2.</span> <span class="toc-text">Vue.js异步更新及nextTick</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VNode结点"><span class="toc-number">2.3.</span> <span class="toc-text">VNode结点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue的Diff算法"><span class="toc-number">3.</span> <span class="toc-text">Vue的Diff算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新老节点的比较"><span class="toc-number">3.1.</span> <span class="toc-text">1. 新老节点的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#patch比较过程"><span class="toc-number">3.1.1.</span> <span class="toc-text">patch比较过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相同节点-–-sameVNode"><span class="toc-number">3.1.2.</span> <span class="toc-text">相同节点 – sameVNode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-相同节点进行-patchVNode比较"><span class="toc-number">3.2.</span> <span class="toc-text">2. 相同节点进行 patchVNode比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Diff的核心内容-——-updateChildren"><span class="toc-number">3.3.</span> <span class="toc-text">3. Diff的核心内容 —— updateChildren</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#循环"><span class="toc-number">3.3.1.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#循环结束"><span class="toc-number">3.3.2.</span> <span class="toc-text">循环结束</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小游戏的性能问题"><span class="toc-number">4.</span> <span class="toc-text">小游戏的性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#结论"><span class="toc-number">4.1.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&text=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&is_video=false&description=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=俄罗斯方块小游戏(1): Vue的diff过程&body=Check out this article: http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&title=俄罗斯方块小游戏(1): Vue的diff过程"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/&name=俄罗斯方块小游戏(1): Vue的diff过程&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

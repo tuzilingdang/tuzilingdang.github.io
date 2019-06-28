@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="近期参与了公司的重构项目，交付给测试同事做测试时，发现修改了bug测试还是报出来。 然后清理了缓存或者过一段时间就好了。幸好是用于测试，如果在发布版本的过程中，由于浏览器缓存问题导致用户访问页面时访问了原来的旧资源就比较麻烦了。 之后就搜索了各种资料，看了下大公司的各种方案，看完发现太复杂。对于公司这种不算大的项目，采用gulp就可以解决了。 在写如下非覆盖式静态资源发布，首先需要了解一下什么是覆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gulp实现前端非覆盖式发布">
+<meta property="og:url" content="http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="近期参与了公司的重构项目，交付给测试同事做测试时，发现修改了bug测试还是报出来。 然后清理了缓存或者过一段时间就好了。幸好是用于测试，如果在发布版本的过程中，由于浏览器缓存问题导致用户访问页面时访问了原来的旧资源就比较麻烦了。 之后就搜索了各种资料，看了下大公司的各种方案，看完发现太复杂。对于公司这种不算大的项目，采用gulp就可以解决了。 在写如下非覆盖式静态资源发布，首先需要了解一下什么是覆">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="http://yoursite.com/img/gulp%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E9%9D%9E%E8%A6%86%E7%9B%96%E5%BC%8F%E5%8F%91%E5%B8%83/1.png">
+<meta property="og:image" content="http://yoursite.com/img/gulp%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E9%9D%9E%E8%A6%86%E7%9B%96%E5%BC%8F%E5%8F%91%E5%B8%83/2.png">
+<meta property="og:image" content="http://yoursite.com/img/gulp%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E9%9D%9E%E8%A6%86%E7%9B%96%E5%BC%8F%E5%8F%91%E5%B8%83/3.png">
+<meta property="og:updated_time" content="2019-06-27T04:37:23.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gulp实现前端非覆盖式发布">
+<meta name="twitter:description" content="近期参与了公司的重构项目，交付给测试同事做测试时，发现修改了bug测试还是报出来。 然后清理了缓存或者过一段时间就好了。幸好是用于测试，如果在发布版本的过程中，由于浏览器缓存问题导致用户访问页面时访问了原来的旧资源就比较麻烦了。 之后就搜索了各种资料，看了下大公司的各种方案，看完发现太复杂。对于公司这种不算大的项目，采用gulp就可以解决了。 在写如下非覆盖式静态资源发布，首先需要了解一下什么是覆">
+<meta name="twitter:image" content="http://yoursite.com/img/gulp%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E9%9D%9E%E8%A6%86%E7%9B%96%E5%BC%8F%E5%8F%91%E5%B8%83/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>gulp实现前端非覆盖式发布</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/02/17/JavaScript学习心得-面向对象篇-1/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/08/Ruby的安装/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&text=gulp实现前端非覆盖式发布"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&is_video=false&description=gulp实现前端非覆盖式发布"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=gulp实现前端非覆盖式发布&body=Check out this article: http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&name=gulp实现前端非覆盖式发布&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#覆盖式静态资源发布："><span class="toc-number">1.</span> <span class="toc-text">覆盖式静态资源发布：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非覆盖式静态资源发布："><span class="toc-number">2.</span> <span class="toc-text">非覆盖式静态资源发布：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp用到的插件："><span class="toc-number">3.</span> <span class="toc-text">gulp用到的插件：</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        gulp实现前端非覆盖式发布
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-02-10T08:37:02.000Z" itemprop="datePublished">2017-02-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>近期参与了公司的重构项目，交付给测试同事做测试时，发现修改了bug测试还是报出来。 然后清理了缓存或者过一段时间就好了。幸好是用于测试，如果在发布版本的过程中，由于浏览器缓存问题导致用户访问页面时访问了原来的旧资源就比较麻烦了。</p>
+<p>之后就搜索了各种资料，看了下大公司的各种方案，看完发现太复杂。对于公司这种不算大的项目，采用gulp就可以解决了。</p>
+<p>在写如下非覆盖式静态资源发布，首先需要了解一下什么是覆盖式静态资源发布。</p>
+<h3 id="覆盖式静态资源发布："><a href="#覆盖式静态资源发布：" class="headerlink" title="覆盖式静态资源发布："></a>覆盖式静态资源发布：</h3><p>从下面页面看到，页面引用了一个base.css的文件，里面引用了一张图片。正常情况下，浏览器使用缓存来防止用户每次访问页面都需要加载大量的静态资源。 这个过程是，浏览器使用协商缓存，在加载同一个资源时，会问服务器有没有更新过这个资源，没有的话就返回一个304状态，然后读取本地静态资源。</p>
+<p><img src="/img/gulp%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E9%9D%9E%E8%A6%86%E7%9B%96%E5%BC%8F%E5%8F%91%E5%B8%83/1.png" alt="43"></p>
+<p>然后，这也造成了另外一个问题，在每次发布新的版本时，已经修改了另外一张图片，但由于缓存用户并没有感知到图片更新。如果避免这种情况发生，我们有一种办法，就是在每次发布版本时，在静态资源的名称上打一个版本号，类似下面这样：</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;base.css?v=1.0.1&quot;/&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;a.css?v=1.0.1&quot;/&gt;</code></pre><p>棒棒哒，这样就解决了上面头疼的问题。但真的这么快就解决了么，可没有那么容易呀。这样又出现了一个问题，项目比较大的话，那么那么多的资源文件，全部都要更新一遍，就要重新下载一次，这就麻烦了。 如果某个版本的修改内容只有一个文件，那就只更新这个文件好了。那文件后缀要怎么办呢？查找了一下方案，给后面的文件后缀打个戳就好，生成MD5码就OK了。简而言之，就是可以根据不同文件内容生成不同hash。</p>
+<h3 id="非覆盖式静态资源发布："><a href="#非覆盖式静态资源发布：" class="headerlink" title="非覆盖式静态资源发布："></a>非覆盖式静态资源发布：</h3><p>然后文件命名就开心的被改成下面的样子啦。</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;base.css?v=j9sofj&quot;/&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;a.css?v=d98jfk&quot;/&gt;</code></pre><p>到这里还是没有大功告成，因为有一个问题，如果html页面和静态资源不是同一打包发布的话，又来了一个问题。 先发布页面还是静态资源呢？先发布页面，静态资源还没有更新，那用户就找不到新的资源，要报错啦^^^先发布静态资源，再发布页面，原来的文件被新的覆盖掉了，又混乱了。然后程序猿和程序媛们又要愉快的在夜深人静的时候上新的版本啦。</p>
+<p>不过，还好我们没有大公司那么健全，每次发版全部打包丢上去。直接一起改掉就好了，然而，我是个追求完美的人嘿嘿。继续看资料，那就不要把后缀加上戳了，直接在文件名上修改吧。然后就变成了下图最后的样子。</p>
+<p><img src="/img/gulp%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E9%9D%9E%E8%A6%86%E7%9B%96%E5%BC%8F%E5%8F%91%E5%B8%83/2.png" alt="43"></p>
+<p>这样每次修改了文件，不会覆盖掉原来的，两个都保留了。 而且还有一个好处，跟据内容生产的MD5戳，加上一段内容，新的文件是这样子的：base-3fead09019.css， 恢复到原来，变成了这样子：base-5jdkg08679.css。 重新加上刚刚的内容，变成这样子：base-3fead09019.css，删掉内容，又变回这样子：base-5jdkg08679.css。 非常好，跟据内容生成的戳，相同的文件不会产生命名的变化，就不会产生过多各种戳的文件了。看起来，现在比较完美的解决了用户浏览器缓存更新的问题。</p>
+<h3 id="gulp用到的插件："><a href="#gulp用到的插件：" class="headerlink" title="gulp用到的插件："></a>gulp用到的插件：</h3><p>最后整理了一下，gulp用到的插件，看看gulpfile.js: 晕乎乎，实在太多了，其实相关的就是 gulp-rev和gulp-rev-collector。</p>
+<p><img src="/img/gulp%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E9%9D%9E%E8%A6%86%E7%9B%96%E5%BC%8F%E5%8F%91%E5%B8%83/3.png" alt="43"></p>
+<p>原本也尝试了很多其他的插件，就这俩最合适了。 正常gulp-rev就可以，但项目里有各种文件引用了其他的静态资源文件，手动改要累坏，所以每次有文件更新了名称之后，需要用到gulp-rev-collector把引用的路径直接替换掉。<br>这样整体上看，问题就解决了。</p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#覆盖式静态资源发布："><span class="toc-number">1.</span> <span class="toc-text">覆盖式静态资源发布：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非覆盖式静态资源发布："><span class="toc-number">2.</span> <span class="toc-text">非覆盖式静态资源发布：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gulp用到的插件："><span class="toc-number">3.</span> <span class="toc-text">gulp用到的插件：</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&text=gulp实现前端非覆盖式发布"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&is_video=false&description=gulp实现前端非覆盖式发布"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=gulp实现前端非覆盖式发布&body=Check out this article: http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&title=gulp实现前端非覆盖式发布"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/10/gulp实现前端非覆盖式发布/&name=gulp实现前端非覆盖式发布&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

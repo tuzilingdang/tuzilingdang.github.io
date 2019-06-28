@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="TodoList的实现（1）创建一个Todo的Model用到的API：Extend (API-1)   1Backbone.Model.extend(properties, [classProperties])  这是个很有意思的函数，Extend可以建立一条原型链，用它创建的子类可以继续被extend。 model.defaults (API-2)  1model.defaults or mod">
+<meta name="keywords" content="Backbone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Backbone学习笔记(2)">
+<meta property="og:url" content="http://yoursite.com/2017/03/03/Backbone学习笔记-2/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="TodoList的实现（1）创建一个Todo的Model用到的API：Extend (API-1)   1Backbone.Model.extend(properties, [classProperties])  这是个很有意思的函数，Extend可以建立一条原型链，用它创建的子类可以继续被extend。 model.defaults (API-2)  1model.defaults or mod">
+<meta property="og:locale" content="chinese">
+<meta property="og:updated_time" content="2019-06-28T07:29:39.580Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Backbone学习笔记(2)">
+<meta name="twitter:description" content="TodoList的实现（1）创建一个Todo的Model用到的API：Extend (API-1)   1Backbone.Model.extend(properties, [classProperties])  这是个很有意思的函数，Extend可以建立一条原型链，用它创建的子类可以继续被extend。 model.defaults (API-2)  1model.defaults or mod">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Backbone学习笔记(2)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/03/07/JavaScript学习笔记-函数柯里化/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/03/02/Backbone学习笔记-1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/03/03/Backbone学习笔记-2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&text=Backbone学习笔记(2)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&is_video=false&description=Backbone学习笔记(2)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Backbone学习笔记(2)&body=Check out this article: http://yoursite.com/2017/03/03/Backbone学习笔记-2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&name=Backbone学习笔记(2)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TodoList的实现"><span class="toc-number">1.</span> <span class="toc-text">TodoList的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）创建一个Todo的Model"><span class="toc-number">1.1.</span> <span class="toc-text">（1）创建一个Todo的Model</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#用到的API："><span class="toc-number">1.1.0.1.</span> <span class="toc-text">用到的API：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#创建Todo-Model："><span class="toc-number">1.1.0.2.</span> <span class="toc-text">创建Todo Model：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）创建一个Todo的Collection"><span class="toc-number">1.2.</span> <span class="toc-text">（2）创建一个Todo的Collection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）创建View视图"><span class="toc-number">1.3.</span> <span class="toc-text">（3）创建View视图</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Backbone学习笔记(2)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-03-03T12:10:03.000Z" itemprop="datePublished">2017-03-03</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Backbone/">Backbone</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="TodoList的实现"><a href="#TodoList的实现" class="headerlink" title="TodoList的实现"></a>TodoList的实现</h2><h3 id="（1）创建一个Todo的Model"><a href="#（1）创建一个Todo的Model" class="headerlink" title="（1）创建一个Todo的Model"></a>（1）创建一个Todo的Model</h3><h5 id="用到的API："><a href="#用到的API：" class="headerlink" title="用到的API："></a>用到的API：</h5><p><strong>Extend (API-1)</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Backbone.Model.extend(properties, [classProperties])</span><br></pre></td></tr></table></figure>
+
+<p>这是个很有意思的函数，Extend可以建立一条原型链，用它创建的子类可以继续被extend。</p>
+<p><strong>model.defaults (API-2)</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.defaults or model.defaults()</span><br></pre></td></tr></table></figure>
+
+<p>defaults可以用来制定Model的默认值， 当一个Model的实例被创建时，所有未定义的属性都可以用defaults中设定的属性值来填充。</p>
+<h5 id="创建Todo-Model："><a href="#创建Todo-Model：" class="headerlink" title="创建Todo Model："></a>创建Todo Model：</h5><p>一个Todolist中，包含了许多个todo的Model，我们可以通过extend来创建一个todo的Model。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var Todo = Backbone.Model.extend(&#123;</span><br><span class="line"></span><br><span class="line">  defaults: function() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: &quot;empty todo...&quot;,</span><br><span class="line">      order: Todos.nextOrder(),</span><br><span class="line">      done: false</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  toggle: function() &#123;</span><br><span class="line">    this.save(&#123;done: !this.get(&quot;done&quot;)&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>其中，toggle函数用于反转每个todo实例的状态。</p>
+<h3 id="（2）创建一个Todo的Collection"><a href="#（2）创建一个Todo的Collection" class="headerlink" title="（2）创建一个Todo的Collection"></a>（2）创建一个Todo的Collection</h3><p>所有要做的事项可以看作一个集合，这个集合中包含了所有Todo的Model，这就是一个TodoList。</p>
+<p>用到的API：</p>
+<p><strong>collection.model([attrs], [options])</strong> </p>
+<p>用于指定集合中的模型，一种用法是直接传递原始属性的对象，也就是以下的用法；另一种用法是包含多态的模型，具体可见官方文档：<a href="http://backbonejs.org/#Collection-model" target="_blank" rel="noopener">Collection-model</a></p>
+<p><strong>collection.comparator</strong> </p>
+<p>用于保持collection中models的顺序，每当加入一个model时，都会以特定的顺序加入进来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var TodoList = Backbone.Collection.extend(&#123;</span><br><span class="line"></span><br><span class="line">  // 包含的Model是Todo</span><br><span class="line">  model: Todo,</span><br><span class="line"></span><br><span class="line">  // 木有后台，这里保存所有todo实例用到的localStorage</span><br><span class="line">  localStorage: new Backbone.LocalStorage(&quot;todos-backbone&quot;),</span><br><span class="line"></span><br><span class="line">  // 过滤出已经完成的事项</span><br><span class="line">  done: function() &#123;</span><br><span class="line">    return this.where(&#123;done: true&#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 过滤出待完成的事项</span><br><span class="line">  remaining: function() &#123;</span><br><span class="line">    return this.where(&#123;done: false&#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 正常每次生成todo实例，需要保存数据库，这时要生成一个order值</span><br><span class="line">  nextOrder: function() &#123;</span><br><span class="line">    if (!this.length) return 1;</span><br><span class="line">    return this.last().get(&apos;order&apos;) + 1;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // Todos are sorted by their original insertion order.</span><br><span class="line">  comparator: &apos;order&apos;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>写完记得new一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Todos = new TodoList;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）创建View视图"><a href="#（3）创建View视图" class="headerlink" title="（3）创建View视图"></a>（3）创建View视图</h3><p>用到的API：</p>
+<p><strong>view.el</strong></p>
+<p>Backbone中的视图都会有一个DOM元素，所以views任何时候都可以被渲染并且一次性插入DOM中。这样的方式将reflows和repaint降低到最少，从而保持高性能的UI渲染。</p>
+<p>this.el可以从DOM选择器中解析出来，不然它会通过view的tagName、className、id和属性创建出来。 以下的TodoView就设置了tagName，从而创建了el。 如果这些都没设置的话，el就变成了空的div元素。 一个el和元素的关联通过view的构造器来传递。</p>
+<p>el和元素的关系稍后补充。</p>
+<p><strong>view.render()</strong></p>
+<p>view的render是默认不用操作的。当然你可以重写这个函数，可以把model的数据渲染到模版上，之后view的el就会被新的模版数据的HTML更新。最好的方式就是在渲染的最后一步来return这个函数来启用链式的函数调用。</p>
+<p>在backbone中，可以使用组合的HTML字符串，也可以用document.createElement来生产DOM树去渲染。Mustache.js，Haml-js和Eco是很好的选择，具体使用没有在bacbone里做尝试。但bachbone严重依赖underscore.js,如果是倾向用使用简单的插入javascript的模版的话，还是用underscore.js吧。</p>
+<p><strong>view.events or view.events()</strong></p>
+<p>events的哈希表指定了一系列的DOM事件，这些事件通过事件委托绑定了View的方法。在<strong>调用initialize之前</strong>，Backbone会自动在实例化的时候添加这些事件监听。</p>
+<p><strong>view.initialize</strong></p>
+<p>  TodoView监听model的变化，然后重新渲染。 Todo 和 TodoView是一对一的关系，所以这里设置了直接的引用。</p>
+<p><strong>object.listenTo(other, event, callback)</strong> </p>
+<p>其实正常我们的比较熟悉的用法是other.on(event, callback, object)，这里直接用object来监听是为了方便的一次性清除所有在other上的监听事件。</p>
+<p>首先Todo要创建一个view视图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">var TodoView = Backbone.View.extend(&#123;</span><br><span class="line"></span><br><span class="line">  tagName:  &quot;li&quot;,</span><br><span class="line"></span><br><span class="line">  // 对单个的todo的模版做缓存</span><br><span class="line">  template: _.template($(&apos;#item-template&apos;).html()),</span><br><span class="line"></span><br><span class="line">  // events事件的hash</span><br><span class="line">  events: &#123;</span><br><span class="line">    &quot;click .toggle&quot;   : &quot;toggleDone&quot;,</span><br><span class="line">    &quot;dblclick .view&quot;  : &quot;edit&quot;,</span><br><span class="line">    &quot;click a.destroy&quot; : &quot;clear&quot;,</span><br><span class="line">    &quot;keypress .edit&quot;  : &quot;updateOnEnter&quot;,</span><br><span class="line">    &quot;blur .edit&quot;      : &quot;close&quot;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  initialize: function() &#123;</span><br><span class="line">    this.listenTo(this.model, &apos;change&apos;, this.render);</span><br><span class="line">    this.listenTo(this.model, &apos;destroy&apos;, this.remove);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 对todo的item做渲染</span><br><span class="line">  render: function() &#123;</span><br><span class="line">    this.$el.html(this.template(this.model.toJSON()));</span><br><span class="line">    this.$el.toggleClass(&apos;done&apos;, this.model.get(&apos;done&apos;));</span><br><span class="line">    this.input = this.$(&apos;.edit&apos;);</span><br><span class="line">    return this;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 反转 “done” 的状态</span><br><span class="line">  toggleDone: function() &#123;</span><br><span class="line">    this.model.toggle();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 通过&quot;editing&quot;` 状态的改变控制显示input框.</span><br><span class="line">  edit: function() &#123;</span><br><span class="line">    this.$el.addClass(&quot;editing&quot;);</span><br><span class="line">    this.input.focus();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 关闭“editing”状态，保存新的todo的item</span><br><span class="line">  close: function() &#123;</span><br><span class="line">    var value = this.input.val();</span><br><span class="line">    if (!value) &#123;</span><br><span class="line">      this.clear();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this.model.save(&#123;title: value&#125;);</span><br><span class="line">      this.$el.removeClass(&quot;editing&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 13是enter键的keynode，enter之后更新</span><br><span class="line">  updateOnEnter: function(e) &#123;</span><br><span class="line">    if (e.keyCode == 13) this.close();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 删除todo的item</span><br><span class="line">  clear: function() &#123;</span><br><span class="line">    this.model.destroy();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>APP也要创建一个view视图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">var AppView = Backbone.View.extend(&#123;</span><br><span class="line"></span><br><span class="line">	// APPView的el是$(&quot;#todoapp&quot;)</span><br><span class="line">  el: $(&quot;#todoapp&quot;),</span><br><span class="line"></span><br><span class="line">  statsTemplate: _.template($(&apos;#stats-template&apos;).html()),</span><br><span class="line"></span><br><span class="line">  events: &#123;</span><br><span class="line">    &quot;keypress #new-todo&quot;: &quot;createOnEnter&quot;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  initialize: function() &#123;</span><br><span class="line"></span><br><span class="line">    this.input = this.$(&quot;#new-todo&quot;);</span><br><span class="line">    this.allCheckbox = this.$(&quot;#toggle-all&quot;)[0];</span><br><span class="line"></span><br><span class="line">    this.listenTo(Todos, &apos;add&apos;, this.addOne);</span><br><span class="line">    this.listenTo(Todos, &apos;reset&apos;, this.addAll);</span><br><span class="line">    this.listenTo(Todos, &apos;all&apos;, this.render);</span><br><span class="line"></span><br><span class="line">    this.footer = this.$(&apos;footer&apos;);</span><br><span class="line">    this.main = $(&apos;#main&apos;);</span><br><span class="line"></span><br><span class="line">    Todos.fetch();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  render: function() &#123;</span><br><span class="line">    var done = Todos.done().length;</span><br><span class="line">    var remaining = Todos.remaining().length;</span><br><span class="line"></span><br><span class="line">    if (Todos.length) &#123;</span><br><span class="line">      this.main.show();</span><br><span class="line">      this.footer.show();</span><br><span class="line">      this.footer.html(this.statsTemplate(&#123;done: done, remaining: remaining&#125;));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this.main.hide();</span><br><span class="line">      this.footer.hide();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.allCheckbox.checked = !remaining;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  createOnEnter: function(e) &#123;</span><br><span class="line">    if(e.keyCode != 13) return;</span><br><span class="line">    if(!this.input.val()) return;</span><br><span class="line"></span><br><span class="line">    Todos.create(&#123;title: this.input.val()&#125;);</span><br><span class="line">    this.input.val(&apos;&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>总体上看，demo可以运行了。下一遍开始总结一下backbone的设计模式。</p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TodoList的实现"><span class="toc-number">1.</span> <span class="toc-text">TodoList的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）创建一个Todo的Model"><span class="toc-number">1.1.</span> <span class="toc-text">（1）创建一个Todo的Model</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#用到的API："><span class="toc-number">1.1.0.1.</span> <span class="toc-text">用到的API：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#创建Todo-Model："><span class="toc-number">1.1.0.2.</span> <span class="toc-text">创建Todo Model：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）创建一个Todo的Collection"><span class="toc-number">1.2.</span> <span class="toc-text">（2）创建一个Todo的Collection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）创建View视图"><span class="toc-number">1.3.</span> <span class="toc-text">（3）创建View视图</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/03/03/Backbone学习笔记-2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&text=Backbone学习笔记(2)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&is_video=false&description=Backbone学习笔记(2)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Backbone学习笔记(2)&body=Check out this article: http://yoursite.com/2017/03/03/Backbone学习笔记-2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&title=Backbone学习笔记(2)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/03/03/Backbone学习笔记-2/&name=Backbone学习笔记(2)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

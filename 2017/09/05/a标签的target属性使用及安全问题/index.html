@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="a标签的target的使用一般书写a标签，我们常常用到的属性有href、target、id，以此实现点击a标签跳转新的文档或者文档的某个部分的功能。  href属性用来描述跳转链接的地址，target用来定义被链接的文档在何处显示。target的值常见的有：    值 描述    view_window 文档重定向到单独的窗口   name of frame 将超链接内容定向到框架中   _bla">
+<meta name="keywords" content="a标签 target">
+<meta property="og:type" content="article">
+<meta property="og:title" content="a标签的target属性使用及安全问题">
+<meta property="og:url" content="http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="a标签的target的使用一般书写a标签，我们常常用到的属性有href、target、id，以此实现点击a标签跳转新的文档或者文档的某个部分的功能。  href属性用来描述跳转链接的地址，target用来定义被链接的文档在何处显示。target的值常见的有：    值 描述    view_window 文档重定向到单独的窗口   name of frame 将超链接内容定向到框架中   _bla">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="http://yoursite.com/img/a-%E6%A0%87%E7%AD%BE%E7%9A%84target%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/1.png">
+<meta property="og:image" content="http://yoursite.com/img/a-%E6%A0%87%E7%AD%BE%E7%9A%84target%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/2.png">
+<meta property="og:image" content="http://yoursite.com/img/a-%E6%A0%87%E7%AD%BE%E7%9A%84target%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/3.png">
+<meta property="og:updated_time" content="2019-06-28T08:02:55.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="a标签的target属性使用及安全问题">
+<meta name="twitter:description" content="a标签的target的使用一般书写a标签，我们常常用到的属性有href、target、id，以此实现点击a标签跳转新的文档或者文档的某个部分的功能。  href属性用来描述跳转链接的地址，target用来定义被链接的文档在何处显示。target的值常见的有：    值 描述    view_window 文档重定向到单独的窗口   name of frame 将超链接内容定向到框架中   _bla">
+<meta name="twitter:image" content="http://yoursite.com/img/a-%E6%A0%87%E7%AD%BE%E7%9A%84target%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>a标签的target属性使用及安全问题</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/09/19/JavaScript学习笔记-bind函数/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/07/12/XSS攻击与防御总结/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&text=a标签的target属性使用及安全问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&is_video=false&description=a标签的target属性使用及安全问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=a标签的target属性使用及安全问题&body=Check out this article: http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&name=a标签的target属性使用及安全问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a标签的target的使用"><span class="toc-number">1.</span> <span class="toc-text">a标签的target的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#target-”-blank”的使用"><span class="toc-number">1.1.</span> <span class="toc-text">target=”_blank”的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#target使用需注意的问题"><span class="toc-number">2.</span> <span class="toc-text">target使用需注意的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#target-”-blank”带来的问题"><span class="toc-number">2.1.</span> <span class="toc-text">target=”_blank”带来的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#target-”-blank”的兼容性"><span class="toc-number">2.1.1.</span> <span class="toc-text">target=”_blank”的兼容性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#target-”-blank”的安全性"><span class="toc-number">2.1.2.</span> <span class="toc-text">target=”_blank”的安全性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#target-”-blank”的性能问题"><span class="toc-number">2.1.3.</span> <span class="toc-text">target=”_blank”的性能问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#target-”-blank”的优化方案"><span class="toc-number">2.2.</span> <span class="toc-text">target=”_blank”的优化方案</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        a标签的target属性使用及安全问题
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-09-05T15:11:43.000Z" itemprop="datePublished">2017-09-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/a标签-target/">a标签 target</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="a标签的target的使用"><a href="#a标签的target的使用" class="headerlink" title="a标签的target的使用"></a>a标签的target的使用</h2><p>一般书写a标签，我们常常用到的属性有href、target、id，以此实现点击a标签跳转新的文档或者文档的某个部分的功能。 </p>
+<p>href属性用来描述跳转链接的地址，target用来定义被链接的文档在何处显示。target的值常见的有：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>view_window</td>
+<td>文档重定向到单独的窗口</td>
+</tr>
+<tr>
+<td>name of frame</td>
+<td><frameset>将超链接内容定向到框架中</frameset></td>
+</tr>
+<tr>
+<td>_blank</td>
+<td>新打开、未命名窗口中载入文档</td>
+</tr>
+<tr>
+<td>_self</td>
+<td>没有指定目标的a标签的默认目标</td>
+</tr>
+<tr>
+<td>_parent</td>
+<td>文档载入父窗口或者包含来超链接引用的框架的框架集</td>
+</tr>
+<tr>
+<td>_top</td>
+<td>清除所有被包含的框架并将文档载入整个浏览器窗口</td>
+</tr>
+</tbody></table>
+<p> 接下来重点讲常用的_blank，看看有什么有意思的地方。</p>
+<h3 id="target-”-blank”的使用"><a href="#target-”-blank”的使用" class="headerlink" title="target=”_blank”的使用"></a>target=”_blank”的使用</h3><p>用Google搜索的时候，会发现英文站点击搜索结果，结果页是在当前窗口刷新的；但如果是使用百度，点击搜索结果，是在新页面中打开的。对于使用谷歌网速不佳的情况，自己还是不太习惯同一个窗口打开。_blank可以用在这样一些情况：</p>
+<ol>
+<li>打开外部链接</li>
+<li>打开PDF文件</li>
+<li>用户播放一些音乐、视频等内容</li>
+<li>用户当前页面有操作，改变会导致操作丢失</li>
+</ol>
+<p>看起来用户体验还可以啊，也很方便啊，那就用用用起来吧。 但是， 真用起来问题还真是挺多啊，接下来看看有什么问题会被投诉吧。</p>
+<h2 id="target使用需注意的问题"><a href="#target使用需注意的问题" class="headerlink" title="target使用需注意的问题"></a>target使用需注意的问题</h2><p>这里主要讲讲target=”_blank”带来的问题。</p>
+<h3 id="target-”-blank”带来的问题"><a href="#target-”-blank”带来的问题" class="headerlink" title="target=”_blank”带来的问题"></a>target=”_blank”带来的问题</h3><p>新窗口打开页面看似简单，但直接使用target=”_blank”可能会出现如下情况： </p>
+<ol>
+<li><strong>兼容问题</strong>： opener的锅，如果href是“”， 使用target=”_blank”在Chrome中挺正常的，结果到了IE上就麻烦了，肿么打开了一个奇怪的空白页呀………………</li>
+<li><strong>安全问题</strong>： 又是opener的锅，谁让你可以跨域呢。之后就被钓鱼网站愉快的利用了。</li>
+<li><strong>性能问题</strong>： 还是opener的锅，opener怎么这么多锅…… 页面卡了啊………… 。</li>
+</ol>
+<h4 id="target-”-blank”的兼容性"><a href="#target-”-blank”的兼容性" class="headerlink" title="target=”_blank”的兼容性"></a>target=”_blank”的兼容性</h4><p>在chrome正常的打开原页面，IE是空白页。 如果用在列表上，后台传来的数据刚好href是空的，那这里就出bug了。<br>这里的原因是window.opener在chrome中自动设置成当前页面，然后新打开页面是当前页，所以整体观感还可以接受。 但似到了IE中，opener就直接打开aboutblank了，这个bug有点大。</p>
+<h4 id="target-”-blank”的安全性"><a href="#target-”-blank”的安全性" class="headerlink" title="target=”_blank”的安全性"></a>target=”_blank”的安全性</h4><p>这里的问题就是被钓鱼……<br>当我们使用target=”_blank”时，重定向页面使用window.open去打开，但是window.open这个对象是可以跨域的，也就是说我们可以随意修改js文件，在里面重新给window.open.location赋值，之后只要用户点击a标签，就会打开我们设置的链接。如果是个钓鱼网站，那就悲剧了。</p>
+<p>可以试一下最简单的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">window</span>.opener.location = <span class="string">"http://www.baidu.com"</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来注意了，开始钓鱼：</p>
+<p><strong>1. 正常访问的页面，注意链接，注意链接</strong></p>
+<p>a标签是这样写的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"./hack.html"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Click<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../../../../img/a-%E6%A0%87%E7%AD%BE%E7%9A%84target%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/1.png" alt="1"></p>
+<p><strong>2. hack.html是a标签链接的页面，js的写法如下：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> elements = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</span></span><br><span class="line"><span class="javascript">	<span class="keyword">if</span>(<span class="built_in">window</span>.opener) &#123;</span></span><br><span class="line"><span class="javascript">		elements[<span class="number">0</span>].innerHTML = <span class="string">"钓鱼成功了"</span>;</span></span><br><span class="line"><span class="javascript">		opener.location = <span class="string">"./target-blank.html?money=10000"</span>;</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="javascript">	<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="javascript">		elements[<span class="number">0</span>].innerHTML = <span class="string">"钓鱼失败了"</span>;</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 然后钓鱼成功了，原页面的地址被改掉</strong></p>
+<p><img src="../../../../img/a-%E6%A0%87%E7%AD%BE%E7%9A%84target%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/2.png" alt="1"></p>
+<p><strong>接下来看看原页面的地址，关键是改掉了用户毫不知情啊毫不知情啊</strong>：</p>
+<p><img src="../../../../img/a-%E6%A0%87%E7%AD%BE%E7%9A%84target%E5%B1%9E%E6%80%A7%E4%BD%BF%E7%94%A8%E5%8F%8A%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98/3.png" alt="1"><br>假设上面的opener.location = “./target-blank.html?money=10000”前面改成请求后端的接口地址，这个ajax请求刚好又是Get请求，哈哈，那就悲剧了。 当然，现在一般后台都有各种限制，有数据提交的情况不会用get方式处理。</p>
+<h4 id="target-”-blank”的性能问题"><a href="#target-”-blank”的性能问题" class="headerlink" title="target=”_blank”的性能问题"></a>target=”_blank”的性能问题</h4><p>target=”_blank”的性能问题在Chrome和Firefox会有涉及，IE没有这个问题。这里的问题原因是使用opener打开的新窗口和原有的窗口共用了一个进程。</p>
+<p>但素，正常打开一个页面不应该是新建一个进程么，这是因为opener对象的包含了DOM信息，两个进程无法控制这样的DOM，所以放在一个进程里。</p>
+<p>所以， 如果本身原有访问页面非常复杂，然后搞个钓鱼网站写个setInterval这样的函数，在原页面上点点点点点多几次a标签打开搞破坏网站的窗口，原页面就会卡死啦。</p>
+<h3 id="target-”-blank”的优化方案"><a href="#target-”-blank”的优化方案" class="headerlink" title="target=”_blank”的优化方案"></a>target=”_blank”的优化方案</h3><p>针对以上的问题，targe=’_blank’还是慎用，如果出现上述问题，那就通过为 a标签 加上 rel=”noopener noreferrer” 属性来解决。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">target</span>=<span class="string">"_blank"</span>  <span class="attr">rel</span>=<span class="string">"noopener noreferrer"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a标签的target的使用"><span class="toc-number">1.</span> <span class="toc-text">a标签的target的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#target-”-blank”的使用"><span class="toc-number">1.1.</span> <span class="toc-text">target=”_blank”的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#target使用需注意的问题"><span class="toc-number">2.</span> <span class="toc-text">target使用需注意的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#target-”-blank”带来的问题"><span class="toc-number">2.1.</span> <span class="toc-text">target=”_blank”带来的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#target-”-blank”的兼容性"><span class="toc-number">2.1.1.</span> <span class="toc-text">target=”_blank”的兼容性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#target-”-blank”的安全性"><span class="toc-number">2.1.2.</span> <span class="toc-text">target=”_blank”的安全性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#target-”-blank”的性能问题"><span class="toc-number">2.1.3.</span> <span class="toc-text">target=”_blank”的性能问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#target-”-blank”的优化方案"><span class="toc-number">2.2.</span> <span class="toc-text">target=”_blank”的优化方案</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&text=a标签的target属性使用及安全问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&is_video=false&description=a标签的target属性使用及安全问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=a标签的target属性使用及安全问题&body=Check out this article: http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&title=a标签的target属性使用及安全问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/09/05/a标签的target属性使用及安全问题/&name=a标签的target属性使用及安全问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

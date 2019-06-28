@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="一个小练习实现鼠标左键或右键点击页面，弹出菜单 点击上方区域，看下效果吧。 思路看起来只是一个鼠标左键点击的操作，其实考察的内容也是很细致。当时没做出来，现在看起来真的是因为没有系统的看过前端的书，对于JavaScript中的事件都是百度看看代码，一知半解懵懵懂懂，一写起来代码就懵逼了。 还是拿起书本，沉下心好好地体会，相信每看一遍都有新的收获。 严重跑题…………回来看看思路。 既然是鼠标点击菜单">
+<meta name="keywords" content="事件 冒泡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS事件(1)-小练习-鼠标左键（右键）弹出菜单">
+<meta property="og:url" content="http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="一个小练习实现鼠标左键或右键点击页面，弹出菜单 点击上方区域，看下效果吧。 思路看起来只是一个鼠标左键点击的操作，其实考察的内容也是很细致。当时没做出来，现在看起来真的是因为没有系统的看过前端的书，对于JavaScript中的事件都是百度看看代码，一知半解懵懵懂懂，一写起来代码就懵逼了。 还是拿起书本，沉下心好好地体会，相信每看一遍都有新的收获。 严重跑题…………回来看看思路。 既然是鼠标点击菜单">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="http://yoursite.com/img/%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%BC%B9%E5%87%BA%E8%8F%9C%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0/4.png">
+<meta property="og:image" content="http://yoursite.com/img/%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%BC%B9%E5%87%BA%E8%8F%9C%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0/3.png">
+<meta property="og:updated_time" content="2019-06-27T04:47:45.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS事件(1)-小练习-鼠标左键（右键）弹出菜单">
+<meta name="twitter:description" content="一个小练习实现鼠标左键或右键点击页面，弹出菜单 点击上方区域，看下效果吧。 思路看起来只是一个鼠标左键点击的操作，其实考察的内容也是很细致。当时没做出来，现在看起来真的是因为没有系统的看过前端的书，对于JavaScript中的事件都是百度看看代码，一知半解懵懵懂懂，一写起来代码就懵逼了。 还是拿起书本，沉下心好好地体会，相信每看一遍都有新的收获。 严重跑题…………回来看看思路。 既然是鼠标点击菜单">
+<meta name="twitter:image" content="http://yoursite.com/img/%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%BC%B9%E5%87%BA%E8%8F%9C%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0/4.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JS事件(1)-小练习-鼠标左键（右键）弹出菜单</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/03/11/Backbone学习笔记-3/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/03/08/JS事件-2-touch事件的兼容问题/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&text=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&is_video=false&description=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS事件(1)-小练习-鼠标左键（右键）弹出菜单&body=Check out this article: http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&name=JS事件(1)-小练习-鼠标左键（右键）弹出菜单&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个小练习"><span class="toc-number">1.</span> <span class="toc-text">一个小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件的知识回顾"><span class="toc-number">3.</span> <span class="toc-text">事件的知识回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件处理程序"><span class="toc-number">3.1.</span> <span class="toc-text">事件处理程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM事件流"><span class="toc-number">3.1.1.</span> <span class="toc-text">DOM事件流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML事件处理程序"><span class="toc-number">3.1.2.</span> <span class="toc-text">HTML事件处理程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM0事件处理程序"><span class="toc-number">3.1.3.</span> <span class="toc-text">DOM0事件处理程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM2事件处理程序"><span class="toc-number">3.1.4.</span> <span class="toc-text">DOM2事件处理程序</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JS事件(1)-小练习-鼠标左键（右键）弹出菜单
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-03-10T07:57:20.000Z" itemprop="datePublished">2017-03-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/事件-冒泡/">事件 冒泡</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="一个小练习"><a href="#一个小练习" class="headerlink" title="一个小练习"></a>一个小练习</h2><p>实现鼠标左键或右键点击页面，弹出菜单</p>
+<p>点击上方区域，看下效果吧。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>看起来只是一个鼠标左键点击的操作，其实考察的内容也是很细致。当时没做出来，现在看起来真的是因为没有系统的看过前端的书，对于JavaScript中的事件都是百度看看代码，一知半解懵懵懂懂，一写起来代码就懵逼了。 还是拿起书本，沉下心好好地体会，相信每看一遍都有新的收获。</p>
+<p>严重跑题…………回来看看思路。 既然是鼠标点击菜单，第一个想到的当然是事件的知识了。这里用到的是鼠标事件，大概最长见到的事件了。鼠标事件有mousedown、click、dbclick、mouseover等，但是如何判断左右键及滚轮操作呢？翻翻书就知道，产生事件时，我们可以获取到鼠标操作对应的值，0是左键，1是右键。鼠标操作的是这样了，然后代码怎么写呢？首先对鼠标的操作做事件监听，然后写个事件处理程序，处理的方法封装成handler（）的函数。</p>
+<h2 id="事件的知识回顾"><a href="#事件的知识回顾" class="headerlink" title="事件的知识回顾"></a>事件的知识回顾</h2><h3 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h3><p>当我们想实现一个click操作时，初学前端时可能会很混乱。比如，可以在html里元素上写个onclick = handler（），或者js里写个addEventListener，或者btn.onclick = function(){},jquery中还可以$(“元素”).click()。还是来看看事件处理程序是怎样的吧。</p>
+<h4 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h4><p>DOM2级事件包括三个阶段： 事件捕获阶段、处于目标阶段、事件冒泡阶段。<br>正常来说支持dom事件流的浏览器事件目标不会包含在捕获阶段，但IE9、safari、火狐、chrome等高版本浏览器上，可以在捕获阶段实现目标事件的触发。在这个小练习中，点击的区域是<div>元素，class为demo。点击时发生的事件流就见下图：</div></p>
+<p><img src="/img/%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%BC%B9%E5%87%BA%E8%8F%9C%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0/4.png" alt="43"></p>
+<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><p>写出来就是这样的感觉：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">"handler()"</span>&gt;点我点我&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">	function handler()&#123;</span></span><br><span class="line"><span class="string">		alert("</span>看我看我<span class="string">");</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看下缺点：</p>
+<ol>
+<li>script放在button后面，比如这段处理程序上面在引入个js文件，很可能点击后还没执行到handler函数引发错误。</li>
+<li>HTML和JS耦合性太强，修改比较麻烦。</li>
+<li>不同浏览器可能出错。</li>
+</ol>
+<h4 id="DOM0事件处理程序"><a href="#DOM0事件处理程序" class="headerlink" title="DOM0事件处理程序"></a>DOM0事件处理程序</h4><p>长这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn"</span>&gt;Click&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">	var btn = document.getElementById("</span>btn<span class="string">");</span></span><br><span class="line"><span class="string">	btn.onclick = fucntion()&#123;</span></span><br><span class="line"><span class="string">		alert("</span>Hi<span class="string">");	</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种处理程序发生在事件的冒泡阶段。</p>
+<h4 id="DOM2事件处理程序"><a href="#DOM2事件处理程序" class="headerlink" title="DOM2事件处理程序"></a>DOM2事件处理程序</h4><p>接下来小练习当中用到的处理程序长下面这样，支持各种浏览器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn"</span>&gt;点我点我&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">	var btn = document.getElementById("</span>btn<span class="string">");</span></span><br><span class="line"><span class="string">	btn.addEventListener("</span>click<span class="string">",handler(),false);</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>btn.addEventListener里，写false是冒泡，true是捕获，一般冒泡就可以，现在大部分浏览器都支持冒泡，false可以最大化兼容了。 在定义事件流的时候，IE与NetScape提出的事件流不一样，IE提出的是冒泡，而NetScape相反，提出了捕获事件流。</p>
+<p>既然IE不太一样，要写另一个处理。并且IE8之前的版本不支持DOM事件流哦。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">	&lt;button id=<span class="string">"btn"</span>&gt;点我点我&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">	</span></span><br><span class="line"><span class="regexp">	&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">		var btn = document.getElementById("</span>btn<span class="string">");</span></span><br><span class="line"><span class="string">		btn.attachEvent("</span>click<span class="string">",handler());</span></span><br><span class="line"><span class="string">	&lt;/script&gt;</span></span><br><span class="line"><span class="string">```	</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">#### 鼠标事件</span></span><br><span class="line"><span class="string">常见的有这几种：</span></span><br><span class="line"><span class="string">mousedown：按下</span></span><br><span class="line"><span class="string">mouseup：弹起</span></span><br><span class="line"><span class="string">click：单击 </span></span><br><span class="line"><span class="string">dblclick：双击 </span></span><br><span class="line"><span class="string">contextmenu ：弹出右键菜单 </span></span><br><span class="line"><span class="string">mouseover：移到目标的上方</span></span><br><span class="line"><span class="string">mouseout：移出目标的上方</span></span><br><span class="line"><span class="string">mousemove：在目标的上方移动</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">DOM2.0中，鼠标事件被解析为MouseEvent,我们可以通过它的属性button来判断左键、右键和滚轮事件。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">W3C规范中，0代表左键，1代表滚轮，2代表右键。IE8之前的判断比较复杂一点，这里就不讲述了。</span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">#### 写个兼容绝大多数浏览器的事件处理程序</span></span><br><span class="line"><span class="string">自己编写的话，我们可以定义一个EventUtil的对象。IE和其他浏览器不太一样，所以要有一个事件监听的判断。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">![43](/img/鼠标左键弹出菜单的实现/1.png)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">然后添加一个判断鼠标事件的getButton(),判断左右键点击。 菜单是要跟着鼠标点击产生的，所以要获取点击的位置坐标，用getMousePos()实现。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">![43](/img/鼠标左键弹出菜单的实现/2.png)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 鼠标左键（右键）菜单的实现</span></span><br><span class="line"><span class="string">HTML的代码：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```html</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	&lt;body&gt;</span></span><br><span class="line"><span class="string">		&lt;div id="</span>menu<span class="string">"&gt;</span></span><br><span class="line"><span class="string">			&lt;ul&gt;</span></span><br><span class="line"><span class="string">				&lt;li&gt;功能1&lt;/li&gt;</span></span><br><span class="line"><span class="string">				&lt;li&gt;功能2&lt;/li&gt;</span></span><br><span class="line"><span class="string">				&lt;li&gt;功能3&lt;/li&gt;</span></span><br><span class="line"><span class="string">				&lt;li&gt;功能4&lt;/li&gt;</span></span><br><span class="line"><span class="string">				&lt;li&gt;功能5&lt;/li&gt;</span></span><br><span class="line"><span class="string">			&lt;/ul&gt;</span></span><br><span class="line"><span class="string">		&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">		&lt;script type="</span>text/javascript<span class="string">" src="</span>program.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">	&lt;/body&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>Program.js中调用时间处理程序代码如下：<br><img src="/img/%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%BC%B9%E5%87%BA%E8%8F%9C%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0/3.png" alt="43"></p>
+<p>接着就可以看看效果了。</p>
+<script type="text/javascript" src="program.js"></script>
+<link rel="stylesheet" href="demo.css">
+
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个小练习"><span class="toc-number">1.</span> <span class="toc-text">一个小练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件的知识回顾"><span class="toc-number">3.</span> <span class="toc-text">事件的知识回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件处理程序"><span class="toc-number">3.1.</span> <span class="toc-text">事件处理程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM事件流"><span class="toc-number">3.1.1.</span> <span class="toc-text">DOM事件流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML事件处理程序"><span class="toc-number">3.1.2.</span> <span class="toc-text">HTML事件处理程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM0事件处理程序"><span class="toc-number">3.1.3.</span> <span class="toc-text">DOM0事件处理程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM2事件处理程序"><span class="toc-number">3.1.4.</span> <span class="toc-text">DOM2事件处理程序</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&text=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&is_video=false&description=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS事件(1)-小练习-鼠标左键（右键）弹出菜单&body=Check out this article: http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&title=JS事件(1)-小练习-鼠标左键（右键）弹出菜单"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/03/10/鼠标左键弹出菜单的实现/&name=JS事件(1)-小练习-鼠标左键（右键）弹出菜单&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

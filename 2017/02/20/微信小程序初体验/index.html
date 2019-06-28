@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="年前接到任务要开发一款基金小程序的DEMO，虽然微信小程序热度持续挺久了，也正式上线了很多应用。但之前并没有详细的做过技术调研，所以有这样一个比较集中的时间做开发真的是很乐在其中，对于学习小程序是个很好的机会。然而写博客时才发现，开发的时候根据文档把Demo做出来，真的要写肚子里却没有墨水。究其原因，学习太肤浅了……所以趁着还没忘，抓紧做一下总结。基本的开发方法微信小程序文档已经说明的很详细了，有">
+<meta name="keywords" content="架构  微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序初体验">
+<meta property="og:url" content="http://yoursite.com/2017/02/20/微信小程序初体验/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="年前接到任务要开发一款基金小程序的DEMO，虽然微信小程序热度持续挺久了，也正式上线了很多应用。但之前并没有详细的做过技术调研，所以有这样一个比较集中的时间做开发真的是很乐在其中，对于学习小程序是个很好的机会。然而写博客时才发现，开发的时候根据文档把Demo做出来，真的要写肚子里却没有墨水。究其原因，学习太肤浅了……所以趁着还没忘，抓紧做一下总结。基本的开发方法微信小程序文档已经说明的很详细了，有">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/1.png">
+<meta property="og:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/14.png">
+<meta property="og:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/0.png">
+<meta property="og:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/111.png">
+<meta property="og:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/222.png">
+<meta property="og:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/333.png">
+<meta property="og:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/444.png">
+<meta property="og:updated_time" content="2019-06-27T04:48:52.833Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序初体验">
+<meta name="twitter:description" content="年前接到任务要开发一款基金小程序的DEMO，虽然微信小程序热度持续挺久了，也正式上线了很多应用。但之前并没有详细的做过技术调研，所以有这样一个比较集中的时间做开发真的是很乐在其中，对于学习小程序是个很好的机会。然而写博客时才发现，开发的时候根据文档把Demo做出来，真的要写肚子里却没有墨水。究其原因，学习太肤浅了……所以趁着还没忘，抓紧做一下总结。基本的开发方法微信小程序文档已经说明的很详细了，有">
+<meta name="twitter:image" content="http://yoursite.com/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>微信小程序初体验</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/02/21/移动Web开发之远程调试（1）/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/02/17/JavaScript学习心得-面向对象篇-1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/20/微信小程序初体验/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/20/微信小程序初体验/&text=微信小程序初体验"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/20/微信小程序初体验/&is_video=false&description=微信小程序初体验"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微信小程序初体验&body=Check out this article: http://yoursite.com/2017/02/20/微信小程序初体验/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/20/微信小程序初体验/&name=微信小程序初体验&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目开发计划"><span class="toc-number">1.</span> <span class="toc-text">项目开发计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目开发计划-1"><span class="toc-number">2.</span> <span class="toc-text">项目开发计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术总结"><span class="toc-number">3.</span> <span class="toc-text">技术总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-小程序的实质"><span class="toc-number">3.1.</span> <span class="toc-text">1. 小程序的实质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-小程序的运行环境"><span class="toc-number">3.2.</span> <span class="toc-text">2. 小程序的运行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-小程序的架构"><span class="toc-number">3.3.</span> <span class="toc-text">3. 小程序的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#View与Service的通信"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">View与Service的通信</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-本地缓存"><span class="toc-number">3.4.</span> <span class="toc-text">4. 本地缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-开发工具的实现"><span class="toc-number">3.5.</span> <span class="toc-text">5. 开发工具的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-成果截图"><span class="toc-number">3.6.</span> <span class="toc-text">6. 成果截图</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        微信小程序初体验
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-02-20T10:32:22.000Z" itemprop="datePublished">2017-02-20</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/架构-微信小程序/">架构  微信小程序</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>年前接到任务要开发一款基金小程序的DEMO，虽然微信小程序热度持续挺久了，也正式上线了很多应用。但之前并没有详细的做过技术调研，所以有这样一个比较集中的时间做开发真的是很乐在其中，对于学习小程序是个很好的机会。然而写博客时才发现，开发的时候根据文档把Demo做出来，真的要写肚子里却没有墨水。究其原因，学习太肤浅了……所以趁着还没忘，抓紧做一下总结。<br>基本的开发方法微信小程序文档已经说明的很详细了，有兴趣动手实践的同学可直接参考文档。本文将围绕本次项目的实践经验和整体开发流程，谈谈一些更深入的知识。</p>
+<h3 id="项目开发计划"><a href="#项目开发计划" class="headerlink" title="项目开发计划"></a>项目开发计划</h3><p>作为一篇技术博文，写到到这里画风有点不对，但是还是非常有必要聊一下小程序的适用场景，毕竟产品定位如果一开始方向错误，会直接导致开发人员辛辛苦苦大半年，一夜回到解放前。<br>开发一款新技术的产品，对于一个团队而言，产品上的适用性、技术人员学习及开发成本等等都是必须在项目开发之前，需要仔细斟酌讨论的事情。微信小程序到底是什么大家已经很熟悉了，但到底什么类型什么业务的产品是适合做成小程序的，这就要认真的思考一下了。看下大家对小程序的评价：<br>低频App没有合理存在的理由。<br>这是一种从C/S结构，到B/S结构的转变。就像分久必合，合久必分，两者都会长期存在。<br>很多东西实际上一个单页程序就够了。<br>基于微信那么大的用户群体，所有的App基本都需要通过它来推广，现在让传播变的更方便了。</p>
+<p>根据基金的业务特征，对于货基及面向很多白领用户的基金产品而言：<br>APP用户量少，使用场景偏于低频，但真正的老用户可能会选择使用APP购买基金。<br>H5的入口为公众号，更强的是信息推送能力，而在真正购买产品上可能不适用。<br>看起来其实业务场景非常适合用小程序来实现。但不幸的是，证监会目前对此管控非常严格，为保证金融系统的稳定安全，现涉及交易的基金小程序都被下架。至于如何在小程序上发力推广基金产品，以及产品以何种形式出现，还是有待商讨的一件事情。<br>目前美团生活、美团酒店、携程、今日头条、滴滴打车等等都已经推出了小程序产品。个人觉得比较容易传播、有线下服务升级的产品比较适于做成小程序，毕竟入口是在微信平台环境上的，要符合微信的生态规则才能玩得转。</p>
+<h3 id="项目开发计划-1"><a href="#项目开发计划-1" class="headerlink" title="项目开发计划"></a>项目开发计划</h3><p>正文开始啦。<br>对于一个从来从来没有接触过小程序的开发人员来说，开发前有许多准备工作需要列入计划中。这些工作包括小程序账号注册、信息完善、AppId配置、微信开发者工具的使用、手机端预览、代码审核发布等。<br>以上准备工作不多说了，可以直接参考小程序开发文档。下图是这次DEMO的项目开发计划： </p>
+<p><img src="/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/1.png" alt="43"></p>
+<h3 id="技术总结"><a href="#技术总结" class="headerlink" title="技术总结"></a>技术总结</h3><h4 id="1-小程序的实质"><a href="#1-小程序的实质" class="headerlink" title="1. 小程序的实质"></a>1. 小程序的实质</h4><ul>
+<li>不要这么不专业，请叫HTML5。 当然，小程序和HTML5没啥关系。HTML5 是 HTML、XHTML 以及 HTML DOM 的新标准。而小程序用的标签语言是WeiXin Markup Language，简称WXML。说起来区别就大了，首先标签的写法就完全不同，然后运行环境不同，导致了开发成本不同、获取系统级权限不同、页面渲染不同、调用原生接口的能力不同……</li>
+<li>等等，我还是看文章吧。<br>可以参考知乎的这幅图，简单的看下小程序的结构：</li>
+</ul>
+<p><img src="/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/14.png" alt="43"></p>
+<p>整体框架主要看逻辑层，视图层。更具体的目录结构、WXML、WXSS这些文档有的就不说了。<br>有前端基础的同学开发小程序上手比较快，但小程序实质上开发起来有以完全不同的地方：<br>DOM和BOM的使用<br>通常意义上来讲，JavaScript = ECMAScript+ DOM+BOM。是因为我们的JS代码在浏览器有个js引擎来运行我们的代码。在浏览器中需要用到DOM（文档对象模型）作为HTML和XML的API来描绘有层次的节点树。这样开发人员可以通过这个API对页面的节点进行添加、移除，修改。然后BOM（浏览器对象模型）提供了很多对象用于访问浏览器。<br>然鹅小程序运行在微信端，也就是说我们正常开发前端页面DOM和BOM不能使用了。 一般BOM的window对象往往扮演ECMASCript的Global对象的角色，全局作用域的的所有变量、函数都会变成它的属性和方法。这些在小程序中都不能使用了。<br>HTML标签、CSS<br>小程序中采用了WXML、WXSS两个不同的规范，WXML的写法完全不同，WXSS差不多。<br>换了一套东西代表着，原来的项目代码完全不能移植，所有都要重新开发。<br>访问微信原生API的能力<br>开发过微信公众号等前端页面的同学都知道，普通前端页面调用微信的原声API是需要引入它的JSSDK文件的，其他人不知道，我自己就遇过很多让人头疼的坑。<br>小程序自然在访问原生API的能力上强太多。获取用户信息、调起支付功能无障碍。<br>兼容性<br>说起移动端的前端开发，兼容性真是头疼的问题啊。安卓、iOS系统的不同、各种浏览器的不同都需要考虑。相比这些，小程序就不用考虑太多了。</p>
+<h4 id="2-小程序的运行环境"><a href="#2-小程序的运行环境" class="headerlink" title="2. 小程序的运行环境"></a>2. 小程序的运行环境</h4><p>之前没有注意思考，被问到时，一时语塞……小程序在不同系统中运行环境有什么不一样，发现文档中有一点自己都没注意到。深入看起来，小程序运行有三端： iOS、Android、微信调试工具。代码怎么在三端跑起来，这就要看看这三端JS代码是如何运行的了。<br>了解APP开发的同学会知道，APP有webview层来显示Web页面，这个webview其实就类似浏览器，只是集成到了APP中。了解Web前端开发的同学会知道，简单讲浏览器 = 内核 + shell， Web页面的显示主要靠浏览器内核，而浏览器内核主要有两部分构成：渲染引擎和JS引擎。所以小程序Wxss的JS代码的渲染和解析要依赖于微信APP中的webview内核，就要看看它在不同系统中究竟有什么不同，下面就是答案了。</p>
+<p>运行有三端： iOS、Android、微信调试工具</p>
+<ol>
+<li><p>iOS中，js代码运行在JSCore中，WKWebView渲染。在iOS8之后基本用WKWebview替代了UIWebview，它和safari的引擎是一样的。</p>
+</li>
+<li><p>安卓中，js代码运行在X5 JScore中，基于 Mobile Chrome 37 渲染，估计跟QQ浏览器用的一样。</p>
+</li>
+<li><p>调试工具中，运行在 nwjs 中，由 Chrome Webview 来渲。</p>
+</li>
+</ol>
+<h4 id="3-小程序的架构"><a href="#3-小程序的架构" class="headerlink" title="3. 小程序的架构"></a>3. 小程序的架构</h4><p>接下来讲讲更深入一点文档中找不到的知识。从上面一小节知道，小程序主要有逻辑层和视图层。从整个底层框架看，本质上跟facebook的开发架构RN比较像，但微信团队在底层做了重构，整体上采用了一套全新的技术规范和架构。这里采用了组件化的思想，每个页面作为一个page，里面可以嵌入需要用到的各种组件。Page的整体设计上编程风格很像vue.js、angularJS，总起来讲，有这些框架开发经验的同学可以很快上手。而在写XML时，用到了类似前端常用的模板引擎的写法做数据绑定、列表渲染和条件渲染。当然，也可以使用<template></template>标签作为模板，将其嵌套到WXML中。<br>所以表面上看我们在写WXSS、WXML，各种page页面，与之前好像有很大不同。本质上学好基础JavaScript，深入了解React、Vue等框架才是王道。<br>视图层位于native端，渲染页面结构，WebView进行渲染；逻辑层处理逻辑、数据、接口，JSCore运行（这里要说明的是，JSCore是没有窗口对象的，所有BOM对象不能调用，也就是说，各种jquery，zepto等等都不能用了）。两个运行在不同的线程中。</p>
+<h6 id="View与Service的通信"><a href="#View与Service的通信" class="headerlink" title="View与Service的通信"></a>View与Service的通信</h6><p>视图层和逻辑层有一个桥梁去链接，在这里是系统层的JSBridge。如果是在APP端，JavaScript代码跑在JSCore中，开发工具中跑在nwjs中。</p>
+<p><img src="/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/0.png" alt="43"></p>
+<p>以开发工具为例，可以看看WeixinJSBridge放在哪里。有Mac电脑的话，直接查看包内容。Service中路径为/Applications/wechatwebdevtools.app/Contents/Resources/app.nw/app/dist/weapp/appservice/asdebug.js, View中的不太确定，应该是这里：/Applications/wechatwebdevtools.app/Contents/Resources/app.nw/app/dist/inject/jweixindebug.js。 定义的这两个对象接口格式是完全一样的，不过内部处理就不同了。</p>
+<p>过程大概类似这种：</p>
+<p>有交互事件发生时，View层按照特定格式封装这个时间，然后通过WeixinJSBridge中的方法publish，WeixinJSBridge.publish(‘PAGE_EVENT’, data)发送。然后nwjs或JSCore环境接受，由service模块处理数据，最后交由dist/components/simulator/webviewbody.js封装数据转发给view层。 view中也有个WeixinJSBridge对象，接收这个数据。最后通过虚拟dom改变dom节点。</p>
+<h4 id="4-本地缓存"><a href="#4-本地缓存" class="headerlink" title="4. 本地缓存"></a>4. 本地缓存</h4><p>听说微信给每个小程序提供了10M的本地缓存。它的数据缓存实际跟H5的localstorage差不多。</p>
+<p>比如，由一个页面跳转另一个页面时：<br>原页面的js是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> storeData:function(e)&#123;</span><br><span class="line">	wx.setStorageSync(&apos;storageKey&apos;, this.data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>跳转到的页面可以直接这样取数据：</p>
+<p>WXTML:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span>缓存的数据:&#123;&#123;storageKey&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>JS:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">getData:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">  		<span class="keyword">var</span> value = wx.getStorageSync(<span class="string">'storageKey'</span>);</span><br><span class="line">		<span class="keyword">if</span> (value) &#123;</span><br><span class="line">    	 		<span class="comment">//Do something with return value</span></span><br><span class="line">		&#125;	</span><br><span class="line">	 &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">		<span class="comment">//Do something when catch error</span></span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="5-开发工具的实现"><a href="#5-开发工具的实现" class="headerlink" title="5. 开发工具的实现"></a>5. 开发工具的实现</h4><p>开发工具具体是怎么实现的，感觉应该蛮复杂的。看起来是个阉割版的浏览器，但其他的还没研究透，还是记下来这篇博客，有空再看看。</p>
+<p>附IDE的分析博客两篇：</p>
+<p><a href="https://www.phodal.com/blog/weapp-demo-process-webkit-app/?nsukey=cbw1D89rau1XcmwnAo5Ib7iKGpLITR3NJF3q8pSDLOohaBDv%2F3OapTKAk7kl7RZ%2BFPFUcwQE4t2DVsJD3r5tmQ%3D%3D" target="_blank" rel="noopener">微信小程序「官方示例代码」剖析【下】：运行机制</a></p>
+<p><a href="https://www.phodal.com/blog/how-to-run-weapp-in-browser/" target="_blank" rel="noopener">微信小程序」剖析（二）：框架原理 | 如何在浏览器上运行</a></p>
+<h4 id="6-成果截图"><a href="#6-成果截图" class="headerlink" title="6. 成果截图"></a>6. 成果截图</h4><p><img src="/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/111.png" alt="100"></p>
+<p><img src="/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/222.png" alt="43"></p>
+<p><img src="/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/333.png" alt="43"></p>
+<p><img src="/img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/444.png" alt="43"></p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目开发计划"><span class="toc-number">1.</span> <span class="toc-text">项目开发计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目开发计划-1"><span class="toc-number">2.</span> <span class="toc-text">项目开发计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术总结"><span class="toc-number">3.</span> <span class="toc-text">技术总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-小程序的实质"><span class="toc-number">3.1.</span> <span class="toc-text">1. 小程序的实质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-小程序的运行环境"><span class="toc-number">3.2.</span> <span class="toc-text">2. 小程序的运行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-小程序的架构"><span class="toc-number">3.3.</span> <span class="toc-text">3. 小程序的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#View与Service的通信"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">View与Service的通信</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-本地缓存"><span class="toc-number">3.4.</span> <span class="toc-text">4. 本地缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-开发工具的实现"><span class="toc-number">3.5.</span> <span class="toc-text">5. 开发工具的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-成果截图"><span class="toc-number">3.6.</span> <span class="toc-text">6. 成果截图</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/20/微信小程序初体验/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/20/微信小程序初体验/&text=微信小程序初体验"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/20/微信小程序初体验/&is_video=false&description=微信小程序初体验"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微信小程序初体验&body=Check out this article: http://yoursite.com/2017/02/20/微信小程序初体验/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/20/微信小程序初体验/&title=微信小程序初体验"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/20/微信小程序初体验/&name=微信小程序初体验&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

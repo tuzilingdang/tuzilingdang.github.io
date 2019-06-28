@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="最近碰到的问题最近工作中接到漏洞管理平台报出的安全漏洞，还原一下XSS攻击的思路： 在input中输入,点击保存后，发现居然弹出了cookie信息了啊。 这有点严重，具体看图： 1&amp;lt;img src=x onerror=alert(document.cookie)&amp;gt;     在input框输入下图中的img标签，类似的JavaScript标签像scrip,img,svg等都可能会引发此问">
+<meta name="keywords" content="安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS攻击与防御总结">
+<meta property="og:url" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="最近碰到的问题最近工作中接到漏洞管理平台报出的安全漏洞，还原一下XSS攻击的思路： 在input中输入,点击保存后，发现居然弹出了cookie信息了啊。 这有点严重，具体看图： 1&amp;lt;img src=x onerror=alert(document.cookie)&amp;gt;     在input框输入下图中的img标签，类似的JavaScript标签像scrip,img,svg等都可能会引发此问">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/1.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/2.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/3.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/4.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/5.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/6.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/7.png">
+<meta property="og:updated_time" content="2019-06-28T08:08:32.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XSS攻击与防御总结">
+<meta name="twitter:description" content="最近碰到的问题最近工作中接到漏洞管理平台报出的安全漏洞，还原一下XSS攻击的思路： 在input中输入,点击保存后，发现居然弹出了cookie信息了啊。 这有点严重，具体看图： 1&amp;lt;img src=x onerror=alert(document.cookie)&amp;gt;     在input框输入下图中的img标签，类似的JavaScript标签像scrip,img,svg等都可能会引发此问">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/12/XSS攻击与防御总结/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>XSS攻击与防御总结</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/09/05/a标签的target属性使用及安全问题/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/06/26/让JavaScript变简单的小Tips/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/07/12/XSS攻击与防御总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&text=XSS攻击与防御总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&is_video=false&description=XSS攻击与防御总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=XSS攻击与防御总结&body=Check out this article: http://yoursite.com/2017/07/12/XSS攻击与防御总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&name=XSS攻击与防御总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最近碰到的问题"><span class="toc-number">1.</span> <span class="toc-text">最近碰到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS跨站点攻击"><span class="toc-number">2.</span> <span class="toc-text">XSS跨站点攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）反射型跨站脚本攻击"><span class="toc-number">2.1.</span> <span class="toc-text">（1）反射型跨站脚本攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）存储型跨站脚本攻击"><span class="toc-number">2.2.</span> <span class="toc-text">（2）存储型跨站脚本攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）DOM跨站攻击"><span class="toc-number">2.3.</span> <span class="toc-text">（3）DOM跨站攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-对应的XSS攻击案例"><span class="toc-number">3.</span> <span class="toc-text">3. 对应的XSS攻击案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）-反射型跨站脚本攻击案例"><span class="toc-number">3.1.</span> <span class="toc-text">（1） 反射型跨站脚本攻击案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）存储型跨站脚本攻击-1"><span class="toc-number">3.2.</span> <span class="toc-text">（2）存储型跨站脚本攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）-DOM跨站攻击碰到的问题"><span class="toc-number">3.3.</span> <span class="toc-text">（3） DOM跨站攻击碰到的问题</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        XSS攻击与防御总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-07-12T13:05:21.000Z" itemprop="datePublished">2017-07-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/安全/">安全</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="最近碰到的问题"><a href="#最近碰到的问题" class="headerlink" title="最近碰到的问题"></a>最近碰到的问题</h2><p>最近工作中接到漏洞管理平台报出的安全漏洞，还原一下XSS攻击的思路：</p>
+<p>在input中输入,点击保存后，发现居然弹出了cookie信息了啊。 这有点严重，具体看图：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">alert(document.cookie)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li><p>在input框输入下图中的img标签，类似的JavaScript标签像<strong>scrip,img,svg</strong>等都可能会引发此问题。</p>
+<p><img src="1.png" alt="43"></p>
+</li>
+<li><p>点击保存，结果页面开始弹啦啦啦……Cookie信息全部暴露。</p>
+<p><img src="2.png" alt="43"></p>
+</li>
+<li><p>打开谷歌开发者工具，在console中看看是不是直接可以看到document.cookie,也可以截取ajax中的xhr对象，看看xhr中的setRequestHeader()这个接口是不是可以设置cookie信息。</p>
+<p> 在ajax请求中插入这段代码，准备设置cookie：</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>) </span>&#123;</span><br><span class="line"> 	xhr.setRequestHeader(<span class="string">"Cookie"</span>, 	<span class="string">'SESS83c26757d9118c6bafca4e38b2233563=G9oaLEcjP1BPlZQ5E4eSSgu0mfk2WqW	rggxLNo5DsLk'</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果发现不行：</p>
+<p><img src="3.png" alt="43"></p>
+<p>报错显示在jquery中，所以究竟是jquery的ajax方法限制了cookie的设置还是浏览器直接在发送XMLHttpRequest时限制了呢？错误在这里：<br><img src="4.png" alt="43"></p>
+<p>看起来是浏览器在setRequestHeader()时做了限制，下面这个链接里也有说明，翻译一下：尝试发送XMLHttpRequest请求时，设置’Cookie’header会在谷歌浏览器中会产生报错。 W3C spec将Cookie列为XMLHttpRequest不允许发送的headers之一。</p>
+<p><a href="https://www.drupal.org/node/1133084" target="_blank" rel="noopener">Use of Cookie header for authentication means that remote jQuery clients can not authenticate</a></p>
+<p>W3C的说明在这里: <a href="https://xhr.spec.whatwg.org/#the-setrequestheader()-method" target="_blank" rel="noopener">the-setrequestheader-method</a>.这里才是最标准的答案┗|｀O′|┛ 嗷~~</p>
+<p><img src="5.png" alt="43"></p>
+<p>以下都是不能设置的header name：<br><img src="6.png" alt="43"></p>
+<p>第3步尝试到此失败，回归正题。</p>
+<ol start="4">
+<li><p>如果通过上述方法不能设置cookie，那唯一的设置Request Header的方式就是用document.cookie强行设置了。</p>
+<p> 结果真的就设置成功了.<br> <img src="7.png" alt="43"></p>
+</li>
+<li><p>所以，现在看起来篡改cookie可以做到，接下来就是需要劫持其他用户的cookie了。 有一个方法是自己建一个无密码的WiFi，其他用户肯定会连的。接下来用Wireshark工具抓包就可以劫持到别人登录某网站的cookie。 现在正常的网站用户信息都不会直接存储在cookie中，cookie中带有sessionID，那么拿到cookie中的sessionID去请求后台接口，应该就可以直接登录了。 这里我没有试过，不知道是不是会有其他的问题需要绕过去才能成功。 目前看起来这个方案应该可以成功拿到别人的信息登入网站。</p>
+</li>
+</ol>
+<p>以上就是整个攻击的实现思路，接下来开始复习一下XSS攻击的相关知识点。    </p>
+<h2 id="XSS跨站点攻击"><a href="#XSS跨站点攻击" class="headerlink" title="XSS跨站点攻击"></a>XSS跨站点攻击</h2><h3 id="（1）反射型跨站脚本攻击"><a href="#（1）反射型跨站脚本攻击" class="headerlink" title="（1）反射型跨站脚本攻击"></a>（1）反射型跨站脚本攻击</h3><p>【描述】 攻击者会通过社会工程学手段，发送一个URL连接给用户打开，在用户打开页面的同时，浏览器会执行页面中嵌入的恶意脚本。</p>
+<h3 id="（2）存储型跨站脚本攻击"><a href="#（2）存储型跨站脚本攻击" class="headerlink" title="（2）存储型跨站脚本攻击"></a>（2）存储型跨站脚本攻击</h3><p>【描述】 攻击者利用web应用程序提供的录入或修改数据功能，将数据存储到服务器或用户cookie中，当其他用户浏览展示该数据的页面时，浏览器会执行页面中嵌入的恶意脚本。所有浏览者都会受到攻击。</p>
+<h3 id="（3）DOM跨站攻击"><a href="#（3）DOM跨站攻击" class="headerlink" title="（3）DOM跨站攻击"></a>（3）DOM跨站攻击</h3><p>【描述】 由于html页面中，定义了一段JS，根据用户的输入，显示一段html代码，攻击者可以在输入时，插入一段恶意脚本，最终展示时，会执行恶意脚本。</p>
+<p> DOM跨站和以上两个跨站攻击的差别是，DOM跨站是纯页面脚本的输出，只有规范使用JAVASCRIPT，才可以防御。</p>
+<h2 id="3-对应的XSS攻击案例"><a href="#3-对应的XSS攻击案例" class="headerlink" title="3. 对应的XSS攻击案例"></a>3. 对应的XSS攻击案例</h2><h3 id="（1）-反射型跨站脚本攻击案例"><a href="#（1）-反射型跨站脚本攻击案例" class="headerlink" title="（1） 反射型跨站脚本攻击案例"></a>（1） 反射型跨站脚本攻击案例</h3><p>待补充</p>
+<h3 id="（2）存储型跨站脚本攻击-1"><a href="#（2）存储型跨站脚本攻击-1" class="headerlink" title="（2）存储型跨站脚本攻击"></a>（2）存储型跨站脚本攻击</h3><p>待补充</p>
+<h3 id="（3）-DOM跨站攻击碰到的问题"><a href="#（3）-DOM跨站攻击碰到的问题" class="headerlink" title="（3） DOM跨站攻击碰到的问题"></a>（3） DOM跨站攻击碰到的问题</h3><p>见第1小节问题描述。</p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最近碰到的问题"><span class="toc-number">1.</span> <span class="toc-text">最近碰到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS跨站点攻击"><span class="toc-number">2.</span> <span class="toc-text">XSS跨站点攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）反射型跨站脚本攻击"><span class="toc-number">2.1.</span> <span class="toc-text">（1）反射型跨站脚本攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）存储型跨站脚本攻击"><span class="toc-number">2.2.</span> <span class="toc-text">（2）存储型跨站脚本攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）DOM跨站攻击"><span class="toc-number">2.3.</span> <span class="toc-text">（3）DOM跨站攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-对应的XSS攻击案例"><span class="toc-number">3.</span> <span class="toc-text">3. 对应的XSS攻击案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）-反射型跨站脚本攻击案例"><span class="toc-number">3.1.</span> <span class="toc-text">（1） 反射型跨站脚本攻击案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）存储型跨站脚本攻击-1"><span class="toc-number">3.2.</span> <span class="toc-text">（2）存储型跨站脚本攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（3）-DOM跨站攻击碰到的问题"><span class="toc-number">3.3.</span> <span class="toc-text">（3） DOM跨站攻击碰到的问题</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/07/12/XSS攻击与防御总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&text=XSS攻击与防御总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&is_video=false&description=XSS攻击与防御总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=XSS攻击与防御总结&body=Check out this article: http://yoursite.com/2017/07/12/XSS攻击与防御总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&title=XSS攻击与防御总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/07/12/XSS攻击与防御总结/&name=XSS攻击与防御总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

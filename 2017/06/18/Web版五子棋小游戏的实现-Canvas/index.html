@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="需求描述 用canvas和dom两种方案写一个五子棋小游戏，不需要考虑人机对战。 库和框架等不做要求，随意选择。  想了半天，决定先实现canvas版。 除了以上两点需求之外，还应该完成如下要求：  额外应该还要考虑到拓展性，实现棋盘列数、颜色、棋子半径等灵活配置 在dom和canvas切换时实现的代价最小。  DEMO及代码具体代码可到我的github下载： canvas版五子棋 DEMO地址：">
+<meta name="keywords" content="五子棋,canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web版五子棋小游戏的实现-Canvas">
+<meta property="og:url" content="http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="需求描述 用canvas和dom两种方案写一个五子棋小游戏，不需要考虑人机对战。 库和框架等不做要求，随意选择。  想了半天，决定先实现canvas版。 除了以上两点需求之外，还应该完成如下要求：  额外应该还要考虑到拓展性，实现棋盘列数、颜色、棋子半径等灵活配置 在dom和canvas切换时实现的代价最小。  DEMO及代码具体代码可到我的github下载： canvas版五子棋 DEMO地址：">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="http://yoursite.com/img/Web%E7%89%88%E4%BA%94%E5%AD%90%E6%A3%8B%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%9A%84%E5%AE%9E%E7%8E%B0-Canvas/1.png">
+<meta property="og:image" content="http://yoursite.com/img/Web%E7%89%88%E4%BA%94%E5%AD%90%E6%A3%8B%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%9A%84%E5%AE%9E%E7%8E%B0-Canvas/2.png">
+<meta property="og:updated_time" content="2019-06-27T05:11:48.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web版五子棋小游戏的实现-Canvas">
+<meta name="twitter:description" content="需求描述 用canvas和dom两种方案写一个五子棋小游戏，不需要考虑人机对战。 库和框架等不做要求，随意选择。  想了半天，决定先实现canvas版。 除了以上两点需求之外，还应该完成如下要求：  额外应该还要考虑到拓展性，实现棋盘列数、颜色、棋子半径等灵活配置 在dom和canvas切换时实现的代价最小。  DEMO及代码具体代码可到我的github下载： canvas版五子棋 DEMO地址：">
+<meta name="twitter:image" content="http://yoursite.com/img/Web%E7%89%88%E4%BA%94%E5%AD%90%E6%A3%8B%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%9A%84%E5%AE%9E%E7%8E%B0-Canvas/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Web版五子棋小游戏的实现-Canvas</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/06/26/让JavaScript变简单的小Tips/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/04/22/关于Http Cookie的跨域问题/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&text=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&is_video=false&description=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Web版五子棋小游戏的实现-Canvas&body=Check out this article: http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&name=Web版五子棋小游戏的实现-Canvas&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求描述"><span class="toc-number">1.</span> <span class="toc-text">需求描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DEMO及代码"><span class="toc-number">2.</span> <span class="toc-text">DEMO及代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-number">3.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体实现和分析"><span class="toc-number">4.</span> <span class="toc-text">具体实现和分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构"><span class="toc-number">4.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#入口函数"><span class="toc-number">4.2.</span> <span class="toc-text">入口函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五子棋的主要算法"><span class="toc-number">4.3.</span> <span class="toc-text">五子棋的主要算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方案1"><span class="toc-number">4.3.1.</span> <span class="toc-text">方案1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方案2"><span class="toc-number">4.3.2.</span> <span class="toc-text">方案2</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Web版五子棋小游戏的实现-Canvas
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-06-18T11:38:40.000Z" itemprop="datePublished">2017-06-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/五子棋-canvas/">五子棋,canvas</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h2><ul>
+<li>用canvas和dom两种方案写一个五子棋小游戏，不需要考虑人机对战。</li>
+<li>库和框架等不做要求，随意选择。</li>
+</ul>
+<p>想了半天，决定先实现canvas版。 除了以上两点需求之外，还应该完成如下要求：</p>
+<ul>
+<li>额外应该还要考虑到拓展性，实现棋盘列数、颜色、棋子半径等灵活配置</li>
+<li>在dom和canvas切换时实现的代价最小。</li>
+</ul>
+<h2 id="DEMO及代码"><a href="#DEMO及代码" class="headerlink" title="DEMO及代码"></a>DEMO及代码</h2><p>具体代码可到我的github下载： <a href="https://github.com/tuzilingdang/backgammon-canvas" target="_blank" rel="noopener"><strong>canvas版五子棋</strong></a></p>
+<p>DEMO地址：<a href="https://tuzilingdang.github.io/backgammon-canvas/" target="_blank" rel="noopener"><strong>DEMO</strong></a></p>
+<p><img src="/img/Web%E7%89%88%E4%BA%94%E5%AD%90%E6%A3%8B%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%9A%84%E5%AE%9E%E7%8E%B0-Canvas/1.png" alt="canvas实现的五子棋"></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>使用require.js实现模块化，整体代码比较简单，使用原生js或jquery即可</li>
+<li>棋盘和棋子的绘制使用canvas实现</li>
+<li>组合使用构造函数和原型模式，构造棋盘，棋子和Game的原型</li>
+</ol>
+<h2 id="具体实现和分析"><a href="#具体实现和分析" class="headerlink" title="具体实现和分析"></a>具体实现和分析</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="/img/Web%E7%89%88%E4%BA%94%E5%AD%90%E6%A3%8B%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%9A%84%E5%AE%9E%E7%8E%B0-Canvas/2.png" alt="目录结构"></p>
+<h3 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h3><p>入口函数在app.js中， 因依赖于require实现代码的模块化，需要对require做一个config配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">require.config(&#123;</span><br><span class="line">    baseUrl: &apos;js/libs&apos;,</span><br><span class="line">    paths: &#123;</span><br><span class="line">        app: &apos;../app&apos;,</span><br><span class="line">        game: &quot;../app/game&quot;,</span><br><span class="line">        checkerboard: &quot;../app/checkerboard&quot;,</span><br><span class="line">        piece: &quot;../app/piece&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>app主逻辑入口如下：</p>
+<p>首先做好棋盘各属性的配置，还有棋子的半径定义。然后初始化Game。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">require([&quot;jquery&quot;, &quot;game&quot;], function($, Game) &#123;</span><br><span class="line">    var checkerBoard = &#123;</span><br><span class="line">        id: &quot;checker-board&quot;,</span><br><span class="line">        rows: 20, // 棋盘列数</span><br><span class="line">        margin: 20, // 棋盘边框间距</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line">    var piece = &#123;</span><br><span class="line">        r : 24</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var game = new Game( checkerBoard, piece );</span><br><span class="line">    game.init();</span><br><span class="line"></span><br><span class="line">    $(&quot;#start&quot;).click(function() &#123;</span><br><span class="line">        game.init();</span><br><span class="line">        game.start();</span><br><span class="line">        $(&quot;#start&quot;).unbind();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="五子棋的主要算法"><a href="#五子棋的主要算法" class="headerlink" title="五子棋的主要算法"></a>五子棋的主要算法</h3><p>主要算法想过两种方案： </p>
+<h4 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h4><p>这个方案比较麻烦，如果是三子连胜比较简单的话可以采用。大体思路是： </p>
+<ol>
+<li>设置一个5*5的正方形作为检测窗口，窗口从左上角开始，每次以step1格的距离像右移动，移动到最右边，然后以step为1格想下移动。若棋盘矩阵的长宽为n，也就是检测窗口一共移动了n-1 * n-1次。</li>
+<li>每次检测窗口移动，都要匹配对应棋盘的棋子状态是否与检测窗口的胜利状态一致。 检测窗口中胜利状态一共有12种，分别如下</li>
+<li>棋盘对应窗口的棋子与以上状态一致，则游戏结束。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">X</th>
+<th align="left">X</th>
+<th align="left">X</th>
+<th align="left">X</th>
+<th align="left">X</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+</tbody></table>
+<p>……</p>
+<table>
+<thead>
+<tr>
+<th align="left">X</th>
+<th align="left">O</th>
+<th align="left">O</th>
+<th align="left">O</th>
+<th align="left">O</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+</tbody></table>
+<p>……</p>
+<table>
+<thead>
+<tr>
+<th align="left">X</th>
+<th align="left">O</th>
+<th align="left">O</th>
+<th align="left">O</th>
+<th align="left">O</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">O</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">X</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">X</td>
+<td align="left">O</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">X</td>
+</tr>
+</tbody></table>
+<h4 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h4><p>目前看起来最快的实现方法：</p>
+<ol>
+<li>每次下一个子，检察一下棋子周边的状态</li>
+<li>分别检测横向、竖向、斜向、反斜向的是否有连子，如果有，则判断颜色，返回胜方及结束状态。</li>
+<li>这里比较容易出错的是边界检测，如果边界检测代码写的有问题，会出现各种在边界点击的报错提示。</li>
+<li>添加了和棋的判断，毕竟有时格子太少，容易出现和棋的状态。</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">caculateWinner: function(pos) &#123;</span><br><span class="line">	var that = <span class="keyword">this</span>;</span><br><span class="line">	var player = that.stateMatrix[pos.x][pos.y];</span><br><span class="line"></span><br><span class="line">	<span class="function">function <span class="title">checkDrawn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (var i = <span class="number">0</span>; i &lt; that.matrixWidth; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (var j = <span class="number">0</span>; j &lt; that.matrixHeight; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (that.stateMatrix[i][j] === <span class="string">"null"</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">function <span class="title">checkHorizon</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		var count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (var i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((pos.x - i) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> ((that.stateMatrix[pos.x - i][pos.y] === player)) &#123;</span><br><span class="line">					count++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (var i = pos.x + <span class="number">1</span>; i &lt; <span class="number">5</span> - count + pos.x; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (i &gt;= that.matrixWidth ) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (that.stateMatrix[i][pos.y] !== player) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">function <span class="title">checkVertical</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		var count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (var j = <span class="number">1</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((pos.y - j) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> ((that.stateMatrix[pos.x][pos.y - j] === player)) &#123;</span><br><span class="line">					count++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (var j = pos.y + <span class="number">1</span>; j &lt; <span class="number">5</span> - count + pos.y; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (j &gt;= that.matrixHeight ) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (that.stateMatrix[pos.x][j] !== player) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">function <span class="title">checkDiagonal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		var count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (var j = <span class="number">1</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((pos.y - j) &gt;= <span class="number">0</span> &amp;&amp; (pos.x - j) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> ((that.stateMatrix[pos.x - j][pos.y - j] === player)) &#123;</span><br><span class="line">					count++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (var j = <span class="number">1</span>; j &lt; <span class="number">5</span> - count; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((j + pos.y &gt;= that.matrixHeight ) || (j + pos.x &gt;= that.matrixHeight )) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (that.stateMatrix[pos.x + j][pos.y + j] !== player) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">function <span class="title">checkReverseDiagonal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		var count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (var j = <span class="number">1</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((pos.y - j) &gt;= <span class="number">0</span> &amp;&amp; (j + pos.x) &lt; that.matrixWidth ) &#123;</span><br><span class="line">				<span class="keyword">if</span> ((that.stateMatrix[pos.x + j][pos.y - j] === player)) &#123;</span><br><span class="line">					count++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (var j = <span class="number">1</span>; j &lt; <span class="number">5</span> - count; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> ( ((j + pos.y) &gt;= that.matrixHeight ) || ((pos.x - j) &lt; <span class="number">0</span>) )&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (that.stateMatrix[pos.x - j][pos.y + j] !== player) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!checkDrawn()) &#123;</span><br><span class="line">		<span class="keyword">if</span> (checkHorizon() || checkVertical() || checkDiagonal() || checkReverseDiagonal()) &#123;</span><br><span class="line">			<span class="keyword">return</span> player;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">"N"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"D"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求描述"><span class="toc-number">1.</span> <span class="toc-text">需求描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DEMO及代码"><span class="toc-number">2.</span> <span class="toc-text">DEMO及代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-number">3.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体实现和分析"><span class="toc-number">4.</span> <span class="toc-text">具体实现和分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构"><span class="toc-number">4.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#入口函数"><span class="toc-number">4.2.</span> <span class="toc-text">入口函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五子棋的主要算法"><span class="toc-number">4.3.</span> <span class="toc-text">五子棋的主要算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方案1"><span class="toc-number">4.3.1.</span> <span class="toc-text">方案1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方案2"><span class="toc-number">4.3.2.</span> <span class="toc-text">方案2</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&text=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&is_video=false&description=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Web版五子棋小游戏的实现-Canvas&body=Check out this article: http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&title=Web版五子棋小游戏的实现-Canvas"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/06/18/Web版五子棋小游戏的实现-Canvas/&name=Web版五子棋小游戏的实现-Canvas&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

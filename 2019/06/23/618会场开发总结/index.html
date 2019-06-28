@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="开发控制风险电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。 通常，软件设计中正确的时间安排是设计时间（60%） &amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="618会场开发总结">
+<meta property="og:url" content="http://yoursite.com/2019/06/23/618会场开发总结/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="开发控制风险电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。 通常，软件设计中正确的时间安排是设计时间（60%） &amp;gt;">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="https://camo.githubusercontent.com/0d7072c5a5b674d757c35b8f00b7562d6bba292b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f30382f32392f353961346437353532643239392e706e67">
+<meta property="og:updated_time" content="2019-06-28T08:47:06.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="618会场开发总结">
+<meta name="twitter:description" content="开发控制风险电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。 通常，软件设计中正确的时间安排是设计时间（60%） &amp;gt;">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/0d7072c5a5b674d757c35b8f00b7562d6bba292b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f30382f32392f353961346437353532643239392e706e67">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>618会场开发总结</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/25/Three-js学习-2-绘制地球/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/06/17/俄罗斯方块小游戏-1-Vue的diff过程/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/23/618会场开发总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/23/618会场开发总结/&text=618会场开发总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/23/618会场开发总结/&is_video=false&description=618会场开发总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=618会场开发总结&body=Check out this article: http://yoursite.com/2019/06/23/618会场开发总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/23/618会场开发总结/&name=618会场开发总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发"><span class="toc-number">1.</span> <span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制风险"><span class="toc-number">1.1.</span> <span class="toc-text">控制风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术问题及解决方案"><span class="toc-number">1.2.</span> <span class="toc-text">技术问题及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for的key"><span class="toc-number">1.2.1.</span> <span class="toc-text">v-for的key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iOS的偶现白屏"><span class="toc-number">1.2.2.</span> <span class="toc-text">iOS的偶现白屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的动态组件"><span class="toc-number">1.2.3.</span> <span class="toc-text">Vue的动态组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交付测试前的自测"><span class="toc-number">1.2.4.</span> <span class="toc-text">交付测试前的自测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的单向数据流"><span class="toc-number">1.2.5.</span> <span class="toc-text">Vue的单向数据流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for和v-if"><span class="toc-number">1.2.6.</span> <span class="toc-text">v-for和v-if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue的transition组件"><span class="toc-number">1.2.7.</span> <span class="toc-text">vue的transition组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求及体验"><span class="toc-number">2.</span> <span class="toc-text">需求及体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及解决方案"><span class="toc-number">2.1.</span> <span class="toc-text">问题及解决方案</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        618会场开发总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-06-23T08:39:21.000Z" itemprop="datePublished">2019-06-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><h3 id="控制风险"><a href="#控制风险" class="headerlink" title="控制风险"></a>控制风险</h3><p>电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。</p>
+<p>通常，软件设计中正确的时间安排是设计时间（60%） &gt; 开发时间（40%），之前在校学习时要求设计时间占到80%。 在互联网行业，需求变更往往比较频繁，迭代也很快，尤其是做业务需求， 前面的要求好像不能做到。因为现实情况中经常碰到需求很紧急，开发周期短，还要考虑到开发过程中存在跨组沟通合作，依赖资源更改等不太可控的情况，很多时候就着急忙慌的开发了。 但不管怎样还是要稳住稳住，会思考设计周密的代码才能让风险更可控。</p>
+<p>往往程序出现了巨大风险是由于前期的设计不足导致，即便上线没有出问题，也可能在开发后期发现存在设计问题导致大比例代码返工，那就会延期了。 所以，风险越早规避越好，在设计过程中就要充分考虑，否则线上出现问题那真是🍐鸭梨山大，心理到生理都扛不住。 所以，珍爱生命，重视风险，把风险扼杀在代码还没写之前的摇篮里。</p>
+<h3 id="技术问题及解决方案"><a href="#技术问题及解决方案" class="headerlink" title="技术问题及解决方案"></a>技术问题及解决方案</h3><h4 id="v-for的key"><a href="#v-for的key" class="headerlink" title="v-for的key"></a>v-for的key</h4><p> v-for记得加上key，否则效率不高，这里很多人会忘记。</p>
+<pre><code>**文档的解释** ：
+Vue使用 v-for 渲染的元素列表时，默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。key属性可以给Vue一个提示，这样现有的元素可以高效被重用和排序。
+
+**深入分析**： 
+Vue的Diff算法中，新旧Vnode进行对比，二者为sameNode的情况下会进行pathNode，而判断sameNode的方法中用到了key：</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sameVnode</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    a.key === b.key &amp;&amp;</span><br><span class="line">    a.tag === b.tag &amp;&amp;</span><br><span class="line">    a.isComment === b.isComment &amp;&amp;</span><br><span class="line">    isDef(a.data) === isDef(b.data) &amp;&amp;</span><br><span class="line">    sameInputType(a, b)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时未定义的情况二者的key均为undefined，判断为sameNode的情况会进行pathNode，新老节点均有children子节点的情况会调用updateChildren方法，具体可参见源码，重点说一下用到key的过程，如下图：</p>
+<p><img src="https://camo.githubusercontent.com/0d7072c5a5b674d757c35b8f00b7562d6bba292b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f30382f32392f353961346437353532643239392e706e67" alt></p>
+<p>updateChildren方法中头尾交叉对比互不相同的情况，调用createKeyToOldIdx方法创建一个oldVnode的map，用newStartVnode（虚拟Dom同层头部节点）的key对比创建的map的key，找到相同key的sameNode。</p>
+<p>如果newStartVnode没有key，那需要遍历整个map寻找sameNode，有key的情况就可以直接通过map找到对应的sameNode进行patch了。</p>
+<p>用到key也并不是一定必要的，某些特别简单的列表渲染就地渲染的效率可能更高，不过大部分情况还是尽可能在v-for的情况下使用key。</p>
+<h4 id="iOS的偶现白屏"><a href="#iOS的偶现白屏" class="headerlink" title="iOS的偶现白屏"></a>iOS的偶现白屏</h4><p>iOS来回跳转多次，偶现页面白屏，触屏又出现的问题，但dom元素和绑定事件存在，恢复问题代码，但出现频率降低，难以复现找到真实原因。推测与iOS的webview的底层渲染有关，很多人反馈类似问题，可能因为页面滚动后没有正常的调用 WKWebView 的 _updateVisibleContentRects 方法刷新需要渲染的内容导致</p>
+<p><strong>解决方法</strong> </p>
+<ul>
+<li>强制设置高度撑开某些情况下可能解决问题</li>
+<li>如果上述方法没有作用，需要关注内存使用，规范使用框架</li>
+</ul>
+<h4 id="Vue的动态组件"><a href="#Vue的动态组件" class="headerlink" title="Vue的动态组件"></a>Vue的动态组件</h4><p>开发中碰到配置很多楼层，但这些楼层有不同的样式和逻辑的需求，需要建立不同的楼层组件满足业务需求。 一个组件可对应一个或多个楼层，并且所有楼层需要灵活安放位置，可由运营排序。</p>
+<p><strong>解决方法</strong> ：</p>
+<p> Vue的动态组件非常好用，我们可以给每个楼层组件一个不同的key值，先把list做排序，然后利用v-bind:is属性绑定，可以在代码量比较少的情况下完成上述功能，如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tabfloor"</span> <span class="attr">v-for</span>=<span class="string">"(tabFloor, index) in tabList"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span>           </span><br><span class="line">     <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"tabFloor.key"</span> <span class="attr">:dataConfig</span>=<span class="string">"tabFloor"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>对比繁琐的写法(这里有商品楼层有十几种组件)：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tabfloor"</span> <span class="attr">v-for</span>=<span class="string">"(tabFloor, index) in tabList"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Benefit</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'benefit'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Benefit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">secPin</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'secpin'"</span>&gt;</span><span class="tag">&lt;/<span class="name">secPin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Choice</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'choice'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Choice</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Cheap</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'cheap'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Cheap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Optimize</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'optimize'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Optimize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Benefit2</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'benefit2'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Benefit2</span>&gt;</span></span><br><span class="line">    ···</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="交付测试前的自测"><a href="#交付测试前的自测" class="headerlink" title="交付测试前的自测"></a>交付测试前的自测</h4><p>交付测试前需注意兼容性问题自测，这里有些经验记录一下：</p>
+<ul>
+<li><p>查询主流设备各项参数的网站： <a href>https://vizdevices.yesviz.com/viewport.php</a></p>
+</li>
+<li><p>注意iPhone X等刘海机的适配，iOS 11中的WebKit包含了新CSS函数constant()和四个safe-area-inset-left, safe-area-inset-right, safe-area-inset-top和 safe-area-inset-bottom常量。适配上可如下：</p>
+</li>
+</ul>
+<p>HTML添加</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, viewport-fit=cover"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果底部小黑条遮挡，添加：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="built_in">constant</span>(safe-area-inset-bottom);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>横竖屏操作时比较难设置合理的padding值，可以使用max和min函数来操作，比如这样子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> &#123; </span><br><span class="line">	<span class="attribute">padding-left</span>: <span class="built_in">max</span>(15px, constant(safe-area-inset-left)); </span><br><span class="line">	<span class="attribute">padding-right</span>: <span class="built_in">max</span>(15px, constant(safe-area-inset-right)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Vue的单向数据流"><a href="#Vue的单向数据流" class="headerlink" title="Vue的单向数据流"></a>Vue的单向数据流</h4><p> 注意vue的单向数据流，规范写法。 很多提示vue warn的情况是由于没有遵循合理的规范，父组件注入子组件的数据最好不要直接修改，这里可以在子组件中重新设置data</p>
+<h4 id="v-for和v-if"><a href="#v-for和v-if" class="headerlink" title="v-for和v-if"></a>v-for和v-if</h4><p>v-for和v-if尽量不要一起使用</p>
+<h4 id="vue的transition组件"><a href="#vue的transition组件" class="headerlink" title="vue的transition组件"></a>vue的transition组件</h4><p>跑马灯的效果可以使用vue的transition组件<br>   文档：<a href>https://cn.vuejs.org/v2/api/#transition</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">class</span>=<span class="string">"marquee-list-container"</span> <span class="attr">name</span>=<span class="string">"marquee"</span> <span class="attr">mode</span>=<span class="string">"out-in"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"transition"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"marquee_img"</span> <span class="attr">v-if</span>=<span class="string">"item.img"</span> <span class="attr">:src</span>=<span class="string">"item.img"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"marquee_text"</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"play"</span> <span class="attr">v-if</span>=<span class="string">"item.link"</span>&gt;</span></span><br><span class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arrow"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>css部分：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.marquee-enter-active</span>,</span><br><span class="line">   <span class="selector-class">.marquee-leave-active</span> &#123;</span><br><span class="line">       <span class="attribute">transition</span>: all <span class="number">1s</span> ease-out;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="selector-class">.marquee-leave-to</span> &#123;</span><br><span class="line">       <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-1.25rem);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="selector-class">.marquee-enter</span> &#123;</span><br><span class="line">       <span class="attribute">transform</span>: <span class="built_in">translateY</span>(1.25rem);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="需求及体验"><a href="#需求及体验" class="headerlink" title="需求及体验"></a>需求及体验</h2><h3 id="问题及解决方案"><a href="#问题及解决方案" class="headerlink" title="问题及解决方案"></a>问题及解决方案</h3><ol>
+<li><p>开发中思维局限于技术实现，对用户体验没有多关注，造成因体验问题不好上线后返工修改。本次开发中也出现了只关注开发完成情况，点击领券后没有再次查询状态打标已领取的问题，这样会导致用户多一次操作，体验不够好。</p>
+<p> <strong>解决方法</strong> ：    </p>
+<ul>
+<li>开发中每一个环节多思考一步，从用户角度看还缺少什么逻辑</li>
+<li>多体验其他页面，总结普遍的体验要求</li>
+<li>学会提问，主动了解需求背景，否则可能出现两种情况：<br>（1）产品文档不列出细节的情况，认为冰山一角的需求是开发的全部工作量（本次碰到）<br>（2）实际用户只想要个馒头，却按照需求开发了满汉全席</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>产品设计需要技术敏感度，否则类似组件也难以复用，与可复用方案相比，达到同样的产品体验效果，开发成本增大很多</p>
+<p> <strong>解决方法</strong> ： </p>
+<ul>
+<li>开发在需求沟通中也需提供技术上的意见</li>
+<li>减少从用户角度看没有实际区别但表现形式不同导致开发量增大的楼层</li>
+</ul>
+</li>
+<li><p>开发过程中需求添加、以及频繁性变动比较严重，有限开发时间内导致交付质量差</p>
+<p> <strong>解决方法</strong> ：</p>
+<ul>
+<li>重要需求的必要变更开发往往不能拒绝，这里开发很弱势暂时无解</li>
+<li>务必提前确定需求到底想要什么，涉及到要用的资源务必提前定好</li>
+</ul>
+</li>
+<li><p>规范的PRD文档，交互稿和设计稿的细节程度与沟通成本大小成反比关系，不规范缺少细节的PRD文档会导致沟通成本极大。 PRD生成了图片交付，需求变更存在口头沟通没有更新到文档。 需求变更点与开始的prd分开两张图片，查找和沟通成本极高。</p>
+<p><strong>解决方法</strong> ：</p>
+<ul>
+<li>规范PRD文档， 文档需支持可编辑</li>
+<li>需求细节应该描述清楚</li>
+<li>项目需要有一个产品经理</li>
+<li>一个比较好的标准化产品需求文档系列推荐： <a href>http://www.woshipm.com/pmd/964608.html</a></li>
+</ul>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发"><span class="toc-number">1.</span> <span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制风险"><span class="toc-number">1.1.</span> <span class="toc-text">控制风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术问题及解决方案"><span class="toc-number">1.2.</span> <span class="toc-text">技术问题及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for的key"><span class="toc-number">1.2.1.</span> <span class="toc-text">v-for的key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iOS的偶现白屏"><span class="toc-number">1.2.2.</span> <span class="toc-text">iOS的偶现白屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的动态组件"><span class="toc-number">1.2.3.</span> <span class="toc-text">Vue的动态组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交付测试前的自测"><span class="toc-number">1.2.4.</span> <span class="toc-text">交付测试前的自测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的单向数据流"><span class="toc-number">1.2.5.</span> <span class="toc-text">Vue的单向数据流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for和v-if"><span class="toc-number">1.2.6.</span> <span class="toc-text">v-for和v-if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue的transition组件"><span class="toc-number">1.2.7.</span> <span class="toc-text">vue的transition组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求及体验"><span class="toc-number">2.</span> <span class="toc-text">需求及体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及解决方案"><span class="toc-number">2.1.</span> <span class="toc-text">问题及解决方案</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/23/618会场开发总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/23/618会场开发总结/&text=618会场开发总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/23/618会场开发总结/&is_video=false&description=618会场开发总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=618会场开发总结&body=Check out this article: http://yoursite.com/2019/06/23/618会场开发总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/23/618会场开发总结/&title=618会场开发总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/23/618会场开发总结/&name=618会场开发总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

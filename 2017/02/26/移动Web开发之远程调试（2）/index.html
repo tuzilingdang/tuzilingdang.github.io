@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="在移动端web进行真机调试时，常常必须对iPhone进行调试。 上一篇已经讲到了如何利用safari进行开发调试，但是safari的开发者工具很多人用的不熟练。 那不如直接将Chrome进行到底，哈哈哈。  这就有点麻烦，手机上打开safari浏览器，chrome无论如何也没有显示啊。这就要用到这个神器， ios-webkit-debug-proxy。 安装安装途径1 ：最快捷的方式是用homeb">
+<meta name="keywords" content="真机 微信 远程调试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动Web开发之远程真机、模拟调试（2）">
+<meta property="og:url" content="http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="在移动端web进行真机调试时，常常必须对iPhone进行调试。 上一篇已经讲到了如何利用safari进行开发调试，但是safari的开发者工具很多人用的不熟练。 那不如直接将Chrome进行到底，哈哈哈。  这就有点麻烦，手机上打开safari浏览器，chrome无论如何也没有显示啊。这就要用到这个神器， ios-webkit-debug-proxy。 安装安装途径1 ：最快捷的方式是用homeb">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/1.png">
+<meta property="og:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/2.png">
+<meta property="og:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/3.png">
+<meta property="og:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/4.png">
+<meta property="og:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/5.png">
+<meta property="og:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/6.png">
+<meta property="og:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/7.png">
+<meta property="og:updated_time" content="2019-06-27T04:37:23.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动Web开发之远程真机、模拟调试（2）">
+<meta name="twitter:description" content="在移动端web进行真机调试时，常常必须对iPhone进行调试。 上一篇已经讲到了如何利用safari进行开发调试，但是safari的开发者工具很多人用的不熟练。 那不如直接将Chrome进行到底，哈哈哈。  这就有点麻烦，手机上打开safari浏览器，chrome无论如何也没有显示啊。这就要用到这个神器， ios-webkit-debug-proxy。 安装安装途径1 ：最快捷的方式是用homeb">
+<meta name="twitter:image" content="http://yoursite.com/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>移动Web开发之远程真机、模拟调试（2）</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/03/02/Backbone学习笔记-1/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/02/21/移动Web开发之远程调试（1）/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&text=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&is_video=false&description=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=移动Web开发之远程真机、模拟调试（2）&body=Check out this article: http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&name=移动Web开发之远程真机、模拟调试（2）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS设备设置"><span class="toc-number">2.</span> <span class="toc-text">iOS设备设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开启代理"><span class="toc-number">3.</span> <span class="toc-text">开启代理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一步"><span class="toc-number">3.1.</span> <span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二步"><span class="toc-number">3.2.</span> <span class="toc-text">第二步</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        移动Web开发之远程真机、模拟调试（2）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-02-26T10:36:53.000Z" itemprop="datePublished">2017-02-26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/真机-微信-远程调试/">真机 微信 远程调试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>在移动端web进行真机调试时，常常必须对iPhone进行调试。 上一篇已经讲到了如何利用safari进行开发调试，但是safari的开发者工具很多人用的不熟练。 那不如直接将Chrome进行到底，哈哈哈。 </p>
+<p>这就有点麻烦，手机上打开safari浏览器，chrome无论如何也没有显示啊。这就要用到这个神器， ios-webkit-debug-proxy。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装途径1 ：最快捷的方式是用homebrew进行安装，一步到手呀。 用Mac装这个还是快不少的。</p>
+<p><code>brew install ios-webkit-debug-proxy</code></p>
+<p>安装途径2： </p>
+<pre><code>sudo apt-get install autoconf automake libusb-dev libusb-1.0-0-dev libplist-dev libplist++-dev usbmuxd libtool libimobiledevice-dev
+
+git clone https://github.com/google/ios-webkit-debug-proxy.git
+cd ios-webkit-debug-proxy
+
+./autogen.sh
+make
+sudo make install</code></pre><p>安装完这样</p>
+<p><img src="/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/1.png" alt="43"></p>
+<h3 id="iOS设备设置"><a href="#iOS设备设置" class="headerlink" title="iOS设备设置"></a>iOS设备设置</h3><p>木有用过iOS的模拟器，木有装Xcode。 真机上如上一篇的调试方法所述，拿起手机，进入设置 &gt; Safari &gt; 高级 &gt; Web 检查器， 开。</p>
+<h3 id="开启代理"><a href="#开启代理" class="headerlink" title="开启代理"></a>开启代理</h3><h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p><code>sudo ios-webkit-debug-proxy</code></p>
+<p>有错误…………</p>
+<p><img src="/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/2.png" alt="43"></p>
+<p>看看Mac电脑到底有木有检测到手机设备：</p>
+<p>用这个命令:</p>
+<p><code>idevice_id -l</code></p>
+<p><img src="/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/3.png" alt="43"></p>
+<p>显示确实有设备呀，可是就是显示不出来。仔细看看说明文档，对于上述提示，可以这样解决:</p>
+<pre><code>brew update
+brew reinstall --HEAD libimobiledevice
+brew reinstall -s ios-webkit-debug-proxy</code></pre><p>重新装完后，显示正常了。</p>
+<p><img src="/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/4.png" alt="43"></p>
+<p>如果还是持续有问题， 拔掉USB线， 重新插入， iPhone会显示信任该电脑的提示，选择信任。不信任的情况是无法正常连接成功的。</p>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>输入 localhost:9221 ， 看到页面：</p>
+<p><img src="/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/5.png" alt="43"></p>
+<p>每个设备对应的端口号从9222开始， 9222-9322 ，到9322. 可以通过这个命令为不同的设 备指定一个唯一的端口号。<br><code>ios_webkit_debug_proxy -c 设备号:9227</code></p>
+<p>点击页面的设备列表，就可以查看的当前设备上开启了哪些网页了。</p>
+<p><img src="/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/6.png" alt="43"></p>
+<p><code>sudo ios_webkit_debug_proxy -f chrome-devtools://devtools/bundled/inspector.html</code></p>
+<p>跟据端口号，改变page的页码可以看到对应的页面了。</p>
+<p>chrome-devtools://devtools/bundled/inspector.html?ws=localhost:9222/devtools/page/1</p>
+<p><img src="/img/%E7%A7%BB%E5%8A%A8Web%E5%BC%80%E5%8F%91%E4%B9%8B%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%EF%BC%882%EF%BC%89/7.png" alt="43"></p>
+<p>这样，以后可以愉快的打开iPhone的safari浏览器，在电脑的Chrome上方便地进行调试了。 </p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS设备设置"><span class="toc-number">2.</span> <span class="toc-text">iOS设备设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开启代理"><span class="toc-number">3.</span> <span class="toc-text">开启代理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一步"><span class="toc-number">3.1.</span> <span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二步"><span class="toc-number">3.2.</span> <span class="toc-text">第二步</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&text=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&is_video=false&description=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=移动Web开发之远程真机、模拟调试（2）&body=Check out this article: http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&title=移动Web开发之远程真机、模拟调试（2）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/02/26/移动Web开发之远程调试（2）/&name=移动Web开发之远程真机、模拟调试（2）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>
