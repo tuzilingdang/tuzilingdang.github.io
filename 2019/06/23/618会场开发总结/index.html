@@ -12,19 +12,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="开发控制风险电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。 通常，软件设计中正确的时间安排是设计时间（60%） &amp;gt;">
+    <meta name="description" content="设计 提前控制风险  电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 在安排开发计划时，提前给奖券开发预留更多的时间用于自测和代码检查。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="618会场开发总结">
 <meta property="og:url" content="http://yoursite.com/2019/06/23/618会场开发总结/index.html">
 <meta property="og:site_name" content="April">
-<meta property="og:description" content="开发控制风险电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。 通常，软件设计中正确的时间安排是设计时间（60%） &amp;gt;">
+<meta property="og:description" content="设计 提前控制风险  电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 在安排开发计划时，提前给奖券开发预留更多的时间用于自测和代码检查。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代">
 <meta property="og:locale" content="chinese">
+<meta property="og:image" content="https://typekit.files.wordpress.com/2016/08/lock-basic.png">
+<meta property="og:image" content="https://typekit.files.wordpress.com/2016/08/lock-rephrased.png?w=800&h=137">
+<meta property="og:image" content="https://www.w3cplus.com/sites/default/files/blogs/2018/1806/mobile-design-adapter-36.png">
 <meta property="og:image" content="https://camo.githubusercontent.com/0d7072c5a5b674d757c35b8f00b7562d6bba292b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f30382f32392f353961346437353532643239392e706e67">
-<meta property="og:updated_time" content="2019-06-28T08:47:06.132Z">
+<meta property="og:image" content="http://yoursite.com/img/201806230/fps.gif">
+<meta property="og:image" content="http://yoursite.com/img/201806230/fps2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/201806230/optimize.jpg">
+<meta property="og:image" content="http://yoursite.com/img/201806230/1.jpeg">
+<meta property="og:image" content="http://yoursite.com/img/201806230/2.jpeg">
+<meta property="og:image" content="http://yoursite.com/img/201806230/3.jpeg">
+<meta property="og:updated_time" content="2019-07-03T13:01:29.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="618会场开发总结">
-<meta name="twitter:description" content="开发控制风险电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。 通常，软件设计中正确的时间安排是设计时间（60%） &amp;gt;">
-<meta name="twitter:image" content="https://camo.githubusercontent.com/0d7072c5a5b674d757c35b8f00b7562d6bba292b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f30382f32392f353961346437353532643239392e706e67">
+<meta name="twitter:description" content="设计 提前控制风险  电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 在安排开发计划时，提前给奖券开发预留更多的时间用于自测和代码检查。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代">
+<meta name="twitter:image" content="https://typekit.files.wordpress.com/2016/08/lock-basic.png">
     
     
         
@@ -109,7 +118,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发"><span class="toc-number">1.</span> <span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制风险"><span class="toc-number">1.1.</span> <span class="toc-text">控制风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术问题及解决方案"><span class="toc-number">1.2.</span> <span class="toc-text">技术问题及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for的key"><span class="toc-number">1.2.1.</span> <span class="toc-text">v-for的key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iOS的偶现白屏"><span class="toc-number">1.2.2.</span> <span class="toc-text">iOS的偶现白屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的动态组件"><span class="toc-number">1.2.3.</span> <span class="toc-text">Vue的动态组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交付测试前的自测"><span class="toc-number">1.2.4.</span> <span class="toc-text">交付测试前的自测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的单向数据流"><span class="toc-number">1.2.5.</span> <span class="toc-text">Vue的单向数据流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for和v-if"><span class="toc-number">1.2.6.</span> <span class="toc-text">v-for和v-if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue的transition组件"><span class="toc-number">1.2.7.</span> <span class="toc-text">vue的transition组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求及体验"><span class="toc-number">2.</span> <span class="toc-text">需求及体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及解决方案"><span class="toc-number">2.1.</span> <span class="toc-text">问题及解决方案</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计"><span class="toc-number">1.</span> <span class="toc-text">设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开发"><span class="toc-number">2.</span> <span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS布局-适配-兼容"><span class="toc-number">2.1.</span> <span class="toc-text">CSS布局/适配/兼容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#流式排版的字号适配"><span class="toc-number">2.1.1.</span> <span class="toc-text">流式排版的字号适配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPhoneX的适配"><span class="toc-number">2.1.2.</span> <span class="toc-text">iPhoneX的适配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备安全区域"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">设备安全区域</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#框架及其他问题"><span class="toc-number">2.2.</span> <span class="toc-text">框架及其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for的key"><span class="toc-number">2.2.1.</span> <span class="toc-text">v-for的key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS的偶现白屏"><span class="toc-number">2.2.2.</span> <span class="toc-text">iOS的偶现白屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue的动态组件"><span class="toc-number">2.2.3.</span> <span class="toc-text">Vue的动态组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的单向数据流"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">Vue的单向数据流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for和v-if"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">v-for和v-if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue的transition组件"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">vue的transition组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能"><span class="toc-number">2.3.</span> <span class="toc-text">性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.3.1.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏加载时间"><span class="toc-number">2.3.2.</span> <span class="toc-text">首屏加载时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求及体验"><span class="toc-number">2.4.</span> <span class="toc-text">需求及体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及解决方案"><span class="toc-number">2.4.1.</span> <span class="toc-text">问题及解决方案</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -148,28 +157,122 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><h3 id="控制风险"><a href="#控制风险" class="headerlink" title="控制风险"></a>控制风险</h3><p>电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。</p>
-<p>通常，软件设计中正确的时间安排是设计时间（60%） &gt; 开发时间（40%），之前在校学习时要求设计时间占到80%。 在互联网行业，需求变更往往比较频繁，迭代也很快，尤其是做业务需求， 前面的要求好像不能做到。因为现实情况中经常碰到需求很紧急，开发周期短，还要考虑到开发过程中存在跨组沟通合作，依赖资源更改等不太可控的情况，很多时候就着急忙慌的开发了。 但不管怎样还是要稳住稳住，会思考设计周密的代码才能让风险更可控。</p>
-<p>往往程序出现了巨大风险是由于前期的设计不足导致，即便上线没有出问题，也可能在开发后期发现存在设计问题导致大比例代码返工，那就会延期了。 所以，风险越早规避越好，在设计过程中就要充分考虑，否则线上出现问题那真是🍐鸭梨山大，心理到生理都扛不住。 所以，珍爱生命，重视风险，把风险扼杀在代码还没写之前的摇篮里。</p>
-<h3 id="技术问题及解决方案"><a href="#技术问题及解决方案" class="headerlink" title="技术问题及解决方案"></a>技术问题及解决方案</h3><h4 id="v-for的key"><a href="#v-for的key" class="headerlink" title="v-for的key"></a>v-for的key</h4><p> v-for记得加上key，否则效率不高，这里很多人会忘记。</p>
-<pre><code>**文档的解释** ：
-Vue使用 v-for 渲染的元素列表时，默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。key属性可以给Vue一个提示，这样现有的元素可以高效被重用和排序。
+    <h1 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h1><ul>
+<li><strong>提前控制风险</strong></li>
+</ul>
+<p>电商的会场开发中，基本都会涉及到抢券，秒杀等高风险活动，一旦代码逻辑出现问题，会引发严重后果。所以，前期的代码设计要考虑到风险控制这一层面。 在安排开发计划时，提前给奖券开发预留更多的时间用于自测和代码检查。</p>
+<p>程序的每一个逻辑分支，会产生什么结果，即便自己的程序按正常情况没有问题，万一运营或其他人员配置出现错误，有没有开关做到可控，有没有最大数量限制，类似的异常场景都要顺着代码逻辑走一遍。风险在设计过程中就要充分考虑，否则线上出现问题真是🍐鸭梨山大，心理到生理都扛不住。 所以，珍爱生命，提前控制风险。</p>
+<ul>
+<li><strong>上游发现并解决问题，设计时间大于编程/测试时间</strong></li>
+</ul>
+<p>通常，软件设计中正确的时间安排是设计时间&gt; 开发时间，之前在校学习时要求的软件设计时间甚至占到80%。 但在互联网行业，往往需求变更非常频繁，版本迭代很快，尤其在做业务需求时， 前面的要求总不能做到，因为现实情况中经常碰到紧急且开发周期短的需求，还要考虑到开发过程中存在跨组沟通合作，依赖资源更改等不可控的情况，很多时候就着急忙慌的开发了。 </p>
+<p>不过事实证明，提前进行上游控制的开发质量远高于后验补救。质量差的程序即便上线没有出问题，也可能在开发后期发现大比例代码需要返工，那就会延期了。</p>
+<h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><h2 id="CSS布局-适配-兼容"><a href="#CSS布局-适配-兼容" class="headerlink" title="CSS布局/适配/兼容"></a>CSS布局/适配/兼容</h2><h3 id="流式排版的字号适配"><a href="#流式排版的字号适配" class="headerlink" title="流式排版的字号适配"></a>流式排版的字号适配</h3><p>由于目前市场存在太多各种屏幕尺寸和分辨率的设备，导致我们在开发时不得不考虑要适配所有的机型。比如这次618会场的设计，页面上方主banner区域中要加一个按钮，这里显然要求区域要适应图片的长宽比不变，并且按钮在区域中的位置和大小也要随着屏幕尺寸的不同而变化。 这都比较好解决，把这块区域改成自适应的效果就好， 但是字号大小的设置真的是很棘手的事情。很多情况，简单暴力的给font-size赋值rem就没了，主流机型看不出问题，但剩余的用户看这个页面体验就非常差了。<br>比如下方模拟了从iPhone5 到 iPad屏幕大小变化的效果：</p>
+<iframe height="452" style="width: 100%;" scrolling="no" title="vqjPPy" src="//codepen.io/April666/embed/vqjPPy/?height=452&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/vqjPPy/" target="_blank" rel="noopener">vqjPPy</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
 
-**深入分析**： 
-Vue的Diff算法中，新旧Vnode进行对比，二者为sameNode的情况下会进行pathNode，而判断sameNode的方法中用到了key：</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sameVnode</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    a.key === b.key &amp;&amp;</span><br><span class="line">    a.tag === b.tag &amp;&amp;</span><br><span class="line">    a.isComment === b.isComment &amp;&amp;</span><br><span class="line">    isDef(a.data) === isDef(b.data) &amp;&amp;</span><br><span class="line">    sameInputType(a, b)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要实现字体适配不同的屏幕，媒体查询也可以做到，但尺寸太多种，写起来也是很烦躁，并且拖动屏幕改变视窗大小还会出现跳跃的情况。虽然对于移动端开发跳跃并不是问题，但我们更喜欢简洁美观的优雅代码。</p>
+<p>现在流式排版对font-size设置已经有一些方案，各有利弊，目前个人觉得比较好的一种是： <strong>CSS锁定流式排版</strong></p>
+<p>CSS锁定流式排版的原理：</p>
+<p><img src="https://typekit.files.wordpress.com/2016/08/lock-basic.png" alt></p>
+<p><img src="https://typekit.files.wordpress.com/2016/08/lock-rephrased.png?w=800&h=137" alt></p>
+<p>我们可以定义最大最小字体，最大最小屏幕宽度四个变量， font-size的计算方法如下：</p>
+<p> <code>font-size: calc( #{$min_font}rem + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_width}px) / ( #{$max_width} - #{$min_width}) ));</code></p>
+<p> calc函数真的是个好东西，本来要各种仔细计算的用calc就搞定了。</p>
+<p> 用上述方案对页面做全局配置，效果可见下方DEMO：</p>
+ <iframe height="369" style="width: 100%;" scrolling="no" title="CSS锁定流式排版" src="//codepen.io/April666/embed/vqjPPy/?height=369&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/vqjPPy/" target="_blank" rel="noopener">CSS锁定流式排版</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<p>整体font-size还是可以沿用之前的方法，html整体加上：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后所有的字体font-size可以用rem为单位， 1rem为16px, 在浏览器拖动页面，全局的字体都可以适配了，并且不会出现大小跳跃，看起来效果比较完美了。</p>
+<h3 id="iPhoneX的适配"><a href="#iPhoneX的适配" class="headerlink" title="iPhoneX的适配"></a>iPhoneX的适配</h3><p>交付测试前需注意兼容性问题自测，iphoneX不用说默认就要加上，这里有些经验记录一下：</p>
+<ul>
+<li>查询主流设备各项参数的网站： <a href>https://vizdevices.yesviz.com/viewport.php</a></li>
+</ul>
+<h4 id="设备安全区域"><a href="#设备安全区域" class="headerlink" title="设备安全区域"></a>设备安全区域</h4><blockquote>
+<p>设备安全区域是iOS11为屏幕适配引入的概念，指屏幕内适合放置控件的安全区域</p>
+</blockquote>
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2018/1806/mobile-design-adapter-36.png" alt></p>
+<blockquote>
+<p>注意iPhone X等刘海机的适配，iOS 11中的WebKit包含了新CSS函数constant()和四个safe-area-inset-left, safe-area-inset-right, safe-area-inset-top和 safe-area-inset-bottom常量。</p>
+</blockquote>
+<ul>
+<li><strong>步骤1</strong></li>
+</ul>
+<p>HTML添加    </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, viewport-fit=cover"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>步骤2</strong><br>添加constant()函数：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="built_in">constant</span>(safe-area-inset-top);</span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="built_in">constant</span>(safe-area-inset-bottom);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>横竖屏操作时比较难设置合理的padding值，可以使用max和min函数来操作，比如这样子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> &#123; </span><br><span class="line">	<span class="attribute">padding-left</span>: <span class="built_in">max</span>(15px, constant(safe-area-inset-left)); </span><br><span class="line">	<span class="attribute">padding-right</span>: <span class="built_in">max</span>(15px, constant(safe-area-inset-right)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>步骤3</strong></li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> only screen and (device-width: <span class="number">375px</span>) and (device-height: <span class="number">812px</span>) and (-webkit-device-pixel-ratio: <span class="number">3</span>) &#123; </span><br><span class="line">	// 样式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">:root&#123; </span><br><span class="line">	--safe-area-inset-top: 44px; </span><br><span class="line">	--safe-area-inset-bottom: 34px; </span><br><span class="line">	--safe-area-inset-left: 0px; </span><br><span class="line">	--safe-area-inset-right: 0px; </span><br><span class="line">	--origin-safe-area-inset-top: 0; </span><br><span class="line">	--origin-safe-area-inset-bottom: 0; &#125;</span><br><span class="line">	@supports (width: constant(safe-area-inset-top))&#123; </span><br><span class="line">		:root&#123; </span><br><span class="line">			--origin-safe-area-inset-top: constant(safe-area-inset-top); </span><br><span class="line">			--origin-safe-area-inset-bottom: constant(safe-area-inset-bottom); </span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#header-bar&#123; </span><br><span class="line">	padding-top: var(--safe-area-inset-top); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">#bottom-tab&#123; </span><br><span class="line">	padding-bottom: var(--safe-area-inset-bottom); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="框架及其他问题"><a href="#框架及其他问题" class="headerlink" title="框架及其他问题"></a>框架及其他问题</h2><h3 id="v-for的key"><a href="#v-for的key" class="headerlink" title="v-for的key"></a>v-for的key</h3><p> v-for一般情况都要记得加上key，这并不是绝对的，有些情况下不加key没什么影响，但有些情况不加key不仅效率有影响，甚至会出现bug。先来下下面的两个没有加key的🌰栗子：</p>
+<blockquote>
+<p>🌰1: </p>
+</blockquote>
+<iframe height="664" style="width: 100%;" scrolling="no" title="vue-for添加key的作用" src="//codepen.io/April666/embed/WqXrER/?height=265&theme-id=dark&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/WqXrER/" target="_blank" rel="noopener">vue-for添加key的作用</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<p>运行代码上述，发现输入框中输入了数字之后，点击打乱顺序按钮，商品列表的位置被打乱了，但是input输入框的值居然没有跟着变。 加上v-model之后是正常的，运行结果如下。</p>
+<iframe height="664" style="width: 100%;" scrolling="no" title="vue-for添加key的作用" src="//codepen.io/April666/embed/WqXrER/?height=664&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/WqXrER/" target="_blank" rel="noopener">vue-for添加key的作用</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+
+<blockquote>
+<p>🌰2: </p>
+</blockquote>
+<p>上面的html代码中加上Vue的transition动画效果，发现商品列表消失了</p>
+<iframe height="259" style="width: 100%;" scrolling="no" title="vue-for添加key的作用" src="//codepen.io/April666/embed/WqXrER/?height=259&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/WqXrER/" target="_blank" rel="noopener">vue-for添加key的作用</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<p>加上key之后则正常显示，也可以看到动画效果：</p>
+<iframe height="624" style="width: 100%;" scrolling="no" title="vue-for添加key的作用" src="//codepen.io/April666/embed/WqXrER/?height=624&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/WqXrER/" target="_blank" rel="noopener">vue-for添加key的作用</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+
+<p><strong>文档的解释</strong> ：<br>    Vue使用 v-for 渲染的元素列表时，默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。key属性可以给Vue一个提示，这样现有的元素可以高效被重用和排序。</p>
+<p><strong>深入分析</strong>： 
+Vue的Diff算法中，新旧Vnode进行对比，二者为sameNode的情况下会进行pathNode，而判断sameNode的方法中用到了key：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sameVnode</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    a.key === b.key &amp;&amp;</span><br><span class="line">    a.tag === b.tag &amp;&amp;</span><br><span class="line">    a.isComment === b.isComment &amp;&amp;</span><br><span class="line">    isDef(a.data) === isDef(b.data) &amp;&amp;</span><br><span class="line">    sameInputType(a, b)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>同时未定义的情况二者的key均为undefined，判断为sameNode的情况会进行pathNode，新老节点均有children子节点的情况会调用updateChildren方法，具体可参见源码，重点说一下用到key的过程，如下图：</p>
 <p><img src="https://camo.githubusercontent.com/0d7072c5a5b674d757c35b8f00b7562d6bba292b/68747470733a2f2f692e6c6f6c692e6e65742f323031372f30382f32392f353961346437353532643239392e706e67" alt></p>
 <p>updateChildren方法中头尾交叉对比互不相同的情况，调用createKeyToOldIdx方法创建一个oldVnode的map，用newStartVnode（虚拟Dom同层头部节点）的key对比创建的map的key，找到相同key的sameNode。</p>
 <p>如果newStartVnode没有key，那需要遍历整个map寻找sameNode，有key的情况就可以直接通过map找到对应的sameNode进行patch了。</p>
 <p>用到key也并不是一定必要的，某些特别简单的列表渲染就地渲染的效率可能更高，不过大部分情况还是尽可能在v-for的情况下使用key。</p>
-<h4 id="iOS的偶现白屏"><a href="#iOS的偶现白屏" class="headerlink" title="iOS的偶现白屏"></a>iOS的偶现白屏</h4><p>iOS来回跳转多次，偶现页面白屏，触屏又出现的问题，但dom元素和绑定事件存在，恢复问题代码，但出现频率降低，难以复现找到真实原因。推测与iOS的webview的底层渲染有关，很多人反馈类似问题，可能因为页面滚动后没有正常的调用 WKWebView 的 _updateVisibleContentRects 方法刷新需要渲染的内容导致</p>
+<h3 id="iOS的偶现白屏"><a href="#iOS的偶现白屏" class="headerlink" title="iOS的偶现白屏"></a>iOS的偶现白屏</h3><p>iOS来回跳转多次，偶现页面白屏，触屏又出现的问题，但dom元素和绑定事件存在，恢复问题代码，但出现频率降低，难以复现找到真实原因。推测与iOS的webview的底层渲染有关，很多人反馈类似问题，可能因为页面滚动后没有正常的调用 WKWebView 的 _updateVisibleContentRects 方法刷新需要渲染的内容导致</p>
 <p><strong>解决方法</strong> </p>
 <ul>
 <li>强制设置高度撑开某些情况下可能解决问题</li>
 <li>如果上述方法没有作用，需要关注内存使用，规范使用框架</li>
 </ul>
-<h4 id="Vue的动态组件"><a href="#Vue的动态组件" class="headerlink" title="Vue的动态组件"></a>Vue的动态组件</h4><p>开发中碰到配置很多楼层，但这些楼层有不同的样式和逻辑的需求，需要建立不同的楼层组件满足业务需求。 一个组件可对应一个或多个楼层，并且所有楼层需要灵活安放位置，可由运营排序。</p>
+<h3 id="Vue的动态组件"><a href="#Vue的动态组件" class="headerlink" title="Vue的动态组件"></a>Vue的动态组件</h3><p>开发中碰到配置很多楼层，但这些楼层有不同的样式和逻辑的需求，需要建立不同的楼层组件满足业务需求。 一个组件可对应一个或多个楼层，并且所有楼层需要灵活安放位置，可由运营排序。</p>
 <p><strong>解决方法</strong> ：</p>
 <p> Vue的动态组件非常好用，我们可以给每个楼层组件一个不同的key值，先把list做排序，然后利用v-bind:is属性绑定，可以在代码量比较少的情况下完成上述功能，如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tabfloor"</span> <span class="attr">v-for</span>=<span class="string">"(tabFloor, index) in tabList"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span>           </span><br><span class="line">     <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"tabFloor.key"</span> <span class="attr">:dataConfig</span>=<span class="string">"tabFloor"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -177,23 +280,6 @@ Vue的Diff算法中，新旧Vnode进行对比，二者为sameNode的情况下会
 
 <p>对比繁琐的写法(这里有商品楼层有十几种组件)：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tabfloor"</span> <span class="attr">v-for</span>=<span class="string">"(tabFloor, index) in tabList"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Benefit</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'benefit'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Benefit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">secPin</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'secpin'"</span>&gt;</span><span class="tag">&lt;/<span class="name">secPin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Choice</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'choice'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Choice</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Cheap</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'cheap'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Cheap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Optimize</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'optimize'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Optimize</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Benefit2</span> <span class="attr">v-if</span>=<span class="string">"tabFloor.key == 'benefit2'"</span>&gt;</span><span class="tag">&lt;/<span class="name">Benefit2</span>&gt;</span></span><br><span class="line">    ···</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="交付测试前的自测"><a href="#交付测试前的自测" class="headerlink" title="交付测试前的自测"></a>交付测试前的自测</h4><p>交付测试前需注意兼容性问题自测，这里有些经验记录一下：</p>
-<ul>
-<li><p>查询主流设备各项参数的网站： <a href>https://vizdevices.yesviz.com/viewport.php</a></p>
-</li>
-<li><p>注意iPhone X等刘海机的适配，iOS 11中的WebKit包含了新CSS函数constant()和四个safe-area-inset-left, safe-area-inset-right, safe-area-inset-top和 safe-area-inset-bottom常量。适配上可如下：</p>
-</li>
-</ul>
-<p>HTML添加</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, viewport-fit=cover"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果底部小黑条遮挡，添加：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="built_in">constant</span>(safe-area-inset-bottom);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>横竖屏操作时比较难设置合理的padding值，可以使用max和min函数来操作，比如这样子：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> &#123; </span><br><span class="line">	<span class="attribute">padding-left</span>: <span class="built_in">max</span>(15px, constant(safe-area-inset-left)); </span><br><span class="line">	<span class="attribute">padding-right</span>: <span class="built_in">max</span>(15px, constant(safe-area-inset-right)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <h4 id="Vue的单向数据流"><a href="#Vue的单向数据流" class="headerlink" title="Vue的单向数据流"></a>Vue的单向数据流</h4><p> 注意vue的单向数据流，规范写法。 很多提示vue warn的情况是由于没有遵循合理的规范，父组件注入子组件的数据最好不要直接修改，这里可以在子组件中重新设置data</p>
@@ -205,6 +291,41 @@ Vue的Diff算法中，新旧Vnode进行对比，二者为sameNode的情况下会
 <p>css部分：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.marquee-enter-active</span>,</span><br><span class="line">   <span class="selector-class">.marquee-leave-active</span> &#123;</span><br><span class="line">       <span class="attribute">transition</span>: all <span class="number">1s</span> ease-out;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="selector-class">.marquee-leave-to</span> &#123;</span><br><span class="line">       <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-1.25rem);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="selector-class">.marquee-enter</span> &#123;</span><br><span class="line">       <span class="attribute">transform</span>: <span class="built_in">translateY</span>(1.25rem);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h3 id="FPS"><a href="#FPS" class="headerlink" title="FPS"></a>FPS</h3><p>FPS(Frame Per Second)刷新率是最能反应页面性能的指标，代表每秒传输的帧数。衡量页面的卡顿程度可以通过下表看到：</p>
+<table>
+<thead>
+<tr>
+<th>FPS</th>
+<th>卡顿程度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt; 60</td>
+<td>非常流畅</td>
+</tr>
+<tr>
+<td>30 ～ 60</td>
+<td>无卡顿</td>
+</tr>
+<tr>
+<td>12 ～ 30</td>
+<td>卡顿</td>
+</tr>
+<tr>
+<td>&lt; 12</td>
+<td>非常卡顿</td>
+</tr>
+</tbody></table>
+<p> 618会场的FPS测试，滚动时fps在50～60之间，比较流畅。</p>
+<p><img src="../../../../img/201806230/fps.gif" alt></p>
+<p>Load过程中，可以通过performance观察FPS情况，1S内页面需要做许多工作，还可能有耗时的DOM操作，会丢失很多帧。所以下图中可以看到，前1s的FPS有一段红色的线，出现红色的线代表FPS值较低，页面性能也比较低。 之后是一条绿色的长线是正常的了。 也可以看到，页面还有一部分优化空间，红色的线应该降低到1S内。</p>
+<p><img src="../../../../img/201806230/fps2.jpg" alt></p>
+<p>可以从以下角度去优化这部分性能：<br><img src="../../../../img/201806230/optimize.jpg" alt></p>
+<h3 id="首屏加载时间"><a href="#首屏加载时间" class="headerlink" title="首屏加载时间"></a>首屏加载时间</h3><p>整体页面发现首屏加载比较慢，需要优化。使用Chrome的performance功能，CPU调整到4x倍速，加载略慢的情况可以看到详细的首屏加载信息。</p>
+<p><img src="../../../../img/201806230/1.jpeg" alt></p>
+<p>对比发现，script的时间占比太多，页面解析js的时间造成了整体渲染阻塞。查了下原因，是由于运营配置的静态数据过大造成。所以这里替换了首次请求页面片，使用接口请求去拿数据，script的时间明显减少：</p>
+<p><img src="../../../../img/201806230/2.jpeg" alt></p>
+<p><img src="../../../../img/201806230/3.jpeg" alt></p>
 <h2 id="需求及体验"><a href="#需求及体验" class="headerlink" title="需求及体验"></a>需求及体验</h2><h3 id="问题及解决方案"><a href="#问题及解决方案" class="headerlink" title="问题及解决方案"></a>问题及解决方案</h3><ol>
 <li><p>开发中思维局限于技术实现，对用户体验没有多关注，造成因体验问题不好上线后返工修改。本次开发中也出现了只关注开发完成情况，点击领券后没有再次查询状态打标已领取的问题，这样会导致用户多一次操作，体验不够好。</p>
 <p> <strong>解决方法</strong> ：    </p>
@@ -265,7 +386,7 @@ Vue的Diff算法中，新旧Vnode进行对比，二者为sameNode的情况下会
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发"><span class="toc-number">1.</span> <span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制风险"><span class="toc-number">1.1.</span> <span class="toc-text">控制风险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术问题及解决方案"><span class="toc-number">1.2.</span> <span class="toc-text">技术问题及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for的key"><span class="toc-number">1.2.1.</span> <span class="toc-text">v-for的key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iOS的偶现白屏"><span class="toc-number">1.2.2.</span> <span class="toc-text">iOS的偶现白屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的动态组件"><span class="toc-number">1.2.3.</span> <span class="toc-text">Vue的动态组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交付测试前的自测"><span class="toc-number">1.2.4.</span> <span class="toc-text">交付测试前的自测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的单向数据流"><span class="toc-number">1.2.5.</span> <span class="toc-text">Vue的单向数据流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for和v-if"><span class="toc-number">1.2.6.</span> <span class="toc-text">v-for和v-if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue的transition组件"><span class="toc-number">1.2.7.</span> <span class="toc-text">vue的transition组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求及体验"><span class="toc-number">2.</span> <span class="toc-text">需求及体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及解决方案"><span class="toc-number">2.1.</span> <span class="toc-text">问题及解决方案</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计"><span class="toc-number">1.</span> <span class="toc-text">设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开发"><span class="toc-number">2.</span> <span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS布局-适配-兼容"><span class="toc-number">2.1.</span> <span class="toc-text">CSS布局/适配/兼容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#流式排版的字号适配"><span class="toc-number">2.1.1.</span> <span class="toc-text">流式排版的字号适配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPhoneX的适配"><span class="toc-number">2.1.2.</span> <span class="toc-text">iPhoneX的适配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备安全区域"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">设备安全区域</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#框架及其他问题"><span class="toc-number">2.2.</span> <span class="toc-text">框架及其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for的key"><span class="toc-number">2.2.1.</span> <span class="toc-text">v-for的key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS的偶现白屏"><span class="toc-number">2.2.2.</span> <span class="toc-text">iOS的偶现白屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue的动态组件"><span class="toc-number">2.2.3.</span> <span class="toc-text">Vue的动态组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue的单向数据流"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">Vue的单向数据流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-for和v-if"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">v-for和v-if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue的transition组件"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">vue的transition组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能"><span class="toc-number">2.3.</span> <span class="toc-text">性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.3.1.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏加载时间"><span class="toc-number">2.3.2.</span> <span class="toc-text">首屏加载时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求及体验"><span class="toc-number">2.4.</span> <span class="toc-text">需求及体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及解决方案"><span class="toc-number">2.4.1.</span> <span class="toc-text">问题及解决方案</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
