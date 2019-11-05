@@ -12,27 +12,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="常用性能指标RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用户滚动页面">
+    <meta name="description" content="常用性能指标用户角度的RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端页面性能指标及分析总结">
 <meta property="og:url" content="http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/index.html">
 <meta property="og:site_name" content="April">
-<meta property="og:description" content="常用性能指标RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用户滚动页面">
+<meta property="og:description" content="常用性能指标用户角度的RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用">
 <meta property="og:locale" content="chinese">
 <meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/rail.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104205848.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104210623.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104170243.png">
+<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_17-32-20.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104165616.png">
+<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_20-39-57.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104175918.png">
 <meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/2019_06_05-15_30_29.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104163010.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104204512.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104204943.png">
-<meta property="og:updated_time" content="2019-11-05T07:36:27.179Z">
+<meta property="og:updated_time" content="2019-11-05T13:42:02.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端页面性能指标及分析总结">
-<meta name="twitter:description" content="常用性能指标RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用户滚动页面">
+<meta name="twitter:description" content="常用性能指标用户角度的RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用">
 <meta name="twitter:image" content="http://q0hfs054j.bkt.clouddn.com/img/rail.png">
     
     
@@ -116,7 +118,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RAIL模型"><span class="toc-number">1.1.</span> <span class="toc-text">RAIL模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FPS"><span class="toc-number">1.2.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存泄露"><span class="toc-number">1.3.</span> <span class="toc-text">内存泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.3.1.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">2.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">2.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">1.2.1.</span> <span class="toc-text">FPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存问题"><span class="toc-number">1.3.</span> <span class="toc-text">内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">1.3.1.</span> <span class="toc-text">内存问题的现象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.3.2.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">2.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">2.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -155,7 +157,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="常用性能指标"><a href="#常用性能指标" class="headerlink" title="常用性能指标"></a>常用性能指标</h1><h2 id="RAIL模型"><a href="#RAIL模型" class="headerlink" title="RAIL模型"></a>RAIL模型</h2><p>RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：</p>
+    <h1 id="常用性能指标"><a href="#常用性能指标" class="headerlink" title="常用性能指标"></a>常用性能指标</h1><h2 id="用户角度的RAIL模型"><a href="#用户角度的RAIL模型" class="headerlink" title="用户角度的RAIL模型"></a>用户角度的RAIL模型</h2><p>RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：</p>
 <p><img src="http://q0hfs054j.bkt.clouddn.com/img/rail.png" alt></p>
 <blockquote>
 <h4 id="关键RAIL-指标汇总"><a href="#关键RAIL-指标汇总" class="headerlink" title="关键RAIL 指标汇总"></a>关键RAIL 指标汇总</h4></blockquote>
@@ -188,23 +190,41 @@
 <td align="right">用户加载页面并看到关键路径内容</td>
 </tr>
 </tbody></table>
-<h2 id="FPS"><a href="#FPS" class="headerlink" title="FPS"></a>FPS</h2><p>FPS 表示的是每秒钟浏览器更新的图片帧数。按照上述的RAIL模型，每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒，1s内完成的帧数就是1000/16， 大概是60帧左右。低于30 FPS 以下的动画，就让人感觉到明显的卡顿和不适了。</p>
+<h2 id="Developer角度的性能指标"><a href="#Developer角度的性能指标" class="headerlink" title="Developer角度的性能指标"></a>Developer角度的性能指标</h2><h3 id="FPS"><a href="#FPS" class="headerlink" title="FPS"></a>FPS</h3><p>FPS 表示的是每秒钟浏览器更新的图片帧数。按照上述的RAIL模型，每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒，1s内完成的帧数就是1000/16， 大概是60帧左右。低于30 FPS 以下的动画，就让人感觉到明显的卡顿和不适了。</p>
 <p>我们可以使用chrome开发工具的performance记录来查看FPS的情况，下图中红框的是FPS，整一排是页面加载到结束过程中FPS的数值。 衡量页面是否卡顿可以看FPS横条的颜色，如果是绿色，证明页面帧率比较高不卡顿，如果是红色，则说明页面非常卡。 页面空白时间段由于加载及解析js等文件，导致主进程阻塞，这是可以观测到FPS是红色的。</p>
 <p><img src="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104205848.png" alt></p>
 <p>滑动过程中，如果想实时监测FPS也可以做到。<br><code>操作流程：command + shift + p, 输入show Rendering，勾选FPSmeter</code>，可以看到页面右上角出现了一个面板，滚动页面FPS的实时数值会显示在面板上。</p>
 <p><img src="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104210623.png" alt></p>
-<h2 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h2><h3 id="识别内存泄露"><a href="#识别内存泄露" class="headerlink" title="识别内存泄露"></a>识别内存泄露</h3><ol>
+<h2 id="内存问题"><a href="#内存问题" class="headerlink" title="内存问题"></a>内存问题</h2><h3 id="内存问题的现象"><a href="#内存问题的现象" class="headerlink" title="内存问题的现象"></a>内存问题的现象</h3><ul>
+<li><p><strong>页面性能随使用时间的延长越来越差</strong></p>
+<p> 可能是内存泄露，用户浏览页面的时间越长，可能由于页面的错误导致占用的内存越来越多。</p>
+</li>
+<li><p><strong>页面的性能一直很差</strong></p>
+<p> 可能是内存膨胀，页面使用的内存比实际应该使用的要多。</p>
+</li>
+<li><p><strong>页面出现延迟或者经常卡顿暂停</strong></p>
+<p> 可能由于垃圾回收过于频繁，浏览器进行垃圾回收时会造成脚本执行的阻塞。</p>
+</li>
+</ul>
+<h3 id="识别内存泄露"><a href="#识别内存泄露" class="headerlink" title="识别内存泄露"></a>识别内存泄露</h3><p>可以用下面的代码做一次实验：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"grow"</span>&gt;</span>分配内存<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	    <span class="keyword">var</span> x = [];</span></span><br><span class="line">	</span><br><span class="line"><span class="javascript">	    <span class="function"><span class="keyword">function</span> <span class="title">grow</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">	        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span></span><br><span class="line"><span class="javascript">	            <span class="built_in">document</span>.body.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'div'</span>));</span></span><br><span class="line">	        &#125;</span><br><span class="line"><span class="javascript">	        x.push(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1000000</span>).join(<span class="string">'x'</span>));</span></span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line"><span class="javascript">	    <span class="built_in">document</span>.getElementById(<span class="string">'grow'</span>).addEventListener(<span class="string">'click'</span>, grow);</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
 <li><strong>Performance monitor 实时观测</strong></li>
 </ol>
 <p><code>操作流程：command + shift + p, 输入show Performance Monitor</code></p>
 <p><img src="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104170243.png" alt></p>
 <p>页面稳定后可实时观测图中红框框出来的JS Heap size（堆内存），Dom Nodes（节点数），js event listeners（监听器），如果这几个数值不断增长，可推测出现了内存泄露。</p>
+<p>不停点击测试页面的按钮，结果如下图：CPU使用率不停上升到达100%， 堆内存一直上升，节点数也持续上升。代码可以看出，x数组在grow函数中被引用，grow事件又被监听，数组x不会被垃圾回收，相应分配的内存也不会被释放。</p>
+<p><img src="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_17-32-20.png" alt></p>
 <ol start="2">
 <li><strong>Performance录制</strong></li>
 </ol>
 <p><code>操作流程：点击垃圾回收--&gt;开始录制--&gt;点击垃圾回收--&gt;结束录制</code></p>
 <p><img src="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104165616.png" alt></p>
 <p>可以观测图中红框框出来的JS Heap（堆内存），Nodes（节点数），listeners（监听器），如果这几个数值不断增长，可推测出现了内存泄露。</p>
+<p>多次点击测试页面的按钮，观测结果见下图。在计数器窗格中可以观测到点击了3次，dom节点（绿色的线）数有三次上涨，每次上涨跃升可以看到堆内存上升，然后在进行垃圾回收时产生了回落，最终红框中的蓝色区域还是比最开始时高出一段，是由于x数组被引用没有释放堆内存。</p>
+<p><img src="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_20-39-57.png" alt></p>
 <ol start="3">
 <li><strong>使用堆快照确定已分离的DOM树</strong></li>
 </ol>
@@ -252,7 +272,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RAIL模型"><span class="toc-number">1.1.</span> <span class="toc-text">RAIL模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FPS"><span class="toc-number">1.2.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存泄露"><span class="toc-number">1.3.</span> <span class="toc-text">内存泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.3.1.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">2.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">2.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">1.2.1.</span> <span class="toc-text">FPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存问题"><span class="toc-number">1.3.</span> <span class="toc-text">内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">1.3.1.</span> <span class="toc-text">内存问题的现象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.3.2.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">2.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">2.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
