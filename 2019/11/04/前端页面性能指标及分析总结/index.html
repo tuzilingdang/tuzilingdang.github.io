@@ -19,21 +19,21 @@
 <meta property="og:site_name" content="April">
 <meta property="og:description" content="常用性能指标RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用户滚动页面">
 <meta property="og:locale" content="chinese">
-<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/images/rail.png?hl=zh-CN">
+<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/rail.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104205848.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104210623.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104170243.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104165616.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104175918.png">
-<meta property="og:image" content="https://developers.google.com/web/tools/chrome-devtools/memory-problems/imgs/total-size.png?hl=zh-CN">
+<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/2019_06_05-15_30_29.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104163010.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104204512.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104204943.png">
-<meta property="og:updated_time" content="2019-11-04T13:19:51.657Z">
+<meta property="og:updated_time" content="2019-11-05T07:32:04.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端页面性能指标及分析总结">
 <meta name="twitter:description" content="常用性能指标RAIL模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒 用户滚动页面">
-<meta name="twitter:image" content="https://developers.google.com/web/fundamentals/performance/images/rail.png?hl=zh-CN">
+<meta name="twitter:image" content="http://q0hfs054j.bkt.clouddn.com/img/rail.png">
     
     
         
@@ -156,7 +156,7 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="常用性能指标"><a href="#常用性能指标" class="headerlink" title="常用性能指标"></a>常用性能指标</h1><h2 id="RAIL模型"><a href="#RAIL模型" class="headerlink" title="RAIL模型"></a>RAIL模型</h2><p>RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：</p>
-<p><img src="https://developers.google.com/web/fundamentals/performance/images/rail.png?hl=zh-CN" alt></p>
+<p><img src="http://q0hfs054j.bkt.clouddn.com/img/rail.png" alt></p>
 <blockquote>
 <h4 id="关键RAIL-指标汇总"><a href="#关键RAIL-指标汇总" class="headerlink" title="关键RAIL 指标汇总"></a>关键RAIL 指标汇总</h4></blockquote>
 <table>
@@ -211,7 +211,8 @@
 <p><code>操作流程：command + shift + p, 输入show Memory，开始录制</code></p>
 <p><img src="https://raw.githubusercontent.com/tuzilingdang/images/master/20191104175918.png" alt></p>
 <p>class filter中输入detaced，可以看到已分离的 DOM 树。在 Object 窗格中，可以看到与正在引用该节点的代码相关的更多信息。 如果存在内存泄露，可以找到相应信息删除不用的节点。</p>
-<p>快照最初存储在渲染器进程内存中，点击快照图标进行查看时，快照将根据要求被传输到 DevTools 中。<br>下图红色圈圈中的数字可到达 JavaScript 对象的总大小。<br><img src="https://developers.google.com/web/tools/chrome-devtools/memory-problems/imgs/total-size.png?hl=zh-CN" alt></p>
+<p>快照最初存储在渲染器进程内存中，点击快照图标进行查看时，快照将根据要求被传输到 DevTools 中。<br>下图红色圈圈中的数字可到达 JavaScript 对象的总大小。</p>
+<p><img src="http://q0hfs054j.bkt.clouddn.com/img/2019_06_05-15_30_29.png" alt></p>
 <ol start="4">
 <li><strong>查看Chrome浏览器的任务管理面板</strong></li>
 </ol>
