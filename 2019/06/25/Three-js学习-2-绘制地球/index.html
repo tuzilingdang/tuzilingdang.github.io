@@ -12,24 +12,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Demo效果展示 另外一个效果超级赞的绘制有全球石油进出口情况的地球如下： 全球石油进出口可视化地球效果 准备工作首先，需要准备很多张图片，用于绘制地球表面。这里用到的有地表图片和大气层图片。其中，地表图片有这样三种： color map(地表颜色图)， bump map(海拔图)， spec color map 是由原作者综合了原始地球地图，美国地质调查局DEM信息的梯度映射，手绘图，球体深度信">
+    <meta name="description" content="Demo效果展示   另外一个效果超级赞的绘制有全球石油进出口情况的地球如下： 全球石油进出口可视化地球效果 准备工作首先，需要准备很多张图片，用于绘制地球表面。这里用到的有地表图片和大气层图片。其中，地表图片有这样三种： color map(地表颜色图)， bump map(海拔图)， spec color map 是由原作者综合了原始地球地图，美国地质调查局DEM信息的梯度映射，手绘图，球体深">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Three.js学习(2)-绘制地球">
 <meta property="og:url" content="http://yoursite.com/2019/06/25/Three-js学习-2-绘制地球/index.html">
 <meta property="og:site_name" content="April">
-<meta property="og:description" content="Demo效果展示 另外一个效果超级赞的绘制有全球石油进出口情况的地球如下： 全球石油进出口可视化地球效果 准备工作首先，需要准备很多张图片，用于绘制地球表面。这里用到的有地表图片和大气层图片。其中，地表图片有这样三种： color map(地表颜色图)， bump map(海拔图)， spec color map 是由原作者综合了原始地球地图，美国地质调查局DEM信息的梯度映射，手绘图，球体深度信">
+<meta property="og:description" content="Demo效果展示   另外一个效果超级赞的绘制有全球石油进出口情况的地球如下： 全球石油进出口可视化地球效果 准备工作首先，需要准备很多张图片，用于绘制地球表面。这里用到的有地表图片和大气层图片。其中，地表图片有这样三种： color map(地表颜色图)， bump map(海拔图)， spec color map 是由原作者综合了原始地球地图，美国地质调查局DEM信息的梯度映射，手绘图，球体深">
 <meta property="og:locale" content="chinese">
 <meta property="og:image" content="http://yoursite.com/img/201806250/earth-200.gif">
-<meta property="og:image" content="http://planetpixelemporium.com/images/mappreviews/earthmapthumb.jpg">
-<meta property="og:image" content="http://planetpixelemporium.com/images/mappreviews/earthbumpthumb.jpg">
-<meta property="og:image" content="http://planetpixelemporium.com/images/mappreviews/earthspecthumb.jpg">
-<meta property="og:image" content="http://planetpixelemporium.com/images/mappreviews/earthcloudmapthumb.jpg">
-<meta property="og:image" content="http://planetpixelemporium.com/images/mappreviews/earthcloudmaptransthumb.jpg">
-<meta property="og:image" content="http://yoursite.com/img/201806250/spotlight.png">
-<meta property="og:updated_time" content="2019-06-28T08:40:04.597Z">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/62224/31/14866/6420/5dc52ec1E71192399/6c79e2d3ea060edf.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/62997/27/15021/3502/5dc52e86Ed808a666/2bd905ac9373d220.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/75537/3/14936/6762/5dc52df2E55263de9/29e70f45de62980c.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/61570/40/14920/7563/5dc52d9bEb3a1b38a/ba0fcb405df9edbb.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/92910/2/1824/6856/5dc52d5aEa40d133e/84e8249d020699c7.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1514x834_jfs/t1/75881/11/14966/103836/5dc52adbE691f072c/8f767bf13d9cd84d.png">
+<meta property="og:updated_time" content="2019-11-08T09:01:25.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Three.js学习(2)-绘制地球">
-<meta name="twitter:description" content="Demo效果展示 另外一个效果超级赞的绘制有全球石油进出口情况的地球如下： 全球石油进出口可视化地球效果 准备工作首先，需要准备很多张图片，用于绘制地球表面。这里用到的有地表图片和大气层图片。其中，地表图片有这样三种： color map(地表颜色图)， bump map(海拔图)， spec color map 是由原作者综合了原始地球地图，美国地质调查局DEM信息的梯度映射，手绘图，球体深度信">
+<meta name="twitter:description" content="Demo效果展示   另外一个效果超级赞的绘制有全球石油进出口情况的地球如下： 全球石油进出口可视化地球效果 准备工作首先，需要准备很多张图片，用于绘制地球表面。这里用到的有地表图片和大气层图片。其中，地表图片有这样三种： color map(地表颜色图)， bump map(海拔图)， spec color map 是由原作者综合了原始地球地图，美国地质调查局DEM信息的梯度映射，手绘图，球体深">
 <meta name="twitter:image" content="http://yoursite.com/img/201806250/earth-200.gif">
     
     
@@ -154,18 +154,26 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Demo效果展示"><a href="#Demo效果展示" class="headerlink" title="Demo效果展示"></a>Demo效果展示</h2><p><img src="../../../../img/201806250/earth-200.gif" alt></p>
+    <h2 id="Demo效果展示"><a href="#Demo效果展示" class="headerlink" title="Demo效果展示"></a>Demo效果展示</h2><!--cover: https://img11.360buyimg.com/jdphoto/s200x146_jfs/t1/49152/11/15362/8548/5dc524d2Ebd295613/e8ccb1d68c6195a7.jpg-->
+
+<p><img src="../../../../img/201806250/earth-200.gif" alt></p>
 <p>另外一个效果超级赞的绘制有全球石油进出口情况的地球如下：</p>
 <p><a href="https://www.gsmlondon.ac.uk/global-oil-map/#2005-exporters-682" target="_blank" rel="noopener">全球石油进出口可视化地球效果</a></p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先，需要准备很多张图片，用于绘制地球表面。这里用到的有地表图片和大气层图片。<br>其中，地表图片有这样三种： color map(地表颜色图)， bump map(海拔图)， spec</p>
 <p>color map 是由原作者综合了原始地球地图，美国地质调查局DEM信息的梯度映射，手绘图，球体深度信息和美国地质调查局海洋剪辑合成的，所以准确度比较高。 现在只能拿到1k的小图，绘制效果不好，如果要拿到更清晰的图片，可以付费下载，最大可以有10K。 这里另外找了一张3000*2000左右像素的color map，效果稍好一点。</p>
-<p><img src="http://planetpixelemporium.com/images/mappreviews/earthmapthumb.jpg" alt="color map"></p>
+<!--![color map](http://planetpixelemporium.com/images/mappreviews/earthmapthumb.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/62224/31/14866/6420/5dc52ec1E71192399/6c79e2d3ea060edf.jpg" alt></p>
 <p>bump map 用于绘制地球凹凸不平的表面特征，作者通过美国地质调查局DEM数据库拼凑而成。 图片只包含了陆地的海拔高度，海平面为0。最高点珠峰高度为255。如果需要生成超仿真3D地球，请可以付费下载10K版本。</p>
-<p><img src="http://planetpixelemporium.com/images/mappreviews/earthbumpthumb.jpg" alt="earthbumpthumb"></p>
+<!--![earthbumpthumb](http://planetpixelemporium.com/images/mappreviews/earthbumpthumb.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/62997/27/15021/3502/5dc52e86Ed808a666/2bd905ac9373d220.jpg" alt></p>
 <p>specular map则用于绘制海洋表面的高光和反射，因用图片后比较刺眼，这里先去掉了。</p>
-<p><img src="http://planetpixelemporium.com/images/mappreviews/earthspecthumb.jpg" alt="specular map"></p>
+<!--![specular map](http://planetpixelemporium.com/images/mappreviews/earthspecthumb.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/75537/3/14936/6762/5dc52df2E55263de9/29e70f45de62980c.jpg" alt></p>
 <p>大气图片有两种，一个是colormap，一个是transparent map 表示透明度</p>
-<p><img src="http://planetpixelemporium.com/images/mappreviews/earthcloudmapthumb.jpg" alt><br><img src="http://planetpixelemporium.com/images/mappreviews/earthcloudmaptransthumb.jpg" alt></p>
+<!--![](http://planetpixelemporium.com/images/mappreviews/earthcloudmapthumb.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/61570/40/14920/7563/5dc52d9bEb3a1b38a/ba0fcb405df9edbb.jpg" alt></p>
+<!--![](http://planetpixelemporium.com/images/mappreviews/earthcloudmaptransthumb.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s200x100_jfs/t1/92910/2/1824/6856/5dc52d5aEa40d133e/84e8249d020699c7.jpg" alt></p>
 <p>图片准备好了，接下来就可以慢慢把图片一层一层贴上去了</p>
 <h2 id="绘制过程"><a href="#绘制过程" class="headerlink" title="绘制过程"></a>绘制过程</h2><h3 id="1-初始化场景-相机-渲染器"><a href="#1-初始化场景-相机-渲染器" class="headerlink" title="1. 初始化场景/相机/渲染器"></a>1. 初始化场景/相机/渲染器</h3><p>准备好基础必备工作,初始化背景设置为黑色就好了：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> camera = <span class="keyword">new</span> THREE.PerspectiveCamera(<span class="number">45</span>, <span class="built_in">window</span>.innerWidth / <span class="built_in">window</span>.innerHeight, <span class="number">1</span>, <span class="number">500</span>);</span><br><span class="line">camera.position.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>);</span><br><span class="line">camera.lookAt(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> renderer = <span class="keyword">new</span> THREE.WebGLRenderer();</span><br><span class="line">renderer.setSize(<span class="built_in">window</span>.innerWidth, <span class="built_in">window</span>.innerHeight);</span><br><span class="line">renderer.setClearColor(<span class="string">'rgb(4,13,31)'</span>, <span class="number">0.8</span>);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(renderer.domElement);</span><br></pre></td></tr></table></figure>
@@ -192,7 +200,7 @@
 
 <h3 id="5-添加灯光效果"><a href="#5-添加灯光效果" class="headerlink" title="5. 添加灯光效果"></a>5. 添加灯光效果</h3><p>好不容易绘制了地球，然鹅一片漆黑看不见。上帝说，要有光，加了聚光灯，于是我们可以看见美丽的地球了。之前效果一直不出来，发现绘制地球时选择的材料是MeshPhongMaterial，这种材料属于反射型材料，必须通过光照才能看到，否则为黑色。</p>
 <p>聚光灯官方文档示例：</p>
-<p><img src="../../../../img/201806250/spotlight.png" alt="spotlight.gif"></p>
+<p><img src="https://img11.360buyimg.com/jdphoto/s1514x834_jfs/t1/75881/11/14966/103836/5dc52adbE691f072c/8f767bf13d9cd84d.png" alt="spotlight.gif"></p>
 <p>直加聚光灯，有一半会像真实的地球一样淹没在黑暗里，但我们像看到全部的面貌，所以添加了AmbientLight均匀照亮场景中的所有物体。<br>DirectionalLight光线太强，加上效果不好，可以忽略了。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加一个聚光灯</span></span><br><span class="line"><span class="keyword">var</span> spotLight = <span class="keyword">new</span> THREE.SpotLight(<span class="number">0xffffff</span>, <span class="number">1.5</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI / <span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">spotLight.position.set(<span class="number">40</span>, <span class="number">40</span>, <span class="number">100</span>);</span><br><span class="line">spotLight.castShadow = <span class="literal">true</span>;</span><br><span class="line">scene.add(spotLight);</span><br><span class="line"><span class="keyword">var</span> light = <span class="keyword">new</span> THREE.AmbientLight(<span class="number">0x222222</span>)</span><br><span class="line">scene.add(light)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> light = <span class="keyword">new</span> THREE.DirectionalLight(<span class="number">0xffffff</span>, <span class="number">1</span>)</span><br><span class="line">light.position.set(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">// scene.add(light)</span></span><br></pre></td></tr></table></figure>
 

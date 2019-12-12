@@ -12,34 +12,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒">
+    <meta name="description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：    关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端页面性能指标及分析总结">
+<meta property="og:title" content="前端页面性能指标及分析">
 <meta property="og:url" content="http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/index.html">
 <meta property="og:site_name" content="April">
-<meta property="og:description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒">
+<meta property="og:description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：    关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫">
 <meta property="og:locale" content="chinese">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/rail.png">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/timestamp-diagram_2019_11_08-11_10.svg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104205848.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104210623.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104170243.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_17-32-20.png">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104165616.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_20-39-57.png">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104175918.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/2019_06_05-15_30_29.png">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-53-08.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-52-27.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_14-10-49.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104163010.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104204512.jpg">
-<meta property="og:image" content="http://q0hfs054j.bkt.clouddn.com/img/20191104204943.jpg">
-<meta property="og:updated_time" content="2019-11-08T07:35:38.646Z">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1390x504_jfs/t1/93389/29/1773/17133/5dc531e2Ea85a9a71/6f68d3b1ab0bbefe.png">
+<meta property="og:image" content="https://wq.360buyimg.com/data/ppms/picture/timestamp_diagram_2019_11_08_11_10.svg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2006x396_jfs/t1/46517/31/15563/46463/5dc532c9Edb27925c/b220d8b212cee485.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s368x354_jfs/t1/49092/38/15150/32835/5dc532f5E75e4626c/64da63f868d00bc2.png">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/compare_progress.png?attredirects=0">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188125/using-webpagetest/metrics/speed-index/chart-line-small.png">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780189487/using-webpagetest/metrics/speed-index/chart-progress-a-small.png">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/chart-progress-b-small.png?attredirects=0">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188199/using-webpagetest/metrics/speed-index/speedindexformula.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1950x1032_jfs/t1/65173/13/14780/43089/5dc5333aE182b2321/58a21d5eda07caba.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2028x458_jfs/t1/50221/2/15264/68286/5dc533e2E0155a1bd/ce64b6e9ef08ca51.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1954x1126_jfs/t1/58271/35/15402/76052/5dc53421E4e96fafe/6b0cd8157d139bd7.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2052x1290_jfs/t1/91662/8/1779/84298/5dc53453Ef4666a0e/960a3815284f0592.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1712x1124_jfs/t1/94062/20/1796/101323/5dc5349dE0db6d901/a02261fe1cb0ac78.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s865x571_jfs/t1/83392/33/14767/35050/5dc534deEf78aa42a/1c49f65e3e5d2a75.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2278x644_jfs/t1/104015/14/1715/79522/5dc53501E87e78d34/40b528397fbc75a0.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2292x1128_jfs/t1/88147/20/1767/152890/5dc5353bE6157193e/1cd92588bfd90705.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2280x1022_jfs/t1/98937/35/1737/120864/5dc5356eE9182776e/6fc34d81fb498db3.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1226x1030_jfs/t1/52906/39/15184/85272/5dc535aaE91291450/87df6d5465c36cbd.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2134x1330_jfs/t1/69771/24/14787/44412/5dc535c5E1c7ae9f2/5d6545f40557d394.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1940x932_jfs/t1/54138/20/15411/50651/5dc535cbE11750587/caf749b66d7fc22e.png">
+<meta property="og:updated_time" content="2019-12-12T08:58:03.712Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端页面性能指标及分析总结">
-<meta name="twitter:description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：   关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒">
-<meta name="twitter:image" content="http://q0hfs054j.bkt.clouddn.com/img/rail.png">
+<meta name="twitter:title" content="前端页面性能指标及分析">
+<meta name="twitter:description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：    关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫">
+<meta name="twitter:image" content="https://img11.360buyimg.com/jdphoto/s1390x504_jfs/t1/93389/29/1773/17133/5dc531e2Ea85a9a71/6f68d3b1ab0bbefe.png">
     
     
         
@@ -59,7 +64,7 @@
         
     
     <!-- title -->
-    <title>前端页面性能指标及分析总结</title>
+    <title>前端页面性能指标及分析</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -94,6 +99,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2019/11/13/base642binary/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2019/06/25/Three-js学习-2-绘制地球/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -109,20 +116,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&text=前端页面性能指标及分析总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&is_video=false&description=前端页面性能指标及分析总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=前端页面性能指标及分析总结&body=Check out this article: http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&name=前端页面性能指标及分析总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&text=前端页面性能指标及分析"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&is_video=false&description=前端页面性能指标及分析"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=前端页面性能指标及分析&body=Check out this article: http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&name=前端页面性能指标及分析&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标及分析"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">1.2.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首字节时间"><span class="toc-number">1.2.2.</span> <span class="toc-text">首字节时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">1.2.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">1.2.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">1.2.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存问题"><span class="toc-number">1.2.6.</span> <span class="toc-text">内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">内存问题的现象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">2.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">2.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">2.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">2.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">2.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">2.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">2.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">2.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存问题"><span class="toc-number">2.0.7.</span> <span class="toc-text">内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">2.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">2.0.7.2.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">3.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">3.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">3.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">3.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">3.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -134,7 +141,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        前端页面性能指标及分析总结
+        前端页面性能指标及分析
     </h1>
 
 
@@ -162,7 +169,8 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="常用性能指标"><a href="#常用性能指标" class="headerlink" title="常用性能指标"></a>常用性能指标</h1><h2 id="用户角度的RAIL性能模型"><a href="#用户角度的RAIL性能模型" class="headerlink" title="用户角度的RAIL性能模型"></a>用户角度的RAIL性能模型</h2><p>RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/rail.png" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/rail.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1390x504_jfs/t1/93389/29/1773/17133/5dc531e2Ea85a9a71/6f68d3b1ab0bbefe.png" alt></p>
 <blockquote>
 <h4 id="关键RAIL-指标汇总"><a href="#关键RAIL-指标汇总" class="headerlink" title="关键RAIL 指标汇总"></a>关键RAIL 指标汇总</h4></blockquote>
 <table>
@@ -194,8 +202,48 @@
 <td align="right">用户加载页面并看到关键路径内容</td>
 </tr>
 </tbody></table>
-<h2 id="Developer角度的性能指标及分析"><a href="#Developer角度的性能指标及分析" class="headerlink" title="Developer角度的性能指标及分析"></a>Developer角度的性能指标及分析</h2><p>在关注各项性能指标之前，有必要了解一下w3c标准的<a href="https://www.w3.org/TR/navigation-timing/" target="_blank" rel="noopener">Navigation Timing API</a> ，下图是level 2 标出的时间戳，level2 还处于Working Draft的阶段，即将进入Recommendation。Navigation Timing的属性对于目前我们的需要用到的性能指标有非常清晰的界定，可以提前了解一下。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/timestamp-diagram_2019_11_08-11_10.svg" alt></p>
+<h2 id="Developer角度的性能指标"><a href="#Developer角度的性能指标" class="headerlink" title="Developer角度的性能指标"></a>Developer角度的性能指标</h2><table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="center">英文</th>
+<th align="right">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FCP</td>
+<td align="center">First Contentful Paint</td>
+<td align="right">浏览器渲染DOM内容的第一个字节</td>
+</tr>
+<tr>
+<td align="left">FMP</td>
+<td align="center">Frist Meaningful Paint</td>
+<td align="right">首次有效渲染时间</td>
+</tr>
+<tr>
+<td align="left">FID</td>
+<td align="center">Frist Input Delay</td>
+<td align="right">用户实现交互操作的相应时间</td>
+</tr>
+<tr>
+<td align="left">TTI</td>
+<td align="center">Time to Interactive</td>
+<td align="right">页面开始加载到稳定可交互的时间</td>
+</tr>
+<tr>
+<td align="left">Speed Index</td>
+<td align="center">Speed Index</td>
+<td align="right">衡量页面内容在视觉上的填充速度</td>
+</tr>
+<tr>
+<td align="left">FPS</td>
+<td align="center">Frames Per Second</td>
+<td align="right">每秒绘制的帧数</td>
+</tr>
+</tbody></table>
+<h1 id="性能指标统计方法及分析"><a href="#性能指标统计方法及分析" class="headerlink" title="性能指标统计方法及分析"></a>性能指标统计方法及分析</h1><p>在关注各项性能指标之前，有必要了解一下w3c标准的<a href="https://www.w3.org/TR/navigation-timing/" target="_blank" rel="noopener">Navigation Timing API</a> ，下图是level 2 标出的时间戳，level2 还处于Working Draft的阶段，即将进入Recommendation。Navigation Timing的属性对于目前我们的需要用到的性能指标有非常清晰的界定，可以提前了解一下。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/timestamp-diagram_2019_11_08-11_10.svg)-->
+<p><img src="https://wq.360buyimg.com/data/ppms/picture/timestamp_diagram_2019_11_08_11_10.svg" alt></p>
 <p>Navigation Timing api 每个时间戳属性的定义可以查看下表：</p>
 <table>
 <thead>
@@ -275,15 +323,49 @@
 </tbody></table>
 <p>按照上述的时间节点，我们可以计算如下的性能指标：</p>
 <h3 id="开始统计的起始点"><a href="#开始统计的起始点" class="headerlink" title="开始统计的起始点"></a>开始统计的起始点</h3><p>如果加入网页重定向，unload页面的耗时，这个时间点从navigationStart开始，如果忽略前面的耗时，一般从fetchStart开始计算。</p>
-<h3 id="首字节时间"><a href="#首字节时间" class="headerlink" title="首字节时间"></a>首字节时间</h3><p>页面文档返回第一个字节的时间，对于开发者来说这个指标非常重要，首字节的返回时间代表从后端拿到数据的整体相应耗时。</p>
+<h3 id="FCP"><a href="#FCP" class="headerlink" title="FCP"></a>FCP</h3><p>页面文档返回第一个字节的时间，对于开发者来说这个指标非常重要，首字节的返回时间代表从后端拿到数据的整体相应耗时。</p>
 <h3 id="白屏时间"><a href="#白屏时间" class="headerlink" title="白屏时间"></a>白屏时间</h3><p>从统计起始点到页面出现第一个元素的时间，可以使用domLoading - fetchStart 或 domLoading - navigationStart。</p>
-<p>如果采用Navigation Timing Level 2 的标准，则使用domInteractive - fetchStart 或 domInteractive - navigationStart。</p>
-<h3 id="首屏时间"><a href="#首屏时间" class="headerlink" title="首屏时间"></a>首屏时间</h3><p>页面首屏所有资源完全展示的时间。从视觉角度来看非常容易观测，但是前端比较难确定这个时间点。一般使用domContentLoadedEventEnd - fetchStart。</p>
+<p>如果采用Navigation Timing Level 2 的标准，则使用domInteractive - fetchStart 或 domInteractive - navigationStart。 </p>
+<p>不兼容performance api 的情况，可以采用如下方案记录白屏时间：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试白屏时间<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">            window.navigationStart = Date.now()</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">            window.firstPaintTime = Date.now()</span><br><span class="line"></span><br><span class="line">            // 不兼容performance api 的情况，可以手动记录window.navigationStart的时间点</span><br><span class="line">            const whiteScreen = window.firstPaintTime - performance.timing.navigationStart || window.navigationStart</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="首屏时间"><a href="#首屏时间" class="headerlink" title="首屏时间"></a>首屏时间</h3><p>页面首屏所有资源完全展示的时间。从视觉角度来看非常容易观测，但是前端比较难确定这个时间点。可以采用下面几种方法来记录：</p>
+<ol>
+<li>performance API</li>
+</ol>
+<p>performance.timing.domContentLoadedEventEnd - performance.timing.fetchStart。</p>
+<ol start="2">
+<li>首屏加载最慢图片的加载完成时间</li>
+</ol>
+<p>如果首屏图片比较多，一般加载最慢的是图片，所以电商类活动开发的页面中，图片多的情况通常可参照如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试首屏加载时间<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">            window.navigationStart = Date.now()</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">            window.firstPaintTime = Date.now()</span><br><span class="line"></span><br><span class="line">            // 不兼容performance api 的情况，可以手动记录window.navigationStart的时间点</span><br><span class="line">            const whiteScreen = window.firstPaintTime - performance.timing.navigationStart || window.navigationStart</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://e.hiphotos.baidu.com/image/h%3D300/sign=a9e671b9a551f3dedcb2bf64a4eff0ec/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span> <span class="attr">onload</span>=<span class="string">"onImgLoad()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://b.hiphotos.baidu.com/image/h%3D300/sign=92afee66fd36afc3110c39658318eb85/908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg"</span> <span class="attr">alt</span>=<span class="string">"img2"</span> <span class="attr">onload</span>=<span class="string">"onImgLoad()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg"</span> <span class="attr">alt</span>=<span class="string">"img3"</span> <span class="attr">onload</span>=<span class="string">"onImgLoad()"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">            window.onload = function() &#123;</span><br><span class="line">            	   // 首屏加载时间</span><br><span class="line">                window.firstScreen = window.lastImgLoadTime - performance.timing.navigationStart || window.navigationStart</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function onImgLoad() &#123;</span><br><span class="line">                window.lastImgLoadTime = Date.now()</span><br><span class="line">            &#125;     </span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>根据代码执行顺序</p>
+<p> 图片不多，但首屏逻辑较为复杂的情况下: 比如调用接口多且复杂耗时。 </p>
+<p> 可以找到首屏最后加载出数据的js执行函数，手动记录该时间，再减去上述的navigationStart时间。</p>
+</li>
+</ol>
 <h3 id="FPS"><a href="#FPS" class="headerlink" title="FPS"></a>FPS</h3><p>上述几个指标对首次加载页面的体验影响非常直接，整个页面都稳定的后，用户滚动或拖动页面，展示动画的流畅度可以通过FPS来观查。 FPS表示的是每秒钟浏览器更新的图片帧数。按照上述的RAIL模型，每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒，1s内完成的帧数就是1000/16， 大概是60帧左右。低于30 FPS 以下的动画，就让人感觉到明显的卡顿和不适了。</p>
 <p>我们可以使用chrome开发工具的performance记录来查看FPS的情况，下图中红框的是FPS，整一排是页面加载到结束过程中FPS的数值。 衡量页面是否卡顿可以看FPS横条的颜色，如果是绿色，证明页面帧率比较高不卡顿，如果是红色，则说明页面非常卡。 页面空白时间段由于加载及解析js等文件，导致主进程阻塞，这是可以观测到FPS是红色的。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104205848.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104205848.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2006x396_jfs/t1/46517/31/15563/46463/5dc532c9Edb27925c/b220d8b212cee485.png" alt></p>
 <p>滑动过程中，如果想实时监测FPS也可以做到。<br><code>操作流程：command + shift + p, 输入show Rendering，勾选FPSmeter</code>，可以看到页面右上角出现了一个面板，滚动页面FPS的实时数值会显示在面板上。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104210623.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104210623.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s368x354_jfs/t1/49092/38/15150/32835/5dc532f5E75e4626c/64da63f868d00bc2.png" alt></p>
+<h3 id="速度指数：Speed-Index"><a href="#速度指数：Speed-Index" class="headerlink" title="速度指数：Speed Index"></a>速度指数：Speed Index</h3><!--![](http://q0hfs054j.bkt.clouddn.com/img/201912121631.png)-->
+<p>速度指数代表页面的填充速度，具体的计算过程如下：</p>
+<p>以下图片内容来自 <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" target="_blank" rel="noopener">WebPagetest文档</a>，具体内容详见链接文档</p>
+<p>下图中有A，B两个页面，可以看到在1~2s内的页面渲染情况：</p>
+<p><img src="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/compare_progress.png?attredirects=0" alt></p>
+<p>量化到页面绘制的完整度，下方折线图可以看到随着时间推移，A，B两个页面的填充百分比。<br><img src="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188125/using-webpagetest/metrics/speed-index/chart-line-small.png" alt></p>
+<p>转自 <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" target="_blank" rel="noopener">WebPagetest文档</a></p>
+<p>下面两幅图是A，B两个页面填充百分比的对比：</p>
+<p><img src="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780189487/using-webpagetest/metrics/speed-index/chart-progress-a-small.png" alt> <img src="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/chart-progress-b-small.png?attredirects=0" alt></p>
+<p>转自 <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" target="_blank" rel="noopener">WebPagetest文档</a></p>
+<p>速度指数的计算公式如下：</p>
+<p><img src="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188199/using-webpagetest/metrics/speed-index/speedindexformula.png" alt></p>
+<p>了解了速度指数的计算方法，实际的页面性能分析时，像light house 及 WebPagetest 工具都可以统计到该项指标，通常性能比较好的情况，Speed Index 的值应小于1250。</p>
 <h3 id="内存问题"><a href="#内存问题" class="headerlink" title="内存问题"></a>内存问题</h3><p>当我们在写代码时要时刻提醒自己：更多的内存 === 更好的性能。长时间运行的应用应该处于稳定的状态，内存理论上会围绕一个常量震动。整体页面的性能不好，会导致页面卡顿，白屏等现象。</p>
 <h4 id="内存问题的现象"><a href="#内存问题的现象" class="headerlink" title="内存问题的现象"></a>内存问题的现象</h4><ul>
 <li><p><strong>页面性能随使用时间的延长越来越差</strong></p>
@@ -298,24 +380,28 @@
 </ul>
 <h4 id="识别内存泄露"><a href="#识别内存泄露" class="headerlink" title="识别内存泄露"></a>识别内存泄露</h4><p>开发过程中，最常见的是内存泄露。通过谷歌开发工具，我们可以比较容易的识别出页面是否存在内存泄露。</p>
 <p>可以用下面的代码做一次实验：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"grow"</span>&gt;</span>分配内存<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	    <span class="keyword">var</span> x = [];</span></span><br><span class="line">	</span><br><span class="line"><span class="javascript">	    <span class="function"><span class="keyword">function</span> <span class="title">grow</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">	        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span></span><br><span class="line"><span class="javascript">	            <span class="built_in">document</span>.body.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'div'</span>));</span></span><br><span class="line">	        &#125;</span><br><span class="line"><span class="javascript">	        x.push(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1000000</span>).join(<span class="string">'x'</span>));</span></span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line"><span class="javascript">	    <span class="built_in">document</span>.getElementById(<span class="string">'grow'</span>).addEventListener(<span class="string">'click'</span>, grow);</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"grow"</span>&gt;</span>分配内存<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">	    var x = [];</span><br><span class="line">	</span><br><span class="line">	    function grow() &#123;</span><br><span class="line">	        for (var i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">	            document.body.appendChild(document.createElement('div'));</span><br><span class="line">	        &#125;</span><br><span class="line">	        x.push(new Array(1000000).join('x'));</span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line">	    document.getElementById('grow').addEventListener('click', grow);</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ol>
 <li><strong>Performance monitor 实时观测</strong></li>
 </ol>
 <p><code>操作流程：command + shift + p, 输入show Performance Monitor</code></p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104170243.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104170243.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1950x1032_jfs/t1/65173/13/14780/43089/5dc5333aE182b2321/58a21d5eda07caba.png" alt></p>
 <p>页面稳定后可实时观测图中红框框出来的JS Heap size（堆内存），Dom Nodes（节点数），js event listeners（监听器），如果这几个数值不断增长，可推测出现了内存泄露。</p>
 <p>不停点击测试页面的按钮，结果如下图：CPU使用率不停上升到达100%， 堆内存一直上升，节点数也持续上升。代码可以看出，x数组在grow函数中被引用，grow事件又被监听，数组x不会被垃圾回收，相应分配的内存也不会被释放。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_17-32-20.png" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_17-32-20.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2028x458_jfs/t1/50221/2/15264/68286/5dc533e2E0155a1bd/ce64b6e9ef08ca51.png" alt></p>
 <ol start="2">
 <li><strong>Performance录制</strong></li>
 </ol>
 <p><code>操作流程：点击垃圾回收--&gt;开始录制--&gt;点击垃圾回收--&gt;结束录制</code></p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104165616.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104165616.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1954x1126_jfs/t1/58271/35/15402/76052/5dc53421E4e96fafe/6b0cd8157d139bd7.png" alt></p>
 <p>可以观测图中红框框出来的JS Heap（堆内存），Nodes（节点数），listeners（监听器），如果这几个数值不断增长，可推测出现了内存泄露。</p>
 <p>多次点击测试页面的按钮，观测结果见下图。在计数器窗格中可以观测到点击了3次，dom节点（绿色的线）数有三次上涨，每次上涨跃升可以看到堆内存上升，然后在进行垃圾回收时产生了回落，最终红框中的蓝色区域还是比最开始时高出一段，是由于x数组被引用没有释放堆内存。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_20-39-57.png" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_20-39-57.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2052x1290_jfs/t1/91662/8/1779/84298/5dc53453Ef4666a0e/960a3815284f0592.png" alt></p>
 <ol start="3">
 <li><strong>使用堆快照确定已分离的DOM树</strong></li>
 </ol>
@@ -328,19 +414,24 @@
 <li>第三次录制快照 Snapshot 3</li>
 <li>选择Snapshot 3 和 在Snapshot 1 到 Snapshot 2 之间生成的对象进行检查</li>
 </ol>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104175918.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104175918.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1712x1124_jfs/t1/94062/20/1796/101323/5dc5349dE0db6d901/a02261fe1cb0ac78.png" alt></p>
 <p>class filter中输入detaced，可以看到已分离的 DOM 树。在 Object 窗格中，可以看到与正在引用该节点的代码相关的更多信息。 如果存在内存泄露，可以找到相应信息删除不用的节点。</p>
 <p>快照最初存储在渲染器进程内存中，点击快照图标进行查看时，快照将根据要求被传输到 DevTools 中。<br>下图红色圈圈中的数字表示可到达 JavaScript 对象的总大小。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/2019_06_05-15_30_29.png" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/2019_06_05-15_30_29.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s865x571_jfs/t1/83392/33/14767/35050/5dc534deEf78aa42a/1c49f65e3e5d2a75.png" alt></p>
 <ol start="4">
 <li><strong>时间轴查看堆内存的分配情况</strong></li>
 </ol>
 <p>同上述打开memory，如下图选择：</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-53-08.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-53-08.jpg)--><!---->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2278x644_jfs/t1/104015/14/1715/79522/5dc53501E87e78d34/40b528397fbc75a0.jpg" alt></p>
 <p>录制之后，可看到下图结果：</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-52-27.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-52-27.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2292x1128_jfs/t1/88147/20/1767/152890/5dc5353bE6157193e/1cd92588bfd90705.jpg" alt></p>
 <p>蓝的竖线表示分配的内存，竖线越高代表分配的越多；<br>灰色的柱子表示回收的内存。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_14-10-49.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_14-10-49.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2280x1022_jfs/t1/98937/35/1737/120864/5dc5356eE9182776e/6fc34d81fb498db3.jpg" alt></p>
 <p>把时间段缩小到想要观测的蓝色竖线范围，可以圈定当前为哪些对象分配了内存，点击可以看到相关对象的信息，如果判断出现了内存问题，可以找到对应的代码进行修改了。</p>
 <ol start="5">
 <li><strong>查看Chrome浏览器的任务管理面板</strong></li>
@@ -348,13 +439,16 @@
 <p>Mac上点击Chrome左上角菜单栏 -&gt; 窗口 -&gt; 任务管理器，可以看到chrome打开的页面和扩展程序使用的内存情况。</p>
 <!--github图床 token： 1817acd2ec0bbb5f1c055abc23644d7aa9e3286f-->
 
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104163010.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104163010.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1226x1030_jfs/t1/52906/39/15184/85272/5dc535aaE91291450/87df6d5465c36cbd.png" alt></p>
 <p>需要关注的是<em>内存占用空间</em>和<em>JavaScript使用的内存</em>， 如果页面已经加载完成并稳定下来，danshi这两个数值还在不停增长，就可能出现了内存泄露。</p>
 <h1 id="如何检测页面的性能"><a href="#如何检测页面的性能" class="headerlink" title="如何检测页面的性能"></a>如何检测页面的性能</h1><p>开发完页面后，需要检测完性能之后才能安心发布上线，如果性能不过关，需要修改代码重新检测了。推荐几个比较好用的工具:</p>
 <h2 id="检测工具"><a href="#检测工具" class="headerlink" title="检测工具"></a>检测工具</h2><h3 id="lighthouse"><a href="#lighthouse" class="headerlink" title="lighthouse"></a>lighthouse</h3><p><a href="https://github.com/GoogleChrome/lighthouse" target="_blank" rel="noopener">lighthouse</a>是谷歌开源的自动化工具，可以把它作为一个 Chrome 扩展程序运行。 点击扩展程序的小图标即可进行页面性能分析，不得不说，简直太好用了。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104204512.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104204512.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2134x1330_jfs/t1/69771/24/14787/44412/5dc535c5E1c7ae9f2/5d6545f40557d394.png" alt></p>
 <p>上面是网页的跑分结果，我们可以继续查看分析报告，查看导致性能变差的原因有哪些。lighthouse会给出一个诊断结果，可以根据建议进行相关的修改。</p>
-<p><img src="http://q0hfs054j.bkt.clouddn.com/img/20191104204943.jpg" alt></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104204943.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1940x932_jfs/t1/54138/20/15411/50651/5dc535cbE11750587/caf749b66d7fc22e.png" alt></p>
 <h3 id="webpagetest"><a href="#webpagetest" class="headerlink" title="webpagetest"></a>webpagetest</h3><p><a href="www.webpagetest.org">webpagetest工具网址</a></p>
 <h3 id="GTmetrix"><a href="#GTmetrix" class="headerlink" title="GTmetrix"></a>GTmetrix</h3><p><a href="https://gtmetrix.com/" target="_blank" rel="noopener">GTmetrix工具网址</a></p>
 
@@ -382,21 +476,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标及分析"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">1.2.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首字节时间"><span class="toc-number">1.2.2.</span> <span class="toc-text">首字节时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">1.2.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">1.2.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">1.2.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存问题"><span class="toc-number">1.2.6.</span> <span class="toc-text">内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">内存问题的现象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">2.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">2.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">2.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">2.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">2.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">2.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">2.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">2.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存问题"><span class="toc-number">2.0.7.</span> <span class="toc-text">内存问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">2.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">2.0.7.2.</span> <span class="toc-text">识别内存泄露</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何检测页面的性能"><span class="toc-number">3.</span> <span class="toc-text">如何检测页面的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检测工具"><span class="toc-number">3.1.</span> <span class="toc-text">检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lighthouse"><span class="toc-number">3.1.1.</span> <span class="toc-text">lighthouse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">3.1.2.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">3.1.3.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&text=前端页面性能指标及分析总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&is_video=false&description=前端页面性能指标及分析总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=前端页面性能指标及分析总结&body=Check out this article: http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&name=前端页面性能指标及分析总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&text=前端页面性能指标及分析"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&is_video=false&description=前端页面性能指标及分析"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=前端页面性能指标及分析&body=Check out this article: http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&title=前端页面性能指标及分析"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/04/前端页面性能指标及分析总结/&name=前端页面性能指标及分析&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
