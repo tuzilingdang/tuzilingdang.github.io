@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：    关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端页面性能指标详解">
+<meta property="og:url" content="http://yoursite.com/2019/07/04/frontend-performance-index-detail/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：    关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1390x504_jfs/t1/93389/29/1773/17133/5dc531e2Ea85a9a71/6f68d3b1ab0bbefe.png">
+<meta property="og:image" content="https://wq.360buyimg.com/data/ppms/picture/timestamp_diagram_2019_11_08_11_10.svg">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/compare_progress.png?attredirects=0">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188125/using-webpagetest/metrics/speed-index/chart-line-small.png">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780189487/using-webpagetest/metrics/speed-index/chart-progress-a-small.png">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/chart-progress-b-small.png?attredirects=0">
+<meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188199/using-webpagetest/metrics/speed-index/speedindexformula.png">
+<meta property="og:updated_time" content="2019-12-12T12:41:12.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端页面性能指标详解">
+<meta name="twitter:description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：    关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫">
+<meta name="twitter:image" content="https://img11.360buyimg.com/jdphoto/s1390x504_jfs/t1/93389/29/1773/17133/5dc531e2Ea85a9a71/6f68d3b1ab0bbefe.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>前端页面性能指标详解</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/13/base642binary/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/06/25/Three-js学习-2-绘制地球/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/04/frontend-performance-index-detail/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&text=前端页面性能指标详解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&is_video=false&description=前端页面性能指标详解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=前端页面性能指标详解&body=Check out this article: http://yoursite.com/2019/07/04/frontend-performance-index-detail/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&name=前端页面性能指标详解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">2.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">2.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">2.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">2.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">2.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">2.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">2.0.7.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">2.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        前端页面性能指标详解
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-07-04T11:16:40.000Z" itemprop="datePublished">2019-07-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="常用性能指标"><a href="#常用性能指标" class="headerlink" title="常用性能指标"></a>常用性能指标</h1><h2 id="用户角度的RAIL性能模型"><a href="#用户角度的RAIL性能模型" class="headerlink" title="用户角度的RAIL性能模型"></a>用户角度的RAIL性能模型</h2><p>RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/rail.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1390x504_jfs/t1/93389/29/1773/17133/5dc531e2Ea85a9a71/6f68d3b1ab0bbefe.png" alt></p>
+<blockquote>
+<h4 id="关键RAIL-指标汇总"><a href="#关键RAIL-指标汇总" class="headerlink" title="关键RAIL 指标汇总"></a>关键RAIL 指标汇总</h4></blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">RAIL模型</th>
+<th align="center">关键指标</th>
+<th align="right">用户操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">响应</td>
+<td align="center">输入延迟时间（从点按到绘制）小于 100 毫秒</td>
+<td align="right">用户点按按钮（例如打开导航）</td>
+</tr>
+<tr>
+<td align="left">动画</td>
+<td align="center">每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒</td>
+<td align="right">用户滚动页面，拖动手指（例如，打开菜单）或看到动画。 拖动时，应用的响应与手指位置有关（例如，拉动刷新、滑动轮播）。 此指标仅适用于拖动的持续阶段，不适用于开始阶段</td>
+</tr>
+<tr>
+<td align="left">空闲</td>
+<td align="center">主线程 JS 工作分成不大于 50 毫秒的块</td>
+<td align="right">用户没有与页面交互，但主线程应足够用于处理下一个用户输入。</td>
+</tr>
+<tr>
+<td align="left">加载</td>
+<td align="center">页面可以在 1000 毫秒内就绪</td>
+<td align="right">用户加载页面并看到关键路径内容</td>
+</tr>
+</tbody></table>
+<h2 id="Developer角度的性能指标"><a href="#Developer角度的性能指标" class="headerlink" title="Developer角度的性能指标"></a>Developer角度的性能指标</h2><table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="center">英文</th>
+<th align="right">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FCP</td>
+<td align="center">First Contentful Paint</td>
+<td align="right">浏览器渲染DOM内容的第一个字节</td>
+</tr>
+<tr>
+<td align="left">FMP</td>
+<td align="center">Frist Meaningful Paint</td>
+<td align="right">首次有效渲染时间</td>
+</tr>
+<tr>
+<td align="left">FID</td>
+<td align="center">Frist Input Delay</td>
+<td align="right">用户实现交互操作的相应时间</td>
+</tr>
+<tr>
+<td align="left">TTI</td>
+<td align="center">Time to Interactive</td>
+<td align="right">页面开始加载到稳定可交互的时间</td>
+</tr>
+<tr>
+<td align="left">Speed Index</td>
+<td align="center">Speed Index</td>
+<td align="right">衡量页面内容在视觉上的填充速度</td>
+</tr>
+<tr>
+<td align="left">FPS</td>
+<td align="center">Frames Per Second</td>
+<td align="right">每秒绘制的帧数</td>
+</tr>
+</tbody></table>
+<h1 id="性能指标统计方法及分析"><a href="#性能指标统计方法及分析" class="headerlink" title="性能指标统计方法及分析"></a>性能指标统计方法及分析</h1><p>在关注各项性能指标之前，有必要了解一下w3c标准的<a href="https://www.w3.org/TR/navigation-timing/" target="_blank" rel="noopener">Navigation Timing API</a> ，下图是level 2 标出的时间戳，level2 还处于Working Draft的阶段，即将进入Recommendation。Navigation Timing的属性对于目前我们的需要用到的性能指标有非常清晰的界定，可以提前了解一下。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/timestamp-diagram_2019_11_08-11_10.svg)-->
+<p><img src="https://wq.360buyimg.com/data/ppms/picture/timestamp_diagram_2019_11_08_11_10.svg" alt></p>
+<p>Navigation Timing api 每个时间戳属性的定义可以查看下表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">redirectStart</td>
+<td align="center">如果发生http重定向并且是同源的，这个属性将返回重定向开始的第一个请求发生的时间，否则返回0</td>
+</tr>
+<tr>
+<td align="left">redirectEnd</td>
+<td align="center">如果发生http重定向并且是同源的，这个属性将返回最后一次重定向接收完最后一个字节的时间戳，否则返回0</td>
+</tr>
+<tr>
+<td align="left">fetchStart</td>
+<td align="center">如果请求新的资源用的是GET请求方式，该属性返回的是用户代理检查任何应用缓存之前的时间，否则返回用户代理开始请求资源的时间</td>
+</tr>
+<tr>
+<td align="left">domainLookupStart</td>
+<td align="center">当前文档进行域名查找的开始时间，如果有持久链接或者从应用缓存或本地资源读取当前文档 ，返回的值就是fetchStart</td>
+</tr>
+<tr>
+<td align="left">domainLookupEnd</td>
+<td align="center">当前文档进行域名查找结束的时间，如果有持久链接或者从应用缓存或本地资源读取当前文档 ，返回的值就是fetchStart</td>
+</tr>
+<tr>
+<td align="left">connectStart</td>
+<td align="center">与服务器建立连接的开始时间，如果有持久链接或者从应用缓存或本地资源读取当前文档 ，返回的值就是domainLookupEnd</td>
+</tr>
+<tr>
+<td align="left">connectEnd</td>
+<td align="center">与服务器建立连接的结束时间，如果有持久链接或者从应用缓存或本地资源读取当前文档 ，返回的值就是domainLookupEnd</td>
+</tr>
+<tr>
+<td align="left">secureConnectionStart</td>
+<td align="center">可选属性，没有时返回undefined，采用https协议时则返回https连接开始的时间，否则为0</td>
+</tr>
+<tr>
+<td align="left">requestStart</td>
+<td align="center">开始从服务器（或应用缓存或本地资源）请求当前实际文档的时间</td>
+</tr>
+<tr>
+<td align="left">responseEnd</td>
+<td align="center">从服务器（或应用缓存或本地资源）接收到当前实际文档最后一个字节的时间</td>
+</tr>
+<tr>
+<td align="left">domLoading</td>
+<td align="center">当前文档可读属性变成loading的时间</td>
+</tr>
+<tr>
+<td align="left">domInteractive</td>
+<td align="center">当前文档可读属性变成interactive的时间点</td>
+</tr>
+<tr>
+<td align="left">domContentLoadedEventStart</td>
+<td align="center">DOM解析完后，DOMContentLoaded 事件开始相应前的时间点</td>
+</tr>
+<tr>
+<td align="left">domContentLoadedEventEnd</td>
+<td align="center">DOM解析完后，DOMContentLoaded 事件完成的时间点</td>
+</tr>
+<tr>
+<td align="left">domComplete</td>
+<td align="center">当前文档可读属性变成complete的时间</td>
+</tr>
+<tr>
+<td align="left">loadEventStart</td>
+<td align="center">load事件开始执行的时间</td>
+</tr>
+<tr>
+<td align="left">loadEventStart</td>
+<td align="center">load事件执行结束的时间</td>
+</tr>
+</tbody></table>
+<p>按照上述的时间节点，我们可以计算如下的性能指标：</p>
+<h3 id="开始统计的起始点"><a href="#开始统计的起始点" class="headerlink" title="开始统计的起始点"></a>开始统计的起始点</h3><p>如果加入网页重定向，unload页面的耗时，这个时间点从navigationStart开始，如果忽略前面的耗时，一般从fetchStart开始计算。</p>
+<h3 id="FCP"><a href="#FCP" class="headerlink" title="FCP"></a>FCP</h3><p>页面文档返回第一个字节的时间，对于开发者来说这个指标非常重要，首字节的返回时间代表从后端拿到数据的整体相应耗时。</p>
+<h3 id="白屏时间"><a href="#白屏时间" class="headerlink" title="白屏时间"></a>白屏时间</h3><p>从统计起始点到页面出现第一个元素的时间，可以使用domLoading - fetchStart 或 domLoading - navigationStart。</p>
+<p>如果采用Navigation Timing Level 2 的标准，则使用domInteractive - fetchStart 或 domInteractive - navigationStart。 </p>
+<p>不兼容performance api 的情况，可以采用如下方案记录白屏时间：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试白屏时间<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.navigationStart = <span class="built_in">Date</span>.now()</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.firstPaintTime = <span class="built_in">Date</span>.now()</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="comment">// 不兼容performance api 的情况，可以手动记录window.navigationStart的时间点</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> whiteScreen = <span class="built_in">window</span>.firstPaintTime - performance.timing.navigationStart || <span class="built_in">window</span>.navigationStart</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="首屏时间"><a href="#首屏时间" class="headerlink" title="首屏时间"></a>首屏时间</h3><p>页面首屏所有资源完全展示的时间。从视觉角度来看非常容易观测，但是前端比较难确定这个时间点。可以采用下面几种方法来记录：</p>
+<ol>
+<li>performance API</li>
+</ol>
+<p>performance.timing.domContentLoadedEventEnd - performance.timing.fetchStart。</p>
+<ol start="2">
+<li>首屏加载最慢图片的加载完成时间</li>
+</ol>
+<p>如果首屏图片比较多，一般加载最慢的是图片，所以电商类活动开发的页面中，图片多的情况通常可参照如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试首屏加载时间<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.navigationStart = <span class="built_in">Date</span>.now()</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.firstPaintTime = <span class="built_in">Date</span>.now()</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="comment">// 不兼容performance api 的情况，可以手动记录window.navigationStart的时间点</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> whiteScreen = <span class="built_in">window</span>.firstPaintTime - performance.timing.navigationStart || <span class="built_in">window</span>.navigationStart</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://e.hiphotos.baidu.com/image/h%3D300/sign=a9e671b9a551f3dedcb2bf64a4eff0ec/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg"</span> <span class="attr">alt</span>=<span class="string">"img1"</span> <span class="attr">onload</span>=<span class="string">"onImgLoad()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://b.hiphotos.baidu.com/image/h%3D300/sign=92afee66fd36afc3110c39658318eb85/908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg"</span> <span class="attr">alt</span>=<span class="string">"img2"</span> <span class="attr">onload</span>=<span class="string">"onImgLoad()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg"</span> <span class="attr">alt</span>=<span class="string">"img3"</span> <span class="attr">onload</span>=<span class="string">"onImgLoad()"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            	   <span class="comment">// 首屏加载时间</span></span></span><br><span class="line"><span class="javascript">                <span class="built_in">window</span>.firstScreen = <span class="built_in">window</span>.lastImgLoadTime - performance.timing.navigationStart || <span class="built_in">window</span>.navigationStart</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">onImgLoad</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">window</span>.lastImgLoadTime = <span class="built_in">Date</span>.now()</span></span><br><span class="line">            &#125;     </span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>根据代码执行顺序</p>
+<p> 图片不多，但首屏逻辑较为复杂的情况下: 比如调用接口多且复杂耗时。 </p>
+<p> 可以找到首屏最后加载出数据的js执行函数，手动记录该时间，再减去上述的navigationStart时间。</p>
+</li>
+</ol>
+<h3 id="FPS"><a href="#FPS" class="headerlink" title="FPS"></a>FPS</h3><p>上述几个指标对首次加载页面的体验影响非常直接，整个页面都稳定的后，用户滚动或拖动页面，展示动画的流畅度可以通过FPS来观查。 FPS表示的是每秒钟浏览器更新的图片帧数。按照上述的RAIL模型，每个帧的工作（从 JS 到绘制）完成时间小于 16 毫秒，1s内完成的帧数就是1000/16， 大概是60帧左右。低于30 FPS 以下的动画，就让人感觉到明显的卡顿和不适了。</p>
+<h3 id="速度指数：Speed-Index"><a href="#速度指数：Speed-Index" class="headerlink" title="速度指数：Speed Index"></a>速度指数：Speed Index</h3><!--![](http://q0hfs054j.bkt.clouddn.com/img/201912121631.png)-->
+<p>速度指数代表页面的填充速度，具体的计算过程如下：</p>
+<p>以下图片内容来自 <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" target="_blank" rel="noopener">WebPagetest文档</a>，具体内容详见链接</p>
+<p>下图中有A，B两个页面，可以看到在1~2s内的页面渲染情况：</p>
+<p><img src="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/compare_progress.png?attredirects=0" alt></p>
+<p>量化到页面绘制的完整度，下方折线图可以看到随着时间推移，A，B两个页面的填充百分比。<br><img src="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188125/using-webpagetest/metrics/speed-index/chart-line-small.png" alt></p>
+<p>转自 <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" target="_blank" rel="noopener">WebPagetest文档</a></p>
+<p>下面两幅图是A，B两个页面填充百分比的对比：</p>
+<p><img src="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780189487/using-webpagetest/metrics/speed-index/chart-progress-a-small.png" alt> <img src="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/chart-progress-b-small.png?attredirects=0" alt></p>
+<p>转自 <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" target="_blank" rel="noopener">WebPagetest文档</a></p>
+<p>速度指数的计算公式如下：</p>
+<p><img src="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188199/using-webpagetest/metrics/speed-index/speedindexformula.png" alt></p>
+<p>了解了速度指数的计算方法，实际的页面性能分析时，像light house 及 WebPagetest 工具都可以统计到该项指标，通常性能比较好的情况，Speed Index 的值应小于1250。</p>
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>当我们在写代码时要时刻提醒自己：更多的内存 === 更好的性能。长时间运行的应用应该处于稳定的状态，内存理论上会围绕一个常量震动。整体页面的性能不好，会导致页面卡顿，白屏等现象。</p>
+<h4 id="内存问题的现象"><a href="#内存问题的现象" class="headerlink" title="内存问题的现象"></a>内存问题的现象</h4><ul>
+<li><p><strong>页面性能随使用时间的延长越来越差</strong></p>
+<p> 可能是内存泄露，用户浏览页面的时间越长，可能由于页面的错误导致占用的内存越来越多。</p>
+</li>
+<li><p><strong>页面的性能一直很差</strong></p>
+<p> 可能是内存膨胀，页面使用的内存比实际应该使用的要多。</p>
+</li>
+<li><p><strong>页面出现延迟或者经常卡顿暂停</strong></p>
+<p> 可能由于垃圾回收过于频繁，浏览器进行垃圾回收时会造成脚本执行的阻塞。</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">2.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">2.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">2.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">2.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">2.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">2.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">2.0.7.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">2.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/04/frontend-performance-index-detail/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&text=前端页面性能指标详解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&is_video=false&description=前端页面性能指标详解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=前端页面性能指标详解&body=Check out this article: http://yoursite.com/2019/07/04/frontend-performance-index-detail/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&title=前端页面性能指标详解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/04/frontend-performance-index-detail/&name=前端页面性能指标详解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="使用Chrome开发工具识别内存泄露开发过程中，最常见的是内存泄露。通过谷歌开发工具，我们可以比较容易的识别出页面是否存在内存泄露。 可以用下面的代码做一次实验： 1234567891011121314151617181920212223242526&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;	&amp;lt;head&amp;gt;	    &amp;lt;title&amp;gt;&amp;">
+<meta name="keywords" content="性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何分析页面性能">
+<meta property="og:url" content="http://yoursite.com/2019/12/12/frontend-performance-test/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="使用Chrome开发工具识别内存泄露开发过程中，最常见的是内存泄露。通过谷歌开发工具，我们可以比较容易的识别出页面是否存在内存泄露。 可以用下面的代码做一次实验： 1234567891011121314151617181920212223242526&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;	&amp;lt;head&amp;gt;	    &amp;lt;title&amp;gt;&amp;">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1950x1032_jfs/t1/65173/13/14780/43089/5dc5333aE182b2321/58a21d5eda07caba.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2028x458_jfs/t1/50221/2/15264/68286/5dc533e2E0155a1bd/ce64b6e9ef08ca51.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1954x1126_jfs/t1/58271/35/15402/76052/5dc53421E4e96fafe/6b0cd8157d139bd7.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2052x1290_jfs/t1/91662/8/1779/84298/5dc53453Ef4666a0e/960a3815284f0592.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1712x1124_jfs/t1/94062/20/1796/101323/5dc5349dE0db6d901/a02261fe1cb0ac78.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s865x571_jfs/t1/83392/33/14767/35050/5dc534deEf78aa42a/1c49f65e3e5d2a75.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2278x644_jfs/t1/104015/14/1715/79522/5dc53501E87e78d34/40b528397fbc75a0.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2292x1128_jfs/t1/88147/20/1767/152890/5dc5353bE6157193e/1cd92588bfd90705.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2280x1022_jfs/t1/98937/35/1737/120864/5dc5356eE9182776e/6fc34d81fb498db3.jpg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1226x1030_jfs/t1/52906/39/15184/85272/5dc535aaE91291450/87df6d5465c36cbd.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2006x396_jfs/t1/46517/31/15563/46463/5dc532c9Edb27925c/b220d8b212cee485.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s368x354_jfs/t1/49092/38/15150/32835/5dc532f5E75e4626c/64da63f868d00bc2.png">
+<meta property="og:image" content="http://yoursite.com/img/201912129130.jpeg">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2134x1330_jfs/t1/69771/24/14787/44412/5dc535c5E1c7ae9f2/5d6545f40557d394.png">
+<meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1940x932_jfs/t1/54138/20/15411/50651/5dc535cbE11750587/caf749b66d7fc22e.png">
+<meta property="og:updated_time" content="2019-12-12T13:45:35.435Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何分析页面性能">
+<meta name="twitter:description" content="使用Chrome开发工具识别内存泄露开发过程中，最常见的是内存泄露。通过谷歌开发工具，我们可以比较容易的识别出页面是否存在内存泄露。 可以用下面的代码做一次实验： 1234567891011121314151617181920212223242526&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;	&amp;lt;head&amp;gt;	    &amp;lt;title&amp;gt;&amp;">
+<meta name="twitter:image" content="https://img11.360buyimg.com/jdphoto/s1950x1032_jfs/t1/65173/13/14780/43089/5dc5333aE182b2321/58a21d5eda07caba.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>如何分析页面性能</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/12/12/frontend-performance/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/12/12/frontend-performance-test/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/12/12/frontend-performance-test/&text=如何分析页面性能"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/12/12/frontend-performance-test/&is_video=false&description=如何分析页面性能"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何分析页面性能&body=Check out this article: http://yoursite.com/2019/12/12/frontend-performance-test/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/12/12/frontend-performance-test/&name=如何分析页面性能&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用Chrome开发工具"><span class="toc-number">1.</span> <span class="toc-text">使用Chrome开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.1.</span> <span class="toc-text">识别内存泄露</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观测FPS"><span class="toc-number">1.2.</span> <span class="toc-text">观测FPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查代码覆盖率"><span class="toc-number">1.3.</span> <span class="toc-text">检查代码覆盖率</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用性能检测工具"><span class="toc-number">2.</span> <span class="toc-text">使用性能检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.</span> <span class="toc-text">lighthouse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.1.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.2.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        如何分析页面性能
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-12-12T12:28:41.000Z" itemprop="datePublished">2019-12-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/性能/">性能</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="使用Chrome开发工具"><a href="#使用Chrome开发工具" class="headerlink" title="使用Chrome开发工具"></a>使用Chrome开发工具</h1><h2 id="识别内存泄露"><a href="#识别内存泄露" class="headerlink" title="识别内存泄露"></a>识别内存泄露</h2><p>开发过程中，最常见的是内存泄露。通过谷歌开发工具，我们可以比较容易的识别出页面是否存在内存泄露。</p>
+<p>可以用下面的代码做一次实验：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"grow"</span>&gt;</span>分配内存<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	    <span class="keyword">var</span> x = [];</span></span><br><span class="line">	</span><br><span class="line"><span class="javascript">	    <span class="function"><span class="keyword">function</span> <span class="title">grow</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">	        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span></span><br><span class="line"><span class="javascript">	            <span class="built_in">document</span>.body.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'div'</span>));</span></span><br><span class="line">	        &#125;</span><br><span class="line"><span class="javascript">	        x.push(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1000000</span>).join(<span class="string">'x'</span>));</span></span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line"><span class="javascript">	    <span class="built_in">document</span>.getElementById(<span class="string">'grow'</span>).addEventListener(<span class="string">'click'</span>, grow);</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>Performance monitor 实时观测</strong></li>
+</ol>
+<p><code>操作流程：command + shift + p, 输入show Performance Monitor</code></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104170243.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1950x1032_jfs/t1/65173/13/14780/43089/5dc5333aE182b2321/58a21d5eda07caba.png" alt></p>
+<p>页面稳定后可实时观测图中红框框出来的JS Heap size（堆内存），Dom Nodes（节点数），js event listeners（监听器），如果这几个数值不断增长，可推测出现了内存泄露。</p>
+<p>不停点击测试页面的按钮，结果如下图：CPU使用率不停上升到达100%， 堆内存一直上升，节点数也持续上升。代码可以看出，x数组在grow函数中被引用，grow事件又被监听，数组x不会被垃圾回收，相应分配的内存也不会被释放。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_17-32-20.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2028x458_jfs/t1/50221/2/15264/68286/5dc533e2E0155a1bd/ce64b6e9ef08ca51.png" alt></p>
+<ol start="2">
+<li><strong>Performance录制</strong></li>
+</ol>
+<p><code>操作流程：点击垃圾回收--&gt;开始录制--&gt;点击垃圾回收--&gt;结束录制</code></p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104165616.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1954x1126_jfs/t1/58271/35/15402/76052/5dc53421E4e96fafe/6b0cd8157d139bd7.png" alt></p>
+<p>可以观测图中红框框出来的JS Heap（堆内存），Nodes（节点数），listeners（监听器），如果这几个数值不断增长，可推测出现了内存泄露。</p>
+<p>多次点击测试页面的按钮，观测结果见下图。在计数器窗格中可以观测到点击了3次，dom节点（绿色的线）数有三次上涨，每次上涨跃升可以看到堆内存上升，然后在进行垃圾回收时产生了回落，最终红框中的蓝色区域还是比最开始时高出一段，是由于x数组被引用没有释放堆内存。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-05_20-39-57.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2052x1290_jfs/t1/91662/8/1779/84298/5dc53453Ef4666a0e/960a3815284f0592.png" alt></p>
+<ol start="3">
+<li><strong>使用堆快照确定已分离的DOM树</strong></li>
+</ol>
+<p>操作流程：</p>
+<ol>
+<li>command + shift + p, 输入show Memory，选择Heap snap，开始录制 Snapshot 1</li>
+<li>录制结束后，进行可能导致内存泄露的操作</li>
+<li>再次录制一次堆快照 Snapshot 2</li>
+<li>再次进行可能导致内存泄露的操作</li>
+<li>第三次录制快照 Snapshot 3</li>
+<li>选择Snapshot 3 和 在Snapshot 1 到 Snapshot 2 之间生成的对象进行检查</li>
+</ol>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104175918.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1712x1124_jfs/t1/94062/20/1796/101323/5dc5349dE0db6d901/a02261fe1cb0ac78.png" alt></p>
+<p>class filter中输入detaced，可以看到已分离的 DOM 树。在 Object 窗格中，可以看到与正在引用该节点的代码相关的更多信息。 如果存在内存泄露，可以找到相应信息删除不用的节点。</p>
+<p>快照最初存储在渲染器进程内存中，点击快照图标进行查看时，快照将根据要求被传输到 DevTools 中。<br>下图红色圈圈中的数字表示可到达 JavaScript 对象的总大小。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/2019_06_05-15_30_29.png)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s865x571_jfs/t1/83392/33/14767/35050/5dc534deEf78aa42a/1c49f65e3e5d2a75.png" alt></p>
+<ol start="4">
+<li><strong>时间轴查看堆内存的分配情况</strong></li>
+</ol>
+<p>同上述打开memory，如下图选择：</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-53-08.jpg)--><!---->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2278x644_jfs/t1/104015/14/1715/79522/5dc53501E87e78d34/40b528397fbc75a0.jpg" alt></p>
+<p>录制之后，可看到下图结果：</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_11-52-27.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2292x1128_jfs/t1/88147/20/1767/152890/5dc5353bE6157193e/1cd92588bfd90705.jpg" alt></p>
+<p>蓝的竖线表示分配的内存，竖线越高代表分配的越多；<br>灰色的柱子表示回收的内存。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/Snipaste_2019-11-06_14-10-49.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2280x1022_jfs/t1/98937/35/1737/120864/5dc5356eE9182776e/6fc34d81fb498db3.jpg" alt></p>
+<p>把时间段缩小到想要观测的蓝色竖线范围，可以圈定当前为哪些对象分配了内存，点击可以看到相关对象的信息，如果判断出现了内存问题，可以找到对应的代码进行修改了。</p>
+<ol start="5">
+<li><strong>查看Chrome浏览器的任务管理面板</strong></li>
+</ol>
+<p>Mac上点击Chrome左上角菜单栏 -&gt; 窗口 -&gt; 任务管理器，可以看到chrome打开的页面和扩展程序使用的内存情况。</p>
+<!--github图床 token： 1817acd2ec0bbb5f1c055abc23644d7aa9e3286f-->
+
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104163010.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1226x1030_jfs/t1/52906/39/15184/85272/5dc535aaE91291450/87df6d5465c36cbd.png" alt></p>
+<p>需要关注的是<em>内存占用空间</em>和<em>JavaScript使用的内存</em>， 如果页面已经加载完成并稳定下来，danshi这两个数值还在不停增长，就可能出现了内存泄露。</p>
+<h2 id="观测FPS"><a href="#观测FPS" class="headerlink" title="观测FPS"></a>观测FPS</h2><p>我们可以使用chrome开发工具的performance记录来查看FPS的情况，下图中红框的是FPS，整一排是页面加载到结束过程中FPS的数值。 衡量页面是否卡顿可以看FPS横条的颜色，如果是绿色，证明页面帧率比较高不卡顿，如果是红色，则说明页面非常卡。 页面空白时间段由于加载及解析js等文件，导致主进程阻塞，这是可以观测到FPS是红色的。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104205848.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2006x396_jfs/t1/46517/31/15563/46463/5dc532c9Edb27925c/b220d8b212cee485.png" alt></p>
+<p>滑动过程中，如果想实时监测FPS也可以做到。<br><code>操作流程：command + shift + p, 输入show Rendering，勾选FPSmeter</code>，可以看到页面右上角出现了一个面板，滚动页面FPS的实时数值会显示在面板上。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104210623.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s368x354_jfs/t1/49092/38/15150/32835/5dc532f5E75e4626c/64da63f868d00bc2.png" alt></p>
+<h2 id="检查代码覆盖率"><a href="#检查代码覆盖率" class="headerlink" title="检查代码覆盖率"></a>检查代码覆盖率</h2><p><code>操作流程：command + shift + p, 输入show Coverage</code></p>
+<p>点击按钮刷新页面，可以看到引用文件的代码覆盖率，绿色部分为使用，红色非使用。如果覆盖率很低，可以在source中打开相应的文件，左侧标红的为未使用部分。</p>
+<p>即便使用webpack的tree shaking也还是需要检查覆盖率，webpack跟踪 import/export 语句，优化也仅限于export的代码。如果代码覆盖改率还是很低，并且不是由于延迟加载造成的未使用，就要针对当前文件的红色部分进行细致化的处理了。</p>
+<p><img src="../../../../img/201912129130.jpeg" alt></p>
+<h1 id="使用性能检测工具"><a href="#使用性能检测工具" class="headerlink" title="使用性能检测工具"></a>使用性能检测工具</h1><p>开发完页面后，需要检测完性能之后才能安心发布上线，如果性能不过关，需要修改代码重新检测了。推荐几个比较好用的工具:</p>
+<h2 id="lighthouse"><a href="#lighthouse" class="headerlink" title="lighthouse"></a>lighthouse</h2><p><a href="https://github.com/GoogleChrome/lighthouse" target="_blank" rel="noopener">lighthouse</a>是谷歌开源的自动化工具，可以把它作为一个 Chrome 扩展程序运行。 点击扩展程序的小图标即可进行页面性能分析，不得不说，简直太好用了。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104204512.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s2134x1330_jfs/t1/69771/24/14787/44412/5dc535c5E1c7ae9f2/5d6545f40557d394.png" alt></p>
+<p>上面是网页的跑分结果，我们可以继续查看分析报告，查看导致性能变差的原因有哪些。lighthouse会给出一个诊断结果，可以根据建议进行相关的修改。</p>
+<!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104204943.jpg)-->
+<p><img src="https://img11.360buyimg.com/jdphoto/s1940x932_jfs/t1/54138/20/15411/50651/5dc535cbE11750587/caf749b66d7fc22e.png" alt></p>
+<h3 id="webpagetest"><a href="#webpagetest" class="headerlink" title="webpagetest"></a>webpagetest</h3><p><a href="www.webpagetest.org">webpagetest工具网址</a></p>
+<h3 id="GTmetrix"><a href="#GTmetrix" class="headerlink" title="GTmetrix"></a>GTmetrix</h3><p><a href="https://gtmetrix.com/" target="_blank" rel="noopener">GTmetrix工具网址</a></p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用Chrome开发工具"><span class="toc-number">1.</span> <span class="toc-text">使用Chrome开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#识别内存泄露"><span class="toc-number">1.1.</span> <span class="toc-text">识别内存泄露</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观测FPS"><span class="toc-number">1.2.</span> <span class="toc-text">观测FPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查代码覆盖率"><span class="toc-number">1.3.</span> <span class="toc-text">检查代码覆盖率</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用性能检测工具"><span class="toc-number">2.</span> <span class="toc-text">使用性能检测工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lighthouse"><span class="toc-number">2.1.</span> <span class="toc-text">lighthouse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpagetest"><span class="toc-number">2.1.1.</span> <span class="toc-text">webpagetest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTmetrix"><span class="toc-number">2.1.2.</span> <span class="toc-text">GTmetrix</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/12/12/frontend-performance-test/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/12/12/frontend-performance-test/&text=如何分析页面性能"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/12/12/frontend-performance-test/&is_video=false&description=如何分析页面性能"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何分析页面性能&body=Check out this article: http://yoursite.com/2019/12/12/frontend-performance-test/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/12/12/frontend-performance-test/&title=如何分析页面性能"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/12/12/frontend-performance-test/&name=如何分析页面性能&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>
