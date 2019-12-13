@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://yoursite.com/img/201912129130.jpeg">
 <meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s2134x1330_jfs/t1/69771/24/14787/44412/5dc535c5E1c7ae9f2/5d6545f40557d394.png">
 <meta property="og:image" content="https://img11.360buyimg.com/jdphoto/s1940x932_jfs/t1/54138/20/15411/50651/5dc535cbE11750587/caf749b66d7fc22e.png">
-<meta property="og:updated_time" content="2019-12-13T02:23:25.297Z">
+<meta property="og:updated_time" content="2019-12-13T03:07:10.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能专题：（2）如何分析页面性能">
 <meta name="twitter:description" content="使用Chrome开发工具识别内存泄露开发过程中，最常见的是内存泄露。通过谷歌开发工具，我们可以比较容易的识别出页面是否存在内存泄露。 可以用下面的代码做一次实验： 1234567891011121314151617181920212223242526&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;	&amp;lt;head&amp;gt;	    &amp;lt;title&amp;gt;&amp;">
@@ -229,7 +229,7 @@
 
 <!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104163010.jpg)-->
 <p><img src="https://img11.360buyimg.com/jdphoto/s1226x1030_jfs/t1/52906/39/15184/85272/5dc535aaE91291450/87df6d5465c36cbd.png" alt></p>
-<p>需要关注的是<em>内存占用空间</em>和<em>JavaScript使用的内存</em>， 如果页面已经加载完成并稳定下来，danshi这两个数值还在不停增长，就可能出现了内存泄露。</p>
+<p>需要关注的是<em>内存占用空间</em>和<em>JavaScript使用的内存</em>， 如果页面已经加载完成并稳定下来，这两个数值还在不停增长，就可能出现了内存泄露。</p>
 <h2 id="观测FPS"><a href="#观测FPS" class="headerlink" title="观测FPS"></a>观测FPS</h2><p>我们可以使用chrome开发工具的performance记录来查看FPS的情况，下图中红框的是FPS，整一排是页面加载到结束过程中FPS的数值。 衡量页面是否卡顿可以看FPS横条的颜色，如果是绿色，证明页面帧率比较高不卡顿，如果是红色，则说明页面非常卡。 页面空白时间段由于加载及解析js等文件，导致主进程阻塞，这是可以观测到FPS是红色的。</p>
 <!--![](http://q0hfs054j.bkt.clouddn.com/img/20191104205848.jpg)-->
 <p><img src="https://img11.360buyimg.com/jdphoto/s2006x396_jfs/t1/46517/31/15563/46463/5dc532c9Edb27925c/b220d8b212cee485.png" alt></p>

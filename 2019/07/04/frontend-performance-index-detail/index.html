@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780189487/using-webpagetest/metrics/speed-index/chart-progress-a-small.png">
 <meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index/chart-progress-b-small.png?attredirects=0">
 <meta property="og:image" content="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1472780188199/using-webpagetest/metrics/speed-index/speedindexformula.png">
-<meta property="og:updated_time" content="2019-12-13T02:22:55.658Z">
+<meta property="og:updated_time" content="2019-12-13T03:42:13.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能专题：（1）前端页面性能指标详解">
 <meta name="twitter:description" content="常用性能指标用户角度的RAIL性能模型RAIL 是一种以用户为中心的性能模型,在衡量一个页面的性能好坏时，站在用户角度通常我们会关注以下几个方面，其关键性能指标可见下方表格：    关键RAIL 指标汇总    RAIL模型 关键指标 用户操作    响应 输入延迟时间（从点按到绘制）小于 100 毫秒 用户点按按钮（例如打开导航）   动画 每个帧的工作（从 JS 到绘制）完成时间小于 16 毫">
@@ -115,7 +115,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">2.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">2.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">2.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">2.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">2.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">2.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">2.0.7.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">2.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化目标"><span class="toc-number">2.</span> <span class="toc-text">优化目标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">3.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">3.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">3.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">3.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">3.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">3.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">3.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">3.0.7.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">3.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -188,7 +188,8 @@
 <td align="right">用户加载页面并看到关键路径内容</td>
 </tr>
 </tbody></table>
-<h2 id="Developer角度的性能指标"><a href="#Developer角度的性能指标" class="headerlink" title="Developer角度的性能指标"></a>Developer角度的性能指标</h2><table>
+<h2 id="Developer角度的性能指标"><a href="#Developer角度的性能指标" class="headerlink" title="Developer角度的性能指标"></a>Developer角度的性能指标</h2><p>前端性能需要关注的指标可见下表：</p>
+<table>
 <thead>
 <tr>
 <th align="left">名称</th>
@@ -212,6 +213,11 @@
 <td align="right">用户实现交互操作的相应时间</td>
 </tr>
 <tr>
+<td align="left">FCI</td>
+<td align="center">First CPU Idle</td>
+<td align="right">首次CPU空闲时间</td>
+</tr>
+<tr>
 <td align="left">TTI</td>
 <td align="center">Time to Interactive</td>
 <td align="right">页面开始加载到稳定可交互的时间</td>
@@ -225,6 +231,86 @@
 <td align="left">FPS</td>
 <td align="center">Frames Per Second</td>
 <td align="right">每秒绘制的帧数</td>
+</tr>
+<tr>
+<td align="left">白屏时间</td>
+<td align="center">White Screen</td>
+<td align="right">统计起始点到页面出现第一个元素的时间</td>
+</tr>
+<tr>
+<td align="left">首屏时间</td>
+<td align="center">First Screen</td>
+<td align="right">页面首屏所有资源完全展示的时间</td>
+</tr>
+<tr>
+<td align="left">内存占用空间</td>
+<td align="center">Heap    Size</td>
+<td align="right">内存占用空间</td>
+</tr>
+<tr>
+<td align="left">JS 堆内存大小</td>
+<td align="center">JS Heap    Size</td>
+<td align="right">JS 堆内存大小</td>
+</tr>
+<tr>
+<td align="left">DOM Nodes</td>
+<td align="center">DOM 节点数</td>
+<td align="right">DOM节点数量</td>
+</tr>
+<tr>
+<td align="left">JS监听器数量</td>
+<td align="center">JS Event Listeners</td>
+<td align="right">JS监听器数量</td>
+</tr>
+<tr>
+<td align="left">代码覆盖率</td>
+<td align="center">coverage</td>
+<td align="right">代码覆盖率</td>
+</tr>
+<tr>
+<td align="left">关键文件大小</td>
+<td align="center">key file</td>
+<td align="right">关键文件大小</td>
+</tr>
+</tbody></table>
+<h1 id="优化目标"><a href="#优化目标" class="headerlink" title="优化目标"></a>优化目标</h1><table>
+<thead>
+<tr>
+<th align="left">指标</th>
+<th align="center">优化目标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">首屏加载时间</td>
+<td align="center">小于 1s</td>
+</tr>
+<tr>
+<td align="left">FPS</td>
+<td align="center">达到60</td>
+</tr>
+<tr>
+<td align="left">每秒动画帧数</td>
+<td align="center">达到60</td>
+</tr>
+<tr>
+<td align="left">填充速度指数</td>
+<td align="center">小于1250</td>
+</tr>
+<tr>
+<td align="left">关键文件大小 4G以下</td>
+<td align="center">小于 345kb</td>
+</tr>
+<tr>
+<td align="left">关键文件大小  Wifi</td>
+<td align="center">小于 750kb</td>
+</tr>
+<tr>
+<td align="left">关键CSS大小</td>
+<td align="center">小于 15kb</td>
+</tr>
+<tr>
+<td align="left">用户的响应时间</td>
+<td align="center">小于 100ms</td>
 </tr>
 </tbody></table>
 <h1 id="性能指标统计方法及分析"><a href="#性能指标统计方法及分析" class="headerlink" title="性能指标统计方法及分析"></a>性能指标统计方法及分析</h1><p>在关注各项性能指标之前，有必要了解一下w3c标准的<a href="https://www.w3.org/TR/navigation-timing/" target="_blank" rel="noopener">Navigation Timing API</a> ，下图是level 2 标出的时间戳，level2 还处于Working Draft的阶段，即将进入Recommendation。Navigation Timing的属性对于目前我们的需要用到的性能指标有非常清晰的界定，可以提前了解一下。</p>
@@ -383,7 +469,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">2.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">2.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">2.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">2.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">2.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">2.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">2.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">2.0.7.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">2.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用性能指标"><span class="toc-number">1.</span> <span class="toc-text">常用性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用户角度的RAIL性能模型"><span class="toc-number">1.1.</span> <span class="toc-text">用户角度的RAIL性能模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键RAIL-指标汇总"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">关键RAIL 指标汇总</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer角度的性能指标"><span class="toc-number">1.2.</span> <span class="toc-text">Developer角度的性能指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化目标"><span class="toc-number">2.</span> <span class="toc-text">优化目标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#性能指标统计方法及分析"><span class="toc-number">3.</span> <span class="toc-text">性能指标统计方法及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始统计的起始点"><span class="toc-number">3.0.1.</span> <span class="toc-text">开始统计的起始点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FCP"><span class="toc-number">3.0.2.</span> <span class="toc-text">FCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#白屏时间"><span class="toc-number">3.0.3.</span> <span class="toc-text">白屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首屏时间"><span class="toc-number">3.0.4.</span> <span class="toc-text">首屏时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FPS"><span class="toc-number">3.0.5.</span> <span class="toc-text">FPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度指数：Speed-Index"><span class="toc-number">3.0.6.</span> <span class="toc-text">速度指数：Speed Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">3.0.7.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存问题的现象"><span class="toc-number">3.0.7.1.</span> <span class="toc-text">内存问题的现象</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
