@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang=ch>
+
+  <head>
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script> -->
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+  </head>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="许多看起来效果很惊艳的动画，其实实现原理很简单。 下面是几种有意思的动画实现： 彩虹波形图 步骤1：先绘制单条波形 步骤2：设置animation的keyframes，从0% 到 100% 设为20帧， 对background颜色，height和margin-top的值做周期性设置。 步骤3：再增加19个div 步骤3：每个div的动画开始时间依次递减，这样就看到有规律波动的波形图了     Se">
+<meta name="keywords" content="动画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有趣的动画">
+<meta property="og:url" content="http://yoursite.com/2019/12/20/intresting-animations/index.html">
+<meta property="og:site_name" content="April">
+<meta property="og:description" content="许多看起来效果很惊艳的动画，其实实现原理很简单。 下面是几种有意思的动画实现： 彩虹波形图 步骤1：先绘制单条波形 步骤2：设置animation的keyframes，从0% 到 100% 设为20帧， 对background颜色，height和margin-top的值做周期性设置。 步骤3：再增加19个div 步骤3：每个div的动画开始时间依次递减，这样就看到有规律波动的波形图了     Se">
+<meta property="og:locale" content="chinese">
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5973/muybridge_horse.jpg">
+<meta property="og:updated_time" content="2019-12-20T12:13:06.722Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="有趣的动画">
+<meta name="twitter:description" content="许多看起来效果很惊艳的动画，其实实现原理很简单。 下面是几种有意思的动画实现： 彩虹波形图 步骤1：先绘制单条波形 步骤2：设置animation的keyframes，从0% 到 100% 设为20帧， 对background颜色，height和margin-top的值做周期性设置。 步骤3：再增加19个div 步骤3：每个div的动画开始时间依次递减，这样就看到有规律波动的波形图了     Se">
+<meta name="twitter:image" content="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5973/muybridge_horse.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>有趣的动画</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+</head>
+
+
+  <body class="max-width mx-auto px3 ">
+    
+    <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/12/12/frontend-performance-test/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/12/20/intresting-animations/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/12/20/intresting-animations/&text=有趣的动画"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/12/20/intresting-animations/&is_video=false&description=有趣的动画"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=有趣的动画&body=Check out this article: http://yoursite.com/2019/12/20/intresting-animations/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/12/20/intresting-animations/&name=有趣的动画&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#彩虹波形图"><span class="toc-number">1.</span> <span class="toc-text">彩虹波形图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#旋转的小圆"><span class="toc-number">2.</span> <span class="toc-text">旋转的小圆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#嵌套黑白圆圈"><span class="toc-number">3.</span> <span class="toc-text">嵌套黑白圆圈</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#扭动的圆"><span class="toc-number">4.</span> <span class="toc-text">扭动的圆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#替代gif的动画效果"><span class="toc-number">5.</span> <span class="toc-text">替代gif的动画效果</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+      
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        有趣的动画
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">April</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-12-20T10:09:33.000Z" itemprop="datePublished">2019-12-20</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/动画/">动画</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>许多看起来效果很惊艳的动画，其实实现原理很简单。 下面是几种有意思的动画实现：</p>
+<h1 id="彩虹波形图"><a href="#彩虹波形图" class="headerlink" title="彩虹波形图"></a>彩虹波形图</h1><ol>
+<li>步骤1：先绘制单条波形</li>
+<li>步骤2：设置animation的keyframes，从0% 到 100% 设为20帧， 对background颜色，height和margin-top的值做周期性设置。</li>
+<li>步骤3：再增加19个div</li>
+<li>步骤3：每个div的动画开始时间依次递减，这样就看到有规律波动的波形图了</li>
+</ol>
+<iframe height="339" style="width: 100%;" scrolling="no" title="Responsive CSS bars" src="https://codepen.io/April666/embed/yLLbzyO?height=339&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/yLLbzyO" target="_blank" rel="noopener">Responsive CSS bars</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+
+<h1 id="旋转的小圆"><a href="#旋转的小圆" class="headerlink" title="旋转的小圆"></a>旋转的小圆</h1><p>这里的实现很有趣的地方在于： 看起来是6个圆在转，其实html元素只有一个div。</p>
+<ol>
+<li>步骤1：先画一个圆（把div的样式变成圆形，不用给背景色哦）</li>
+<li>步骤2：box-shadow设置多层，每层给一个颜色，设置一个合适的扩散半径。这时候圆形是叠加在一起的。</li>
+<li>步骤3：按角度和半径计算每个圆形圆心的位置，设置box-shadow每个圆的X偏移和Y偏移量。六个静止的圆就画好了。</li>
+<li>步骤3：在keyframe中增加 transform:rotate(-360deg); animation-timing-function设置linear，animation-iteration-count设置成infinite，用animation让圆形动起来。</li>
+</ol>
+<iframe height="469" style="width: 100%;" scrolling="no" title="rotate circular" src="https://codepen.io/April666/embed/abbWjRe?height=469&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/abbWjRe" target="_blank" rel="noopener">rotate circular</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="嵌套黑白圆圈"><a href="#嵌套黑白圆圈" class="headerlink" title="嵌套黑白圆圈"></a>嵌套黑白圆圈</h1><p>这个动画效果较前两个更为复杂，但实现也只用了一个div元素。具体实现原理可参考前两个动画，只是使用了伪元素和boxshadow做出了更多原色的效果。</p>
+<ol>
+<li>步骤1：使用过after和before以及boxshow画出几种不同的大小和位置的圆圈。</li>
+<li>步骤2：在伪元素和元素本身加上动画。</li>
+<li>步骤3：不得不说，box-shawdow真是个好东西，以前只用它给卡片加个阴影，没想到做起动画来这么给力。</li>
+</ol>
+<iframe height="498" style="width: 100%;" scrolling="no" title="animation" src="https://codepen.io/April666/embed/gOOWGXV?height=498&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/gOOWGXV" target="_blank" rel="noopener">animation</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="扭动的圆"><a href="#扭动的圆" class="headerlink" title="扭动的圆"></a>扭动的圆</h1><p>有点像一只虫子，实现也比较简单，思路见上面两个动画。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="eYmvrwL" src="https://codepen.io/April666/embed/eYmvrwL?height=265&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/eYmvrwL" target="_blank" rel="noopener">eYmvrwL</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="替代gif的动画效果"><a href="#替代gif的动画效果" class="headerlink" title="替代gif的动画效果"></a>替代gif的动画效果</h1><p>实现原理是把很多张帧图片合成一张，跟最原始电影的原理一样。这里可以电视图片的元素当成一个固定位置的电影屏幕，不停循环替换帧，就可以有动态效果了。 替换帧的方式使用velocity库，在js中控制背景图的位置就可以实现。</p>
+<p>其实就是这样一张图片：<br><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5973/muybridge_horse.jpg" alt></p>
+<p>合成图片的工具可以使用<a href="https://github.com/gkajs/gka" target="_blank" rel="noopener">gka</a>，请设计同学帮忙生成多张帧序列图就可以啦。</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="animation2" src="https://codepen.io/April666/embed/qBBmPKJ?height=265&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/April666/pen/qBBmPKJ" target="_blank" rel="noopener">animation2</a> by tuzilingdang
+  (<a href="https://codepen.io/April666" target="_blank" rel="noopener">@April666</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+
+
+<p>以上是几种有趣的动画实现，后面的文章会深入讲一下几种不同的动画实现方式。</p>
+
+  </div>
+</article>
+
+
+
+      
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#彩虹波形图"><span class="toc-number">1.</span> <span class="toc-text">彩虹波形图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#旋转的小圆"><span class="toc-number">2.</span> <span class="toc-text">旋转的小圆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#嵌套黑白圆圈"><span class="toc-number">3.</span> <span class="toc-text">嵌套黑白圆圈</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#扭动的圆"><span class="toc-number">4.</span> <span class="toc-text">扭动的圆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#替代gif的动画效果"><span class="toc-number">5.</span> <span class="toc-text">替代gif的动画效果</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/12/20/intresting-animations/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/12/20/intresting-animations/&text=有趣的动画"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/12/20/intresting-animations/&is_video=false&description=有趣的动画"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=有趣的动画&body=Check out this article: http://yoursite.com/2019/12/20/intresting-animations/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/12/20/intresting-animations/&title=有趣的动画"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/12/20/intresting-animations/&name=有趣的动画&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 April Ji
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/tuzilingdang?tab=projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+
+    <script src="../../prism-okaidia.js"></script>
+    <script>
+      
+      // hljs.initHighlightingOnLoad();
+      // $('pre code').each(function (i, block) {
+      //   //hljs.highlightBlock(block);
+      //   var lines = $(this).text().split('\n').length - 1;
+      //   var $numbering = $('<ul/>').addClass('pre-numbering');
+      //   $(this)
+      //     .addClass('has-numbering')
+      //     .parent()
+      //     .append($numbering);
+      //   for (i = 1; i <= lines; i++) {
+      //     $numbering.append($('<li/>').text(i));
+      //   }
+      // });
+    </script>
+  </body>
+
+  </html>
